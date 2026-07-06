@@ -25,7 +25,7 @@ class Admin {
         <div class="pf-topbar">
             <div class="pf-topbar-left">
                 <div class="pf-brand">
-                    <span class="pf-brand-mark" aria-hidden="true">PF</span>
+                    <img class="pf-brand-logo" src="<?php echo esc_url(PAGEFORGE_URL . 'assets/logo-100x100.png'); ?>" width="40" height="40" alt="<?php echo esc_attr__('PageForge', 'pageforge'); ?>" />
                     <div>
                         <div class="pf-brand-title">PageForge</div>
                         <div class="pf-brand-sub"><?php echo esc_html($subtitle !== '' ? $subtitle : __('AI SEO Page Generator', 'pageforge')); ?></div>
