@@ -15,8 +15,8 @@ msgstr ""
 
 msgid "%d page"
 msgid_plural "%d pages"
-msgstr[0] "Página%d"
-msgstr[1] "Páginas%d"
+msgstr[0] "%d página"
+msgstr[1] "%d páginas"
 
 msgid "— None —"
 msgstr "- Nenhum -"

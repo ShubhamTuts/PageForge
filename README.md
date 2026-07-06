@@ -21,7 +21,7 @@ programmatic-seo, wordpress-plugin, bulk-page-generator, local-seo, ai-seo, seo-
 
 <p align="center">
   <a href="https://wordpress.org/plugins/pageforge/"><img alt="WordPress Plugin" src="https://img.shields.io/badge/WordPress-Plugin-21759B?logo=wordpress&logoColor=white"></a>
-  <img alt="Stable Version" src="https://img.shields.io/badge/stable-1.1.7-111827">
+  <img alt="Stable Version" src="https://img.shields.io/badge/stable-1.1.8-111827">
   <img alt="Tested with WordPress 7.0" src="https://img.shields.io/badge/tested%20up%20to-WordPress%207.0-3858E9?logo=wordpress&logoColor=white">
   <img alt="Requires PHP 7.4+" src="https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white">
   <img alt="License GPLv2 or later" src="https://img.shields.io/badge/license-GPLv2%2B-22C55E">
@@ -715,9 +715,12 @@ PageForge AI Programmatic SEO WordPress Plugin — generate bulk local SEO pages
 
 ### Changelog Highlights
 
-#### 1.1.7
+#### 1.1.8
 
-Current stable GitHub README target version.
+- Added bundled German (de_DE) and French (fr_FR) translations for the PageForge admin UI, block labels, AJAX notices, and JavaScript messages.
+- Added bundled English (United States), English (United Kingdom), and Portuguese (Portugal) translation files.
+- Added a standard languages directory with POT, PO, and compiled MO translation files.
+- Improved plugin text-domain loading and wrapped previously hard-coded admin labels for localization.
 
 #### 1.1.6
 
