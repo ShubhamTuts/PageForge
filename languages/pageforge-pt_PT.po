@@ -1,0 +1,1144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PageForge 1.1.8\n"
+"Report-Msgid-Bugs-To: https://pageforge.pro\n"
+"POT-Creation-Date: 2026-07-06 00:00+0530\n"
+"PO-Revision-Date: 2026-07-06 00:00+0530\n"
+"Last-Translator: Codefreex <support@codefreex.com>\n"
+"Language-Team: Portuguese (Portugal)\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Codex\n"
+
+msgid "%d page"
+msgid_plural "%d pages"
+msgstr[0] "Página%d"
+msgstr[1] "Páginas%d"
+
+msgid "— None —"
+msgstr "- Nenhum -"
+
+msgid "%s API key missing"
+msgstr "Chave%sAPIem falta"
+
+msgid "%s API key missing."
+msgstr "Chave%sAPIem falta."
+
+msgid "%s day ago"
+msgstr "%shá dia"
+
+msgid "%s days ago"
+msgstr "%shá dias"
+
+msgid "%s error"
+msgstr "Erro%s"
+
+msgid "%s hr ago"
+msgstr "%shá horas"
+
+msgid "%s min ago"
+msgstr "%sHá minutos"
+
+msgid "%s mode is not available in this free build. Running instantly instead."
+msgstr "O modo%snão está disponível nesta versão gratuita. Executando instantaneamente."
+
+msgid "A template-level Generated Post Status overrides this setting."
+msgstr "Um estado de publicação geradotemplate-levelsubstitui esta configuração."
+
+msgid "Accent color"
+msgstr "Cor de destaque"
+
+msgid "Account"
+msgstr "Conta"
+
+msgid "Account portal URL is currently unavailable. Ensure the Freemius SDK is loaded and this site is connected."
+msgstr "O URL do portal da conta não está disponível de momento. Certifique-se de que o SDKFreemiusestá carregado e que este site está ligado."
+
+msgid "Account portal URL is not available in this environment. Use your Freemius dashboard to manage licenses."
+msgstr "O URL do portal da conta não está disponível neste ambiente. Utilize o seu painelFreemiuspara gerir licenças."
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Active Templates"
+msgstr "Modelos ativos"
+
+msgid "Add API key in Settings"
+msgstr "Adicione a chaveAPInas definições"
+
+msgid "Add Data Source"
+msgstr "Adicionar fonte de dados"
+
+msgid "Add keywords separated by commas or new lines"
+msgstr "Adicione palavras-chave separadas por vírgulas ou novas linhas"
+
+msgid "Add New Template"
+msgstr "Adicionar novo modelo"
+
+msgid "Add your selected AI provider API key to enable the Site Planner and other AI tools."
+msgstr "Adicione a chaveAPIdo fornecedorAIselecionado para ativar o Site Planner e outras ferramentasAI."
+
+msgid "Adds an internal-linking sitemap of generated PageForge pages. It groups by City by default and links every matching generated URL."
+msgstr "Adiciona um mapa do siteinternal-linkingde páginasPageForgegeradas. Agrupa por cidade por defeito e liga todos os URLs gerados correspondentes."
+
+msgid "AI Blog"
+msgstr "BlogAI"
+
+msgid "AI Blog Generator"
+msgstr "Gerador de BlogsAI"
+
+msgid "AI Blog generator & images"
+msgstr "Gerador e imagens de bloguesAI"
+
+msgid "AI chat and tools"
+msgstr "Chat e ferramentasAI"
+
+msgid "AI did not return meta_title/meta_description"
+msgstr "AInão retornou meta_title/meta_description"
+
+msgid "AI did not return title/content_html"
+msgstr "AInão retornou title/content_html"
+
+msgid "AI Meta Generator"
+msgstr "MetageradorAI"
+
+msgid "AI navigation and conversations"
+msgstr "Navegação e conversasAI"
+
+msgid "AI Provider"
+msgstr "FornecedorAI"
+
+msgid "AI returned invalid JSON"
+msgstr "AIretornouJSONinválido"
+
+msgid "AI SEO Page Generator"
+msgstr "Gerador de páginasAISEO"
+
+msgid "AI SEO Report / Planner"
+msgstr "AISEORelatório / Planificador"
+
+msgid "AI Site Planner"
+msgstr "Planeador de localAI"
+
+msgid "AI Site Planner & SEO report"
+msgstr "Planeador de siteAIe relatórioSEO"
+
+msgid "AI tools are unlimited for paid plans."
+msgstr "As ferramentasAIsão ilimitadas para planos pagos."
+
+msgid "AI usage limits"
+msgstr "Limites de utilizaçãoAI"
+
+msgid "Anthropic error"
+msgstr "ErroAnthropic"
+
+msgid "Appearance"
+msgstr "Aspeto"
+
+msgid "Applies to pageforge_page URLs. Save to flush permalinks."
+msgstr "Aplica-se aos URLspageforge_page. Guarde para libertar links permanentes."
+
+msgid "Assistant"
+msgstr "Assistente"
+
+msgid "Audience (optional)"
+msgstr "Público (opcional)"
+
+msgid "Available CSVs"
+msgstr "CSVs disponíveis"
+
+msgid "Background color"
+msgstr "Cor de fundo"
+
+msgid "Base layout cloning"
+msgstr "Clonagem de layout básico"
+
+msgid "Base Layout from Existing Page or Template"
+msgstr "Layout base de página ou modelo existente"
+
+msgid "Base Page/Template ID:"
+msgstr "ID da página base/modelo:"
+
+msgid "Best {Service} in {City}, {State}"
+msgstr "Melhor{Service}em{City},{State}"
+
+msgid "Blocks"
+msgstr "Blocos"
+
+msgid "Blocks & Shortcodes"
+msgstr "Blocos e códigos de acesso"
+
+msgid "Blog"
+msgstr "Blogue"
+
+msgid "Blog Generator"
+msgstr "Gerador de blogs"
+
+msgid "Brand Context / Voice"
+msgstr "Contexto/voz da marca"
+
+msgid "Builder-ready tokens"
+msgstr "Tokens prontos para construtor"
+
+msgid "Bulk request failed to start (JS error)."
+msgstr "Falha ao iniciar o pedido em massa (erro JS)."
+
+msgid "Business Type (Schema)"
+msgstr "Tipo de negócio (esquema)"
+
+msgid "Cards"
+msgstr "Cartões"
+
+msgid "Chat-style assistant to plan your sitemap, pages, SEO, and launch."
+msgstr "Assistente estilo chat para planear o seu mapa do site, páginas,SEOe lançamento."
+
+msgid "Choose a CSV uploaded in Data Sources. Headers define available placeholders."
+msgstr "Escolha umCSVcarregado em fontes de dados. Os cabeçalhos definem os espaços reservados disponíveis."
+
+msgid "Choose grouping, columns, colors, and heading level from the block sidebar."
+msgstr "Escolha o agrupamento, as colunas, as cores e o nível do título na barra lateral do bloco."
+
+msgid "Choose which AI provider powers AI content, meta generation, the site planner, and blog drafts in the free plugin."
+msgstr "Escolha qual o fornecedorAIque fornece conteúdoAI, metageração, planeador de sites e rascunhos de blogues no plugin gratuito."
+
+msgid "City"
+msgstr "Cidade"
+
+msgid "Claude API Key"
+msgstr "ChaveClaudeAPI"
+
+msgid "Claude Model"
+msgstr "ModeloClaude"
+
+msgid "Click Add Block and search for PageForge Sitemap."
+msgstr "Clique em Adicionar bloco e pesquise o mapa do sitePageForge."
+
+msgid "Columns"
+msgstr "Colunas"
+
+msgid "Comma-separated. Example: pageforge_page,page,post"
+msgstr "Separados por vírgula. Exemplo:pageforge_page,página,post"
+
+msgid "Compact"
+msgstr "Compactar"
+
+msgid "Configure AI providers, generation defaults, analytics, and schema options."
+msgstr "Configure os fornecedoresAI, os padrões de geração, as análises e as opções de esquema."
+
+msgid "Contact sales"
+msgstr "Entre em contacto com vendas"
+
+msgid "Content length"
+msgstr "Comprimento do conteúdo"
+
+msgid "Control columns, page limit, counts, heading level, and colors."
+msgstr "Colunas de controlo, limite de páginas, contagens, nível de título e cores."
+
+msgid "Conversation"
+msgstr "Conversa"
+
+msgid "Conversion-focused structure + heading set"
+msgstr "Estrutura focada na conversão + conjunto de títulos"
+
+msgid "Create a complete website plan for my business. Ask me for my business name, location, services, and goals, then propose sitemap, page sections, SEO keywords, and a launch checklist."
+msgstr "Crie um plano de website completo para o meu negócio. Pergunte-me o nome da minha empresa, a localização, os serviços e os objetivos e, em seguida, proponha o mapa do site, as secções da página, as palavras-chaveSEOe uma lista de verificação de lançamento."
+
+msgid "Create reusable templates with dynamic placeholders like {City}, {State}, {Service} anywhere in your content, title, or slug pattern."
+msgstr "Crie modelos reutilizáveis ​​com espaços reservados dinâmicos como{City},{State},{Service}em qualquer lugar do seu conteúdo, título ou padrão de slug."
+
+msgid "Create robust templates"
+msgstr "Crie modelos robustos"
+
+msgid "Create Template"
+msgstr "Criar modelo"
+
+msgid "Create up to 100 unique pages per run from CSV with dynamic tokens, schema, and builder-friendly templates."
+msgstr "Crie até 100 páginas únicas por execução doCSVcom tokens dinâmicos, esquema e modelosbuilder-friendly."
+
+msgid "CSV has no rows"
+msgstr "CSVnão tem linhas"
+
+msgid "CSV Sources"
+msgstr "FontesCSV"
+
+msgid "CSV Upload"
+msgstr "CarregarCSV"
+
+msgid "Current plan:"
+msgstr "Plano atual:"
+
+msgid "Customize grouping by City, State, Service, or one list."
+msgstr "Personalize o agrupamento por cidade, estado, serviço ou uma lista."
+
+msgid "Dashboard"
+msgstr "Painel"
+
+msgid "Data Source (CSV)"
+msgstr "Fonte de dados (CSV)"
+
+msgid "Data Sources"
+msgstr "Fontes de dados"
+
+msgid "DeepSeek API Key"
+msgstr "ChaveDeepSeekAPI"
+
+msgid "DeepSeek Model"
+msgstr "ModeloDeepSeek"
+
+msgid "DeepSeek uses its current OpenAI-compatible API models. Legacy deepseek-chat and deepseek-reasoner are intentionally excluded."
+msgstr "DeepSeekutiliza os seus modelosAPIatuais compatíveis comOpenAI.deepseek-chatedeepseek-reasonerherdados foram eliminados intencionalmente."
+
+msgid "Describe your brand, tone, USPs. Added to AI prompts."
+msgstr "Descreva a sua marca, tom,USPs. Adicionado aos avisosAI."
+
+msgid "Describe your business, location, services, and goals…"
+msgstr "Descreva o seu negócio, localização, serviços e objetivos…"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Direct license key entry from this screen can be added later once the Freemius API integration is finalized."
+msgstr "A introdução direta da chave de licença neste ecrã pode ser adicionada posteriormente, quando a integração doFreemiusAPIestiver finalizada."
+
+msgid "Displays generated PageForge pages grouped by city, state, service, or as one list."
+msgstr "Apresenta as páginasPageForgegeradas agrupadas por cidade, estado, serviço ou como uma lista."
+
+msgid "Documentation"
+msgstr "Documentação"
+
+msgid "Done."
+msgstr "Concluído."
+
+msgid "Download a sample CSV to get started quickly."
+msgstr "Descarregue um exemplo deCSVpara começar rapidamente."
+
+msgid "Download JSON"
+msgstr "DownloadJSON"
+
+msgid "Download Markdown"
+msgstr "DownloadMarkdown"
+
+msgid "Download Sample CSV"
+msgstr "Descarregue a amostraCSV"
+
+msgid "Draft"
+msgstr "Rascunho"
+
+msgid "Draft created"
+msgstr "Rascunho criado"
+
+msgid "Dynamic Variables"
+msgstr "Variáveis ​​​​Dinâmicas"
+
+msgid "e.g. AU, US, GB (ISO 2-letter)"
+msgstr "por exemploAU,US,GB(ISO2 letras)"
+
+msgid "e.g. Local SEO checklist for plumbers"
+msgstr "por exemplo Lista de verificaçãoSEOlocal para canalizadores"
+
+msgid "e.g. Small business owners"
+msgstr "por exemplo Os proprietários de pequenas empresas"
+
+msgid "Edit Post"
+msgstr "Editar publicação"
+
+msgid "Edit Template"
+msgstr "Editar modelo"
+
+msgid "Empty AI response"
+msgstr "RespostaAIvazia"
+
+msgid "Ensure CSV headers match placeholders exactly (case-insensitive)."
+msgstr "Certifique-se de que os cabeçalhosCSVcorrespondem exatamente aos espaços reservados (case-insensitive)."
+
+msgid "Enter a topic"
+msgstr "Insira um tópico"
+
+msgid "Enterprise"
+msgstr "Empresa"
+
+msgid "Error:"
+msgstr "Erro:"
+
+msgid "Error: Request failed. Check network / API key."
+msgstr "Erro: pedido falhou. Verifique a chave de rede/API."
+
+msgid "Errors:"
+msgstr "Erros:"
+
+msgid "Exists (ID: %d)"
+msgstr "Existe (ID:%d)"
+
+msgid "Export"
+msgstr "Exportar"
+
+msgid "Feature"
+msgstr "Característica"
+
+msgid "Featured image attached (attachment #%s)"
+msgstr "Imagem em destaque em anexo (anexo #%s)"
+
+msgid "Focus Keyword (optional)"
+msgstr "Palavra-chave de foco (opcional)"
+
+msgid "For higher volumes, custom workflows, or security reviews, talk to us about an Enterprise plan."
+msgstr "Para volumes maiores, fluxos de trabalho personalizados ou análises de segurança, fale connosco sobre um plano Enterprise."
+
+msgid "for Post"
+msgstr "para postagem"
+
+msgid "Free"
+msgstr "Livre"
+
+msgid "Free AI tools: %1$d of %2$d messages used this month on this site."
+msgstr "FerramentasAIgratuitas:%1$dde mensagens%2$dutilizadas este mês neste site."
+
+msgid "Free build processes up to %1$d pages per run. %2$d rows were skipped."
+msgstr "Processos de compilação gratuitos até páginas%1$dpor execução. As linhas%2$dforam ignoradas."
+
+msgid "Free builds can generate up to %d rows once per site. After that, upgrading unlocks unlimited rows."
+msgstr "As compilações gratuitas podem gerar até linhas%duma vez por site. Depois disso, a atualização desbloqueia linhas ilimitadas."
+
+msgid "Free limit status:"
+msgstr "Estado de limite gratuito:"
+
+msgid "Free plan: %1$d of %2$d AI messages used this month on this site."
+msgstr "Plano gratuito:%1$dde mensagens%2$dAIutilizadas este mês neste site."
+
+msgid "Freemius account portal"
+msgstr "Portal da contaFreemius"
+
+msgid "Full website plan"
+msgstr "Plano completo do site"
+
+msgid "GA4 API Secret"
+msgstr "GA4APISegredo"
+
+msgid "GA4 Measurement ID"
+msgstr "ID de mediçãoGA4"
+
+msgid "Gemini API Key"
+msgstr "ChaveGeminiAPI"
+
+msgid "Gemini error"
+msgstr "ErroGemini"
+
+msgid "Gemini Model"
+msgstr "ModeloGemini"
+
+msgid "Generate"
+msgstr "Gerar"
+
+msgid "Generate & Save Meta"
+msgstr "Gerar e guardar meta"
+
+msgid "Generate a full HTML blog draft and optionally attach a featured image from Pexels."
+msgstr "Gere um rascunho completo do blogue em HTML e, opcionalmente, anexe uma imagem de destaque doPexels."
+
+msgid "Generate a prioritized SEO plan for your site. Saves the latest report in the database."
+msgstr "Gere um planoSEOpriorizado para o seu website. Guarda o relatório mais recente na base de dados."
+
+msgid "Generate Draft"
+msgstr "Gerar rascunho"
+
+msgid "Generate Pages"
+msgstr "Gerar páginas"
+
+msgid "Generate Report"
+msgstr "Gerar relatório"
+
+msgid "Generate SEO meta and save to PageForge + Yoast + RankMath meta fields."
+msgstr "Gere o metaSEOe guarde nos metacamposPageForge+Yoast+RankMath."
+
+msgid "Generated at:"
+msgstr "Gerado em:"
+
+msgid "Generated CPT Slug Base"
+msgstr "Base de slugCPTgerada"
+
+msgid "Generated Post Status"
+msgstr "Estado da postagem gerada"
+
+msgid "Generated Post Type"
+msgstr "Tipo de publicação gerada"
+
+msgid "Generated posts keep variables for runtime replacement, so builders like Elementor/Divi/Gutenberg show tokens correctly."
+msgstr "As publicações geradas mantêm variáveis ​​para substituição de tempo de execução, para que construtores comoElementor/Divi/Gutenbergmostrem os tokens corretamente."
+
+msgid "Generated URLs"
+msgstr "URLs gerados"
+
+msgid "Generates pages immediately in your browser session, with up to 100 pages per run in free."
+msgstr "Gera páginas imediatamente na sessão do seu browser, com até 100 páginas por execução gratuitamente."
+
+msgid "Generating draft..."
+msgstr "Gerando rascunho..."
+
+msgid "Generating report..."
+msgstr "Gerando relatório..."
+
+msgid "Generating..."
+msgstr "Gerando..."
+
+msgid "Google Sheets"
+msgstr "Google Sheets"
+
+msgid "Google Sheets integration is not included in this build."
+msgstr "A integração do Google Sheets não está incluída nesta versão."
+
+msgid "Group by"
+msgstr "Agrupar por"
+
+msgid "Heading level"
+msgstr "Nível de título"
+
+msgid "Home"
+msgstr "Casa"
+
+msgid "Home page wireframe"
+msgstr "Wireframe da página inicial"
+
+msgid "How it works"
+msgstr "Como funciona"
+
+msgid "How to add the Sitemap block"
+msgstr "Como adicionar o bloco Sitemap"
+
+msgid "If you have enabled white-label mode for this license, some owner and billing information may be hidden from your client sites."
+msgstr "Se ativou o modowhite-labelpara esta licença, algumas informações do proprietário e de faturação poderão ficar ocultas dos sites dos seus clientes."
+
+msgid "Include featured image (Pexels)"
+msgstr "Incluir imagem de destaque (Pexels)"
+
+msgid "Include recent site URLs for context"
+msgstr "Incluir URLs de sites recentes para contexto"
+
+msgid "Include up to 20 recent URLs in the report context"
+msgstr "Incluir até 20 URLs recentes no contexto do relatório"
+
+msgid "Included"
+msgstr "Incluído"
+
+msgid "Insert tokens like {City}, {State}, {Service}, or any CSV header directly into Gutenberg, Elementor, and Divi text areas. PageForge replaces them on generated pages, including theme titles and excerpts."
+msgstr "Introduza tokens como{City},{State},{Service}ou qualquer cabeçalhoCSVdiretamente nas áreas de textoGutenberg,ElementoreDivi.PageForgesubstitui-os nas páginas geradas, incluindo títulos e excertos de temas."
+
+msgid "Instant (Run Now)"
+msgstr "Instantâneo (executar agora)"
+
+msgid "Instructions"
+msgstr "Instruções"
+
+msgid "Invalid post"
+msgstr "Postagem inválida"
+
+msgid "Invalid template"
+msgstr "Modelo inválido"
+
+msgid "just now"
+msgstr "agora mesmo"
+
+msgid "Keyword"
+msgstr "Palavra-chave"
+
+msgid "Leave blank to auto-detect. If an AI API key is connected, PageForge will prefer global prevalence (auto country) instead of forcing AU."
+msgstr "Deixe em branco paraauto-detect. Se estiver ligada uma chaveAIAPI,PageForgepreferirá a prevalência global (país automático) em vez de forçarAU."
+
+msgid "License management"
+msgstr "Gestão de licenças"
+
+msgid "Licenses and billing for PageForge are managed via Freemius. Use the account portal to update payment details, move licenses between sites, or cancel a subscription."
+msgstr "As licenças e a faturação doPageForgesão geridas através doFreemius. Utilize o portal da conta para atualizar os dados de pagamento, mover licenças entre sites ou cancelar uma subscrição."
+
+msgid "Licenses, billing details, invoices, and subscription management are handled by Freemius. Use the account portal to manage your license across sites."
+msgstr "As licenças, detalhes de faturação, faturas e gestão de assinaturas são geridos peloFreemius. Utilize o portal da conta para gerir a sua licença entre sites."
+
+msgid "Link color"
+msgstr "Cor do link"
+
+msgid "Loading..."
+msgstr "Carregando..."
+
+msgid "Loading…"
+msgstr "Carregando…"
+
+msgid "Local"
+msgstr "Local"
+
+msgid "Local SEO plan"
+msgstr "Plano localSEO"
+
+msgid "Location pages + GBP + schema"
+msgstr "Páginas de localização +GBP+ esquema"
+
+msgid "Long (~1000 words max in free)"
+msgstr "Longo (cerca de 1000 palavras no máximo em versão gratuita)"
+
+msgid "Manage billing & license"
+msgstr "Gerir faturamento e licença"
+
+msgid "Manage your PageForge connection, license, and access the Freemius account portal."
+msgstr "Gira a sua ligaçãoPageForge, licencie e aceda ao portal da contaFreemius."
+
+msgid "Medium (~700 words)"
+msgstr "Médio (~700 palavras)"
+
+msgid "Meta Description"
+msgstr "Meta descrição"
+
+msgid "Meta Title & Description"
+msgstr "Metatítulo e descrição"
+
+msgid "Minimal"
+msgstr "Mínimo"
+
+msgid "Missing"
+msgstr "Em falta"
+
+msgid "Missing template or data source"
+msgstr "Modelo ou fonte de dados em falta"
+
+msgid "Mode"
+msgstr "Modo"
+
+msgid "Native Blocks"
+msgstr "Blocos Nativos"
+
+msgid "Native Gutenberg blocks connected to generated PageForge content."
+msgstr "BlocosGutenbergnativos ligados ao conteúdoPageForgegerado."
+
+msgid "Need Enterprise?"
+msgstr "Precisa de empresa?"
+
+msgid "Need to move or deactivate a license?"
+msgstr "Precisa de mover ou desativar uma licença?"
+
+msgid "New chat"
+msgstr "Novo bate-papo"
+
+msgid "New site plan"
+msgstr "Novo plano do local"
+
+msgid "No CSVs yet"
+msgstr "Ainda não há CSVs"
+
+msgid "No CSVs yet."
+msgstr "Ainda não há CSVs."
+
+msgid "No file"
+msgstr "Nenhum ficheiro"
+
+msgid "No grouping"
+msgstr "Sem agrupamento"
+
+msgid "No messages provided"
+msgstr "Nenhuma mensagem fornecida"
+
+msgid "No PageForge pages found."
+msgstr "Nenhuma páginaPageForgeencontrada."
+
+msgid "No recent generations."
+msgstr "Sem geração recente."
+
+msgid "No templates yet."
+msgstr "Ainda não há modelos."
+
+msgid "OK"
+msgstr "OK"
+
+msgid "One-time bulk generation (limited rows)"
+msgstr "Geração em massa única (linhas limitadas)"
+
+msgid "Open Account Portal"
+msgstr "Abra o Portal da Conta"
+
+msgid "Open any page in the WordPress block editor."
+msgstr "Abra qualquer página no editor de blocosWordPress."
+
+msgid "Open Freemius account portal"
+msgstr "Abra o portal da contaFreemius"
+
+msgid "Open Templates"
+msgstr "Abrir modelos"
+
+msgid "OpenAI API Key"
+msgstr "ChaveOpenAIAPI"
+
+msgid "OpenAI Model"
+msgstr "ModeloOpenAI"
+
+msgid "Other Cities"
+msgstr "Outras cidades"
+
+msgid "Other Pages"
+msgstr "Outras páginas"
+
+msgid "Other Services"
+msgstr "Outros serviços"
+
+msgid "Other States"
+msgstr "Outros estados"
+
+msgid "Page"
+msgstr "Página"
+
+msgid "Page Generation Activity"
+msgstr "Atividade de geração de páginas"
+
+msgid "Page limit"
+msgstr "Limite de páginas"
+
+msgid "PageForge"
+msgstr "PageForge"
+
+msgid "PageForge Blocks"
+msgstr "BlocosPageForge"
+
+msgid "PageForge can output basic SEO title and meta description when no dedicated SEO plugin is active."
+msgstr "PageForgepode gerar títuloSEObásico e meta descrição quando nenhum pluginSEOdedicado está ativo."
+
+msgid "PageForge navigation"
+msgstr "NavegaçãoPageForge"
+
+msgid "PageForge Page"
+msgstr "PáginaPageForge"
+
+msgid "PageForge Page (pageforge_page)"
+msgstr "PáginaPageForge(pageforge_page)"
+
+msgid "PageForge Pages"
+msgstr "PáginasPageForge"
+
+msgid "PageForge Pages (pageforge_page)"
+msgstr "PáginasPageForge(pageforge_page)"
+
+msgid "PageForge SEO"
+msgstr "PageForgeSEO"
+
+msgid "PageForge Sitemap"
+msgstr "Mapa do sitePageForge"
+
+msgid "PageForge Template"
+msgstr "ModeloPageForge"
+
+msgid "PageForge Template Settings"
+msgstr "Configurações do modeloPageForge"
+
+msgid "PageForge Templates"
+msgstr "ModelosPageForge"
+
+msgid "PageForge uses Freemius to manage billing, licensing, and plan entitlements for this site."
+msgstr "PageForgeutilizaFreemiuspara gerir a faturação, licenciamento e planos de direitos para este website."
+
+msgid "Pages"
+msgstr "Páginas"
+
+msgid "Paid plans do not enforce a PageForge-level AI message cap. Usage is limited only by your selected AI provider account and fair-use."
+msgstr "Os planos pagos não impõem um limite de mensagensAIao nívelPageForge. A utilização é limitada apenas pela conta do fornecedorAIselecionado e pelofair-use."
+
+msgid "Parser auto-detects delimiter and strips BOM; blank lines are ignored."
+msgstr "Delimitadorauto-detectsdo analisador e tiras BOM; linhas em branco são ignoradas."
+
+msgid "Pending"
+msgstr "Pendente"
+
+msgid "Pending Review"
+msgstr "Revisão pendente"
+
+msgid "Pexels API Key"
+msgstr "ChavePexelsAPI"
+
+msgid "Pick a page, post, Elementor template, Divi layout, or reusable block to clone its layout, or enter an ID manually."
+msgstr "Escolha uma página, publicação, modeloElementor, layoutDiviou bloco reutilizável para clonar o seu layout ou introduza um ID manualmente."
+
+msgid "Placeholders derived from headers (e.g., {City}, {State}, {Service}) can be used anywhere in your Template content, Title, and Slug patterns."
+msgstr "Os espaços reservados derivados de cabeçalhos (por exemplo,{City},{State},{Service}) podem ser utilizados em qualquer lugar no conteúdo do modelo, título e padrões de slug."
+
+msgid "Plan"
+msgstr "Plano"
+
+msgid "Plan & License"
+msgstr "Plano e Licença"
+
+msgid "Plan overview"
+msgstr "Visão geral do plano"
+
+msgid "Planner"
+msgstr "Planejador"
+
+msgid "Planner uses your Brand Context / Voice from Settings, your site details, and recent URLs (when enabled). Export produces Markdown you can save or share."
+msgstr "O Planner utiliza o contexto/voz da sua marca nas definições, os detalhes do seu website e os URLs recentes (quando ativado). A exportação produzMarkdownque pode guardar ou partilhar."
+
+msgid "Post"
+msgstr "Publicação"
+
+msgid "Post not found"
+msgstr "Postagem não encontrada"
+
+msgid "Post Status"
+msgstr "Estado da postagem"
+
+msgid "Post Type"
+msgstr "Tipo de postagem"
+
+msgid "Post types"
+msgstr "Tipos de postagem"
+
+msgid "Posts"
+msgstr "Postagens"
+
+msgid "Prepare a CSV with the first row as headers, e.g., City, State, Service. Delimiters supported: comma, semicolon, tab, or pipe."
+msgstr "Prepare umCSVcom a primeira linha como cabeçalho, por exemplo, Cidade, Estado, Serviço. Delimitadores suportados: vírgula, ponto e vírgula, tabulação ou barra vertical."
+
+msgid "Private"
+msgstr "Privado"
+
+msgid "Processed %1$s / %2$s..."
+msgstr "Processado%1$s/%2$s..."
+
+msgid "Processed:"
+msgstr "Processado:"
+
+msgid "Products (product)"
+msgstr "Produtos (produto)"
+
+msgid "Professional"
+msgstr "Profissional"
+
+msgid "Programmatic SEO for WordPress"
+msgstr "SEOprogramático paraWordPress"
+
+msgid "Provide a topic and (optionally) target keywords."
+msgstr "Forneça um tópico e (opcionalmente) palavras-chave alvo."
+
+msgid "Public / Published"
+msgstr "Público / Publicado"
+
+msgid "Publish"
+msgstr "Publicar"
+
+msgid "Queued rows:"
+msgstr "Linhas na fila:"
+
+msgid "Recent chats"
+msgstr "Bate-papos recentes"
+
+msgid "Recent Generations"
+msgstr "Gerações Recentes"
+
+msgid "Recommended length: up to ~155 characters."
+msgstr "Comprimento recomendado: até ~155 caracteres."
+
+msgid "Request failed (nonce / permissions / network)."
+msgstr "Falha no pedido (nonce/permissões/rede)."
+
+msgid "Review your PageForge plan, usage limits, and license options."
+msgstr "Reveja o seu planoPageForge, os limites de utilização e as opções de licença."
+
+msgid "Rows per Run"
+msgstr "Linhas por corrida"
+
+msgid "Runtime replacement also applies when builders render content, ensuring tokens inside widgets are replaced on the front end."
+msgstr "A substituição de tempo de execução também se aplica quando os construtores renderizam conteúdo, garantindo que os tokens dentro dos widgets são substituídos no front-end."
+
+msgid "Sample CSV"
+msgstr "AmostraCSV"
+
+msgid "Save Settings"
+msgstr "Guardar configurações"
+
+msgid "saved"
+msgstr "salvo"
+
+msgid "Saved"
+msgstr "Salvo"
+
+msgid "Search any page/post and generate its meta."
+msgstr "Pesquise qualquer página/post e gere o seu objetivo."
+
+msgid "Search post"
+msgstr "Postagem de pesquisa"
+
+msgid "Select a post first"
+msgstr "Selecione uma publicação primeiro"
+
+msgid "Select a Template that contains placeholders (e.g., {City}, {State}, {Service})."
+msgstr "Selecione um modelo que contenha espaços reservados (por exemplo,{City},{State},{Service})."
+
+msgid "Select CSV"
+msgstr "SelecioneCSV"
+
+msgid "Select Template"
+msgstr "Selecione o modelo"
+
+msgid "Select template and CSV"
+msgstr "Selecione o modelo eCSV"
+
+msgid "Selected Post ID"
+msgstr "ID da publicação selecionada"
+
+msgid "Send"
+msgstr "Enviar"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "SEO Report generation requires an Administrator role (manage_options)."
+msgstr "SEOA geração de relatórios requer uma função de Administrador (manage_options)."
+
+msgid "SEO Title"
+msgstr "TítuloSEO"
+
+msgid "Service"
+msgstr "Serviço"
+
+msgid "Services architecture"
+msgstr "Arquitetura de serviços"
+
+msgid "Set Post Status and run the generation. This free build processes up to 100 CSV rows per run."
+msgstr "Defina o Post Status e execute a geração. Esta compilação gratuita processa até 100 linhasCSVpor execução."
+
+msgid "Set Title and Slug patterns in the metabox below. Examples: “Best {Service} in {City}, {State}” and “{service}-in-{city}-{state}”."
+msgstr "Defina os padrões Title e Slug na metabox abaixo. Exemplos: “Melhor{Service}em{City},{State}” e “{service}-in-{city}-{state}”."
+
+msgid "Settings"
+msgstr "Configurações"
+
+msgid "Settings saved"
+msgstr "Configurações guardadas"
+
+msgid "Short (~400 words)"
+msgstr "Curto (~400 palavras)"
+
+msgid "Shortcodes render the value from the generated row for the current post. Direct tokens such as <code>{City}</code> are replaced at render time on generated pages."
+msgstr "Os códigos de acesso renderizam o valor da linha gerada para o post atual. Os tokens diretos como<code>{City}</code>são substituídos no momento da renderização nas páginas geradas."
+
+msgid "Shortcuts"
+msgstr "Atalhos"
+
+msgid "Show group counts"
+msgstr "Mostrar contagens de grupos"
+
+msgid "Single"
+msgstr "Solteiro"
+
+msgid "Single page optimization"
+msgstr "Otimização de página única"
+
+msgid "Site & plan status"
+msgstr "Estado do site e do plano"
+
+msgid "Site URL:"
+msgstr "URL do site:"
+
+msgid "Sitemap"
+msgstr "Mapa do site"
+
+msgid "Sitemap + sections + SEO + launch checklist"
+msgstr "Sitemap + secções +SEO+ checklist de lançamento"
+
+msgid "Sitemap Settings"
+msgstr "Configurações do mapa do site"
+
+msgid "Sitemap Shortcode"
+msgstr "Código abreviado do mapa do site"
+
+msgid "Slug Pattern"
+msgstr "Padrão de lesma"
+
+msgid "Split larger CSV files into batches of 100 rows for the smoothest runs."
+msgstr "Divida os ficheirosCSVmaiores em lotes de 100 linhas para obter execuções mais suaves."
+
+msgid "Start"
+msgstr "Iniciar"
+
+msgid "Start a plan with one click"
+msgstr "Comece um plano com um clique"
+
+msgid "Starter"
+msgstr "Iniciante"
+
+msgid "Starting generation..."
+msgstr "Começando a geração..."
+
+msgid "Starting..."
+msgstr "Começando..."
+
+msgid "State"
+msgstr "Estado"
+
+msgid "Status"
+msgstr "Estatuto"
+
+msgid "Stopped (error)."
+msgstr "Parado (erro)."
+
+msgid "Stopped (JS error)."
+msgstr "Parado (erro JS)."
+
+msgid "Stopped (request failed)."
+msgstr "Parado (pedido falhou)."
+
+msgid "Stopped."
+msgstr "Parou."
+
+msgid "Style"
+msgstr "Estilo"
+
+msgid "Subpages, slugs, title tags, FAQs"
+msgstr "Subpáginas, slugs, etiquetas de título, perguntas frequentes"
+
+msgid "Target Country (Schema)"
+msgstr "País de destino (esquema)"
+
+msgid "Target keywords (optional)"
+msgstr "Palavras-chave alvo (opcional)"
+
+msgid "Target Post Type"
+msgstr "Tipo de publicação de destino"
+
+msgid "Template"
+msgstr "Modelo"
+
+msgid "Templates"
+msgstr "Modelos"
+
+msgid "Templates can clone an existing Gutenberg, Elementor, or Divi page by setting its post ID in Base Layout from Existing Page."
+msgstr "Os modelos podem clonar uma páginaGutenberg,ElementorouDiviexistente, definindo o seu ID de publicação no Layout base da página existente."
+
+msgid "The quota is shared across AI Meta, AI Blog, SEO report, and Site Planner tools. Upgrading removes this limit."
+msgstr "A quota é partilhada entre oAIMeta, oAIBlog, o relatórioSEOe as ferramentas Site Planner. A atualização remove esse limite."
+
+msgid "The shortcode lists published generated pages only, using PageForge metadata stored during generation."
+msgstr "O shortcode lista apenas as páginas geradas publicadas, utilizando metadadosPageForgearmazenados durante a geração."
+
+msgid "Thinking…"
+msgstr "Pensamento…"
+
+msgid "This brand context is appended to AI prompts to keep generated pages on-message."
+msgstr "Este contexto de marca é anexado aos avisosAIpara manter as páginas geradason-message."
+
+msgid "This build does not enforce a specific free row limit. Production builds typically include a one-time free allowance."
+msgstr "Esta compilação não impõe um limite específico de linhas livres. As compilações de produção incluem normalmente uma franquia gratuitaone-time."
+
+msgid "Tips"
+msgstr "Dicas"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Title Pattern"
+msgstr "Padrão de título"
+
+msgid "To use an existing Elementor/Gutenberg/Divi page as the base layout, set “Base Layout from Existing Page” to that post ID. Its layout will be cloned and text placeholders replaced."
+msgstr "Para utilizar uma páginaElementor/Gutenberg/Diviexistente como layout base, defina “Layout base da página existente” para este ID de publicação. O seu layout será clonado e os espaços reservados para texto serão substituídos."
+
+msgid "Topic"
+msgstr "Tópico"
+
+msgid "Topic is required"
+msgstr "O tópico é obrigatório"
+
+msgid "Total Pages"
+msgstr "Total de páginas"
+
+msgid "Track CSV page generation, manage templates, and launch high-volume local SEO workflows from one place."
+msgstr "Acompanhe a geração de páginasCSV, gerencie modelos e inicie fluxos de trabalhoSEOlocaishigh-volumenum único local."
+
+msgid "Type a title…"
+msgstr "Introduza um título…"
+
+msgid "Unable to load CSVs"
+msgstr "Não foi possível carregar CSVs"
+
+msgid "Unauthorized"
+msgstr "Não autorizado"
+
+msgid "Unlimited"
+msgstr "Ilimitado"
+
+msgid "Unlimited rows & automation"
+msgstr "Linhas e automação ilimitadas"
+
+msgid "Untitled"
+msgstr "Sem título"
+
+msgid "Updated %s"
+msgstr "%satualizado"
+
+msgid "Upgrade plan"
+msgstr "Plano de atualização"
+
+msgid "Upgrade to Pro"
+msgstr "Atualizar para Pro"
+
+msgid "Upload CSV"
+msgstr "CarregarCSV"
+
+msgid "Upload CSV files and manage external data sources for your templates."
+msgstr "Carregue ficheirosCSVe faça a gestão de fontes de dados externas para os seus modelos."
+
+msgid "Upload data in Data Sources; refresh here to see new files."
+msgstr "Fazer o upload de dados em fontes de dados; atualize aqui para ver novos ficheiros."
+
+msgid "Upload failed:"
+msgstr "Falha no upload:"
+
+msgid "Uploaded:"
+msgstr "Carregado:"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Usage & limits"
+msgstr "Uso e limites"
+
+msgid "Use a quick prompt to pre-fill the planner with a common scenario."
+msgstr "Utilize um aviso rápido parapre-fillo planeador com um cenário comum."
+
+msgid "Use a shortcode when a builder field does not allow raw token text, or place tokens directly in supported text and heading controls."
+msgstr "Utilize um shortcode quando um campo do construtor não permite texto de token em bruto ou coloque os tokens diretamente nos controlos de texto e cabeçalho suportados."
+
+msgid "Use Generate screen setting"
+msgstr "Utilize a configuração Gerar ecrã"
+
+msgid "Use PageForge content with native WordPress blocks, shortcodes, and builder tokens."
+msgstr "Utilize conteúdoPageForgecom blocosWordPressnativos, códigos de acesso e tokens de construtor."
+
+msgid "Use placeholders anywhere in the content editor and above patterns: {City}, {State}, {Service}, and any CSV column header you provide."
+msgstr "Utilize espaços reservados em qualquer lugar do editor de conteúdos e nos padrões acima:{City},{State},{Service}e qualquer cabeçalho de colunaCSVque forneça."
+
+msgid "Use placeholders like {City}, {State}, {Service} directly in the editor content."
+msgstr "Utilize espaços reservados como{City},{State},{Service}diretamente no conteúdo do editor."
+
+msgid "Use templates and CSV data sources to generate SEO-optimized pages in bulk, up to 100 pages per run in this free build."
+msgstr "Utilize os modelos e as fontes de dadosCSVpara gerar páginas otimizadas paraSEOem massa, até 100 páginas por execução nesta versão gratuita."
+
+msgid "Use this when you are editing with a builder, classic editor, widget, or reusable pattern."
+msgstr "Utilize isto quando estiver a editar com um construtor, editor clássico, widget ou padrão reutilizável."
+
+msgid "Used as the Schema.org @type for the business/provider object (and influences schema output)."
+msgstr "Utilizado como o @typeSchema.orgpara o objeto de negócio/fornecedor (e influencia a saída do esquema)."
+
+msgid "Using Brand Context from Settings"
+msgstr "Utilizar o contexto da marca nas configurações"
+
+msgid "When set, PageForge uses this status automatically for every post generated from this template."
+msgstr "Quando definido, oPageForgeutiliza este estado automaticamente para cada publicação gerada a partir deste modelo."
+
+msgid "Will be used as the browser title when no SEO plugin is installed."
+msgstr "Será utilizado como título do browser quando nenhum pluginSEOestiver instalado."
+
+msgid "Working... (offset %s)"
+msgstr "A trabalhar... (deslocamento%s)"
+
+msgid "Works as a native block or shortcode on any page."
+msgstr "Funciona como um bloco nativo ou shortcode em qualquer página."
+
+msgid "You"
+msgstr "Tu"
+
+msgid "You can deactivate a license on this site and move it to another by using the Freemius account portal. Disconnecting a site from Freemius will also remove it from your user dashboard."
+msgstr "Pode desativar uma licença neste site e movê-la para outro utilizando o portal da contaFreemius. Desligar um site doFreemiustambém o removerá do painel do utilizador."

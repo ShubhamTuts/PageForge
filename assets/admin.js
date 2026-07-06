@@ -1,5 +1,17 @@
 /* global jQuery, PAGEFORGE */
 (function($){
+  var pfI18n = (typeof PAGEFORGE !== 'undefined' && PAGEFORGE.i18n) ? PAGEFORGE.i18n : {};
+  function t(key){ return pfI18n[key] || key; }
+  function fmt(key){
+    var text = t(key);
+    var args = Array.prototype.slice.call(arguments, 1);
+    args.forEach(function(value, index){
+      var numbered = new RegExp('%' + (index + 1) + '\\$s', 'g');
+      text = text.replace(numbered, value);
+      text = text.replace('%s', value);
+    });
+    return text;
+  }
   function log(msg){ $('#pf-log').append('<div>> '+ msg +'</div>').scrollTop(999999); }
 
   function toggleAiProviderFields(){
@@ -19,7 +31,7 @@
       nonce: PAGEFORGE.nonce,
       data: $(this).serialize()
     }, function(res){
-      if(res.success){ alert('Settings saved'); location.reload(); } else { alert('Error: '+res.data); }
+      if(res.success){ alert(t('settingsSaved')); location.reload(); } else { alert(t('errorPrefix') + ' ' + res.data); }
     });
   });
 
@@ -31,8 +43,8 @@
     fd.append('nonce', PAGEFORGE.nonce);
     $.ajax({ url: PAGEFORGE.ajax, method: 'POST', data: fd, processData:false, contentType:false })
       .done(function(res){
-        if(res.success){ $('#pf-upload-result').html('Uploaded: '+res.data.title); loadCSVs(); }
-        else alert('Upload failed: '+res.data);
+        if(res.success){ $('#pf-upload-result').html(t('uploadedPrefix') + ' ' + escHtml(res.data.title)); loadCSVs(); }
+        else alert(t('uploadFailedPrefix') + ' ' + res.data);
       });
   });
 
@@ -44,7 +56,7 @@
     if(!hasTable && !hasSelect) return;
 
     if(hasTable) $tbody.empty();
-    if(hasSelect) { $select.empty().append('<option value="">Loading…</option>'); }
+    if(hasSelect) { $select.empty().append('<option value="">' + escHtml(t('loading')) + '</option>'); }
 
     $.post(PAGEFORGE.ajax, { action:'pageforge_list_csv', nonce: PAGEFORGE.nonce }, function(res){
       // Clear previous entries before repopulating to avoid duplicates
@@ -52,7 +64,7 @@
       if(hasSelect) $select.empty();
 
       if(!res || res.success !== true){
-        var msg = 'Error: '+ (res && res.data ? res.data : 'Unable to load CSVs');
+        var msg = t('errorPrefix') + ' ' + (res && res.data ? res.data : t('unableToLoadCsvs'));
         if(hasTable) $tbody.append('<tr><td colspan="2">'+ msg +'</td></tr>');
         if(hasSelect) $select.append('<option value="">'+ msg +'</option>');
         return;
@@ -60,14 +72,14 @@
 
       var items = Array.isArray(res.data) ? res.data : [];
       if(!items.length){
-        if(hasTable) $tbody.append('<tr><td colspan="2">No CSVs yet.</td></tr>');
-        if(hasSelect) $select.append('<option value="">No CSVs yet</option>');
+        if(hasTable) $tbody.append('<tr><td colspan="2">' + escHtml(t('noCsvsYetTable')) + '</td></tr>');
+        if(hasSelect) $select.append('<option value="">' + escHtml(t('noCsvsYet')) + '</option>');
         return;
       }
 
-      if(hasSelect) $select.append('<option value="">Select CSV</option>');
+      if(hasSelect) $select.append('<option value="">' + escHtml(t('selectCsv')) + '</option>');
       items.forEach(function(i){
-        var title = i.title || 'Untitled';
+        var title = i.title || t('untitled');
         var url = i.url || '';
         if(hasTable) $tbody.append('<tr><td>'+ title +'</td><td><code>'+ url +'</code></td></tr>');
         if(hasSelect) $select.append('<option value="'+ i.id +'">'+ title +'</option>');
@@ -93,16 +105,16 @@
     var csv_id = $('#pf-csv').val();
     var status = $('#pf-status').val();
     var mode = $('#pf-mode').val();
-    if(!template_id || !csv_id){ alert('Select template and CSV'); return; }
-    log('Starting generation...');
+    if(!template_id || !csv_id){ alert(t('selectTemplateAndCsv')); return; }
+    log(t('startingGeneration'));
     $.post(PAGEFORGE.ajax, { action:'pageforge_start_generation', nonce: PAGEFORGE.nonce, template_id, csv_id, status, mode }, function(res){
       if(res.success){
         if(res.data.notice) log(res.data.notice);
-        if(res.data.processed !== undefined) log('Processed: '+res.data.processed);
-        if(res.data.queued !== undefined) log('Queued rows: '+res.data.queued);
-        if(res.data.errors && res.data.errors.length) log('Errors: '+res.data.errors.join('; '));
+        if(res.data.processed !== undefined) log(t('processedPrefix') + ' ' + res.data.processed);
+        if(res.data.queued !== undefined) log(t('queuedRowsPrefix') + ' ' + res.data.queued);
+        if(res.data.errors && res.data.errors.length) log(t('errorsPrefix') + ' ' + res.data.errors.join('; '));
       } else {
-        log('Error: ' + res.data);
+        log(t('errorPrefix') + ' ' + res.data);
       }
     });
   });
@@ -173,21 +185,21 @@
 
   $(document).on('click', '#pf-ai-meta-generate', function(){
     var post_id = parseInt($('#pf-post-id').val(), 10) || 0;
-    if(!post_id){ alert('Select a post first'); return; }
+    if(!post_id){ alert(t('selectPostFirst')); return; }
     var $out = $('#pf-ai-meta-output');
-    setOutput($out, '<div class="pf-loading">Generating…</div>');
+    setOutput($out, '<div class="pf-loading">' + escHtml(t('generating')) + '</div>');
     $.post(PAGEFORGE.ajax, { action:'pageforge_ai_generate_meta', nonce: PAGEFORGE.nonce, post_id: post_id }, function(res){
       if(res && res.success){
         var d = res.data;
         setOutput($out,
-          '<div class="pf-result"><div><strong>Saved</strong> for Post #'+ d.post_id +'</div>'+
-          '<div class="pf-kv"><div><span>Title</span><code>'+ escHtml(d.meta_title) +'</code></div>'+
-          '<div><span>Description</span><code>'+ escHtml(d.meta_description) +'</code></div>'+
-          (d.focus_keyword ? '<div><span>Keyword</span><code>'+ escHtml(d.focus_keyword) +'</code></div>' : '') +
+          '<div class="pf-result"><div><strong>' + escHtml(t('saved')) + '</strong> ' + escHtml(t('forPost')) + ' #'+ d.post_id +'</div>'+
+          '<div class="pf-kv"><div><span>' + escHtml(t('title')) + '</span><code>'+ escHtml(d.meta_title) +'</code></div>'+
+          '<div><span>' + escHtml(t('description')) + '</span><code>'+ escHtml(d.meta_description) +'</code></div>'+
+          (d.focus_keyword ? '<div><span>' + escHtml(t('keyword')) + '</span><code>'+ escHtml(d.focus_keyword) +'</code></div>' : '') +
           '</div></div>'
         );
       } else {
-        setOutput($out, '<div class="pf-error">'+ escHtml(res && res.data ? res.data : 'Error') +'</div>');
+        setOutput($out, '<div class="pf-error">'+ escHtml(res && res.data ? res.data : t('errorPrefix')) +'</div>');
       }
     });
   });
@@ -206,7 +218,7 @@
     }
 
     function bulkSetProgress(text){
-      $('#pf-ai-meta-bulk-progress').text(text || '—');
+      $('#pf-ai-meta-bulk-progress').text(text || t('dash'));
     }
 
     function bulkRequest(){
@@ -230,16 +242,16 @@
 
     function bulkTick(){
       if(!bulkRunning) return;
-      bulkSetProgress('Working… (offset ' + bulkOffset + ')');
+      bulkSetProgress(fmt('workingOffset', bulkOffset));
       var req;
       try {
         req = bulkRequest();
       } catch(e) {
-        bulkLog('<span class="pf-error"><strong>Error</strong> Bulk request failed to start (JS error).</span>');
+        bulkLog('<span class="pf-error"><strong>' + escHtml(t('errorPrefix')) + '</strong> ' + escHtml(t('bulkStartFailed')) + '</span>');
         bulkRunning = false;
         $('#pf-ai-meta-bulk-start').prop('disabled', false);
         $('#pf-ai-meta-bulk-stop').prop('disabled', true);
-        bulkSetProgress('Stopped (JS error).');
+        bulkSetProgress(t('stoppedJsError'));
         return;
       }
       req.done(function(res){
@@ -253,36 +265,36 @@
           var errs = (d.results && Array.isArray(d.results.errors)) ? d.results.errors : [];
 
           succ.forEach(function(x){
-            bulkLog('<strong>OK</strong> Post #' + escHtml(x.post_id) + ' saved');
+            bulkLog('<strong>' + escHtml(t('ok')) + '</strong> ' + escHtml(t('post')) + ' #' + escHtml(x.post_id) + ' ' + escHtml(t('savedLower')));
           });
           errs.forEach(function(x){
-            bulkLog('<span class="pf-error"><strong>Error</strong> Post #' + escHtml(x.post_id) + ': ' + escHtml(x.error) + '</span>');
+            bulkLog('<span class="pf-error"><strong>' + escHtml(t('errorPrefix')) + '</strong> ' + escHtml(t('post')) + ' #' + escHtml(x.post_id) + ': ' + escHtml(x.error) + '</span>');
           });
 
-          bulkSetProgress('Processed ' + Math.min(bulkOffset, bulkTotal) + ' / ' + (bulkTotal || '?') + '…');
+          bulkSetProgress(fmt('processedProgress', Math.min(bulkOffset, bulkTotal), (bulkTotal || '?')));
           if(d.done){
             bulkRunning = false;
             $('#pf-ai-meta-bulk-start').prop('disabled', false);
             $('#pf-ai-meta-bulk-stop').prop('disabled', true);
-            bulkSetProgress('Done.');
+            bulkSetProgress(t('done'));
             return;
           }
           // Next batch
           setTimeout(bulkTick, 250);
         } else {
-          var err = (res && res.data) ? res.data : 'Error';
-          bulkLog('<span class="pf-error"><strong>Error</strong> ' + escHtml(err) + '</span>');
+          var err = (res && res.data) ? res.data : t('errorPrefix');
+          bulkLog('<span class="pf-error"><strong>' + escHtml(t('errorPrefix')) + '</strong> ' + escHtml(err) + '</span>');
           bulkRunning = false;
           $('#pf-ai-meta-bulk-start').prop('disabled', false);
           $('#pf-ai-meta-bulk-stop').prop('disabled', true);
-          bulkSetProgress('Stopped (error).');
+          bulkSetProgress(t('stoppedError'));
         }
       }).fail(function(){
-        bulkLog('<span class="pf-error"><strong>Error</strong> Request failed (nonce / permissions / network).</span>');
+        bulkLog('<span class="pf-error"><strong>' + escHtml(t('errorPrefix')) + '</strong> ' + escHtml(t('requestFailed')) + '</span>');
         bulkRunning = false;
         $('#pf-ai-meta-bulk-start').prop('disabled', false);
         $('#pf-ai-meta-bulk-stop').prop('disabled', true);
-        bulkSetProgress('Stopped (request failed).');
+        bulkSetProgress(t('stoppedRequestFailed'));
       });
     }
 
@@ -294,10 +306,10 @@
       bulkTotal = 0;
       $('#pf-ai-meta-bulk-output').empty();
       // Immediate UI feedback so it doesn't look like nothing happened.
-      bulkLog('Starting…');
+      bulkLog(t('starting'));
       $('#pf-ai-meta-bulk-start').prop('disabled', true);
       $('#pf-ai-meta-bulk-stop').prop('disabled', false);
-      bulkSetProgress('Starting…');
+      bulkSetProgress(t('starting'));
       bulkTick();
     });
 
@@ -306,15 +318,15 @@
       bulkRunning = false;
       $('#pf-ai-meta-bulk-start').prop('disabled', false);
       $('#pf-ai-meta-bulk-stop').prop('disabled', true);
-      bulkSetProgress('Stopped.');
+      bulkSetProgress(t('stopped'));
     });
   })();
 
   $(document).on('click', '#pf-ai-blog-generate', function(){
     var topic = $('#pf-blog-topic').val();
-    if(!topic){ alert('Enter a topic'); return; }
+    if(!topic){ alert(t('enterTopic')); return; }
     var $out = $('#pf-ai-blog-output');
-    setOutput($out, '<div class="pf-loading">Generating draft…</div>');
+    setOutput($out, '<div class="pf-loading">' + escHtml(t('generatingDraft')) + '</div>');
     $.post(PAGEFORGE.ajax, {
       action: 'pageforge_ai_generate_blog',
       nonce: PAGEFORGE.nonce,
@@ -329,13 +341,13 @@
       if(res && res.success){
         var d = res.data;
         setOutput($out,
-          '<div class="pf-result"><div><strong>Draft created</strong> (#'+ d.post_id +')</div>'+
-          '<div><a class="button button-small" href="'+ escHtml(d.edit_url) +'">Edit Post</a></div>'+
-          (d.thumbnail_id ? '<div class="pf-note">Featured image attached (attachment #'+ d.thumbnail_id +')</div>' : '') +
+          '<div class="pf-result"><div><strong>' + escHtml(t('draftCreated')) + '</strong> (#'+ d.post_id +')</div>'+
+          '<div><a class="button button-small" href="'+ escHtml(d.edit_url) +'">' + escHtml(t('editPost')) + '</a></div>'+
+          (d.thumbnail_id ? '<div class="pf-note">' + escHtml(fmt('featuredImageAttached', d.thumbnail_id)) + '</div>' : '') +
           '</div>'
         );
       } else {
-        setOutput($out, '<div class="pf-error">'+ escHtml(res && res.data ? res.data : 'Error') +'</div>');
+        setOutput($out, '<div class="pf-error">'+ escHtml(res && res.data ? res.data : t('errorPrefix')) +'</div>');
       }
     });
   });
@@ -351,7 +363,7 @@
 
   $(document).on('click', '#pf-ai-seo-generate', function(){
     var $out = $('#pf-ai-seo-output');
-    setOutput($out, '<div class="pf-loading">Generating report…</div>');
+    setOutput($out, '<div class="pf-loading">' + escHtml(t('generatingReport')) + '</div>');
     $('#pf-ai-seo-download-json, #pf-ai-seo-download-md').prop('disabled', true);
     $.post(PAGEFORGE.ajax, {
       action: 'pageforge_ai_seo_report',
@@ -364,13 +376,13 @@
         var md = (lastSeo.data && lastSeo.data.markdown) ? lastSeo.data.markdown : '';
         setOutput($out,
           '<div class="pf-result">'+
-          '<div class="pf-note">Generated at: '+ new Date((lastSeo.generated_at||0)*1000).toLocaleString() +'</div>'+
+          '<div class="pf-note">' + escHtml(t('generatedAt')) + ' '+ new Date((lastSeo.generated_at||0)*1000).toLocaleString() +'</div>'+
           '<pre class="pf-pre">'+ escHtml(md || JSON.stringify(lastSeo.data || {}, null, 2)) +'</pre>'+
           '</div>'
         );
         $('#pf-ai-seo-download-json, #pf-ai-seo-download-md').prop('disabled', false);
       } else {
-        setOutput($out, '<div class="pf-error">'+ escHtml(res && res.data ? res.data : 'Error') +'</div>');
+        setOutput($out, '<div class="pf-error">'+ escHtml(res && res.data ? res.data : t('errorPrefix')) +'</div>');
       }
     });
   });
@@ -418,7 +430,7 @@
   }
 
   function pfDeriveTitleFromMessages(msgs){
-    if(!Array.isArray(msgs) || !msgs.length) return 'New site plan';
+    if(!Array.isArray(msgs) || !msgs.length) return t('newSitePlan');
     var text = '';
     for(var i=0;i<msgs.length;i++){
       if(msgs[i].role === 'user' && msgs[i].content){ text = String(msgs[i].content); break; }
@@ -427,8 +439,8 @@
       text = String(msgs[0].content);
     }
     text = text.replace(/\s+/g,' ').trim();
-    if(text.length > 60) text = text.substring(0,57) + '…';
-    return text || 'New site plan';
+    if(text.length > 60) text = text.substring(0,57) + '...';
+    return text || t('newSitePlan');
   }
 
   function pfEnsureThreadsState(){
@@ -455,7 +467,7 @@
         state.active_id = id;
         state.threads.push({
           id: id,
-          title: 'New site plan',
+          title: t('newSitePlan'),
           created_at: now,
           updated_at: now,
           messages: []
@@ -470,7 +482,7 @@
     if(!pfChatState || !Array.isArray(pfChatState.threads)) return null;
     var id = pfChatState.active_id;
     var thread = null;
-    pfChatState.threads.forEach(function(t){ if(t.id === id) thread = t; });
+    pfChatState.threads.forEach(function(threadItem){ if(threadItem.id === id) thread = threadItem; });
     if(!thread && pfChatState.threads.length){
       thread = pfChatState.threads[0];
       pfChatState.active_id = thread.id;
@@ -493,25 +505,25 @@
   function pfFormatRelativeTime(ts){
     var now = Math.floor(Date.now()/1000);
     var d = Math.max(0, now - (parseInt(ts,10) || 0));
-    if(d < 60) return 'just now';
-    if(d < 3600) return Math.round(d/60) + ' min ago';
-    if(d < 86400) return Math.round(d/3600) + ' hr ago';
+    if(d < 60) return t('justNow');
+    if(d < 3600) return fmt('minAgo', Math.round(d/60));
+    if(d < 86400) return fmt('hrAgo', Math.round(d/3600));
     var days = Math.round(d/86400);
-    return days + (days === 1 ? ' day ago' : ' days ago');
+    return days === 1 ? fmt('dayAgo', days) : fmt('daysAgo', days);
   }
 
   function pfRenderConversationList(){
     var $list = $('#pf-ai-conversation-list');
     if(!$list.length || !pfChatState) return;
     $list.empty();
-    (pfChatState.threads || []).forEach(function(t){
-      var active = t.id === pfChatState.active_id;
-      var updated = t.updated_at || t.created_at || Math.floor(Date.now()/1000);
-      var meta = 'Updated ' + pfFormatRelativeTime(updated);
+    (pfChatState.threads || []).forEach(function(threadItem){
+      var active = threadItem.id === pfChatState.active_id;
+      var updated = threadItem.updated_at || threadItem.created_at || Math.floor(Date.now()/1000);
+      var meta = fmt('updated', pfFormatRelativeTime(updated));
       var cls = 'pf-ai-conversation' + (active ? ' is-active' : '');
       $list.append(
-        '<button type="button" class="'+ cls +'" data-thread-id="'+ escHtml(t.id || '') +'">'+
-          '<div class="pf-ai-conversation-title">'+ escHtml(t.title || 'Conversation') +'</div>'+
+        '<button type="button" class="'+ cls +'" data-thread-id="'+ escHtml(threadItem.id || '') +'">'+
+          '<div class="pf-ai-conversation-title">'+ escHtml(threadItem.title || t('conversation')) +'</div>'+
           '<div class="pf-ai-conversation-meta">'+ escHtml(meta) +'</div>'+
         '</button>'
       );
@@ -590,7 +602,7 @@
       var tid = 't-'+ now +'-'+ Math.floor(Math.random()*1000);
       var thread = {
         id: tid,
-        title: 'New site plan',
+        title: t('newSitePlan'),
         created_at: now,
         updated_at: now,
         messages: []
@@ -617,7 +629,7 @@
       var thread = pfGetActiveThread();
       var messages = thread && Array.isArray(thread.messages) ? thread.messages : [];
       var md = messages.map(function(m){
-        var who = m.role === 'assistant' ? 'Assistant' : 'You';
+        var who = m.role === 'assistant' ? t('assistant') : t('you');
         return '## ' + who + '\n\n' + String(m.content||'') + '\n';
       }).join('\n');
       var slug = (thread && thread.title ? String(thread.title) : 'site-plan').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
@@ -644,7 +656,7 @@
       var now = Math.floor(Date.now()/1000);
       thread.messages = (thread.messages || []).concat([{role:'user', content:text}]);
       thread.updated_at = now;
-      if(!thread.title || thread.title === 'New site plan'){
+      if(!thread.title || thread.title === t('newSitePlan')){
         thread.title = pfDeriveTitleFromMessages(thread.messages);
       }
       pfUpsertThread(thread);
@@ -656,8 +668,8 @@
         if(res && res.success && res.data && res.data.reply_markdown){
           msg = {role:'assistant', content: res.data.reply_markdown};
         } else {
-          var err = (res && res.data) ? res.data : 'Error';
-          msg = {role:'assistant', content: 'Error: ' + String(err), error:true};
+          var err = (res && res.data) ? res.data : t('errorPrefix');
+          msg = {role:'assistant', content: t('errorPrefix') + ' ' + String(err), error:true};
         }
         thread.messages.push(msg);
         thread.updated_at = Math.floor(Date.now()/1000);
@@ -665,7 +677,7 @@
         pfRenderConversationList();
         pfRenderChat();
       }).fail(function(){
-        var msg = {role:'assistant', content: 'Error: Request failed. Check network / API key.', error:true};
+        var msg = {role:'assistant', content: t('plannerRequestFailed'), error:true};
         thread.messages.push(msg);
         thread.updated_at = Math.floor(Date.now()/1000);
         pfUpsertThread(thread);

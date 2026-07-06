@@ -4,7 +4,7 @@ Tags: programmatic seo, bulk page generator, local seo, page generator, ai seo
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -543,6 +543,18 @@ Check token replacement, title patterns, URL slugs, page-specific content, metad
 
 == Changelog ==
 
+= 1.1.8 =
+
+* Added bundled German (de_DE) and French (fr_FR) translations for the PageForge admin UI, block labels, AJAX notices, and JavaScript messages.
+* Added bundled English (United States), English (United Kingdom), and Portuguese (Portugal) translation files.
+* Added a standard languages directory with POT, PO, and compiled MO translation files.
+* Improved plugin text-domain loading and wrapped previously hard-coded admin labels for localization.
+
+= 1.1.7 =
+
+* Updated the WordPress.org readme and release documentation copy.
+* No functional changes in this release.
+
 = 1.1.6 =
 
 * Added AI Blog to the PageForge top navigation.
@@ -624,6 +636,10 @@ Check token replacement, title patterns, URL slugs, page-specific content, metad
 * Initial release with CSV support, template tokens, and AI-assisted generation.
 
 == Upgrade Notice ==
+
+= 1.1.8 =
+
+Adds bundled German, French, English (US), English (UK), and Portuguese translation files for admin screens, block labels, JavaScript messages, and plugin notices.
 
 = 1.1.2 =
 

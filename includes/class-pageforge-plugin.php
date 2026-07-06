@@ -12,8 +12,7 @@ final class Plugin {
     }
 
     private function __construct() {
-        $this->load_textdomain();
-
+        \add_action('init', [$this, 'load_textdomain'], 0);
         \add_action('init', [$this, 'register_cpts']);
         \add_action('init', [$this, 'maybe_enable_elementor_post_types'], 20);
         \add_action('admin_menu', [$this, 'register_admin_menu']);
@@ -46,6 +45,7 @@ final class Plugin {
     }
 
     public function activate() {
+        $this->load_textdomain();
         $this->register_cpts();
         $this->maybe_enable_elementor_post_types();
         \flush_rewrite_rules();
@@ -180,6 +180,7 @@ final class Plugin {
             'generating' => __('Generating...', 'pageforge'),
             'saved' => __('Saved', 'pageforge'),
             'forPost' => __('for Post', 'pageforge'),
+            'post' => __('Post', 'pageforge'),
             'title' => __('Title', 'pageforge'),
             'description' => __('Description', 'pageforge'),
             'keyword' => __('Keyword', 'pageforge'),

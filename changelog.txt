@@ -1,3 +1,9 @@
+= 1.1.8 =
+* Added bundled German (de_DE) and French (fr_FR) translations for PageForge admin screens, block labels, JavaScript messages, and plugin notices.
+* Added bundled English (United States), English (United Kingdom), and Portuguese (Portugal) translation files.
+* Added POT, PO, and compiled MO translation files under languages/.
+* Improved text-domain loading and wrapped previously hard-coded admin UI labels for localization.
+
 = 1.1.7 =
 * Updated the WordPress.org readme and release documentation copy.
 * No functional changes in this release.

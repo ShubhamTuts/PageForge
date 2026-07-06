@@ -1,0 +1,1520 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PageForge 1.1.8\n"
+"Report-Msgid-Bugs-To: https://pageforge.pro\n"
+"POT-Creation-Date: 2026-07-06 00:00+0530\n"
+"PO-Revision-Date: 2026-07-06 00:00+0530\n"
+"Last-Translator: Codefreex <support@codefreex.com>\n"
+"Language-Team: PageForge\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Codex\n"
+
+#: includes/class-pageforge-frontend.php
+msgid "%d page"
+msgid_plural "%d pages"
+msgstr[0] "%d page"
+msgstr[1] "%d pages"
+
+#: includes/class-pageforge-admin.php
+msgid "— None —"
+msgstr "— Aucun —"
+
+#: includes/helpers.php
+msgid "%s API key missing"
+msgstr "Clé API %s manquante"
+
+#: includes/class-pageforge-admin.php
+msgid "%s API key missing."
+msgstr "Clé API %s manquante."
+
+#: includes/class-pageforge-plugin.php
+msgid "%s day ago"
+msgstr "il y a %s jour"
+
+#: includes/class-pageforge-plugin.php
+msgid "%s days ago"
+msgstr "il y a %s jours"
+
+#: includes/helpers.php
+msgid "%s error"
+msgstr "Erreur %s"
+
+#: includes/class-pageforge-plugin.php
+msgid "%s hr ago"
+msgstr "il y a %s h"
+
+#: includes/class-pageforge-plugin.php
+msgid "%s min ago"
+msgstr "il y a %s min"
+
+#: includes/class-pageforge-plugin.php
+msgid "%s mode is not available in this free build. Running instantly instead."
+msgstr "Le mode %s n’est pas disponible dans cette version gratuite. Exécution immédiate à la place."
+
+#: includes/class-pageforge-admin.php
+msgid "A template-level Generated Post Status overrides this setting."
+msgstr "Un état de publication généré défini au niveau du modèle remplace ce réglage."
+
+#: includes/class-pageforge-frontend.php
+msgid "Accent color"
+msgstr "Couleur d’accent"
+
+#: includes/class-pageforge-admin.php
+msgid "Account"
+msgstr "Compte"
+
+#: includes/class-pageforge-admin.php
+msgid "Account portal URL is currently unavailable. Ensure the Freemius SDK is loaded and this site is connected."
+msgstr "L’URL du portail de compte est actuellement indisponible. Assurez-vous que le SDK Freemius est chargé et que ce site est connecté."
+
+#: includes/class-pageforge-admin.php
+msgid "Account portal URL is not available in this environment. Use your Freemius dashboard to manage licenses."
+msgstr "L’URL du portail de compte n’est pas disponible dans cet environnement. Utilisez votre tableau de bord Freemius pour gérer les licences."
+
+#: includes/class-pageforge-admin.php
+msgid "Actions"
+msgstr "Actions"
+
+#: includes/class-pageforge-admin.php
+msgid "Active Templates"
+msgstr "Modèles actifs"
+
+#: includes/class-pageforge-admin.php
+msgid "Add API key in Settings"
+msgstr "Ajouter la clé API dans les réglages"
+
+#: includes/class-pageforge-admin.php
+msgid "Add Data Source"
+msgstr "Ajouter une source de données"
+
+#: includes/class-pageforge-admin.php
+msgid "Add keywords separated by commas or new lines"
+msgstr "Ajoutez des mots-clés séparés par des virgules ou des retours à la ligne"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Add New Template"
+msgstr "Ajouter un nouveau modèle"
+
+#: includes/class-pageforge-admin.php
+msgid "Add your selected AI provider API key to enable the Site Planner and other AI tools."
+msgstr "Ajoutez la clé API du fournisseur d’IA sélectionné pour activer le planificateur de site et les autres outils d’IA."
+
+#: includes/class-pageforge-admin.php
+msgid "Adds an internal-linking sitemap of generated PageForge pages. It groups by City by default and links every matching generated URL."
+msgstr "Ajoute un plan de site de maillage interne pour les pages PageForge générées. Il regroupe par ville par défaut et lie chaque URL générée correspondante."
+
+#: includes/class-pageforge-admin.php
+msgid "AI Blog"
+msgstr "Blog IA"
+
+#: includes/class-pageforge-admin.php
+msgid "AI Blog Generator"
+msgstr "Générateur de blog IA"
+
+#: includes/class-pageforge-admin.php
+msgid "AI Blog generator & images"
+msgstr "Générateur de blog IA et images"
+
+#: includes/class-pageforge-admin.php
+msgid "AI chat and tools"
+msgstr "Chat IA et outils"
+
+#: includes/class-pageforge-ai.php
+msgid "AI did not return meta_title/meta_description"
+msgstr "L’IA n’a pas renvoyé meta_title/meta_description"
+
+#: includes/class-pageforge-ai.php
+msgid "AI did not return title/content_html"
+msgstr "L’IA n’a pas renvoyé title/content_html"
+
+#: includes/class-pageforge-admin.php
+msgid "AI Meta Generator"
+msgstr "Générateur de métadonnées IA"
+
+#: includes/class-pageforge-admin.php
+msgid "AI navigation and conversations"
+msgstr "Navigation IA et conversations"
+
+#: includes/class-pageforge-admin.php
+msgid "AI Provider"
+msgstr "Fournisseur d’IA"
+
+#: includes/class-pageforge-ai.php
+msgid "AI returned invalid JSON"
+msgstr "L’IA a renvoyé un JSON non valide"
+
+#: includes/class-pageforge-admin.php
+msgid "AI SEO Page Generator"
+msgstr "Générateur de pages SEO IA"
+
+#: includes/class-pageforge-admin.php
+msgid "AI SEO Report / Planner"
+msgstr "Rapport SEO IA / Planificateur"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "AI Site Planner"
+msgstr "Planificateur de site IA"
+
+#: includes/class-pageforge-admin.php
+msgid "AI Site Planner & SEO report"
+msgstr "Planificateur de site IA et rapport SEO"
+
+#: includes/class-pageforge-admin.php
+msgid "AI tools are unlimited for paid plans."
+msgstr "Les outils d’IA sont illimités pour les offres payantes."
+
+#: includes/class-pageforge-admin.php
+msgid "AI usage limits"
+msgstr "Limites d’utilisation de l’IA"
+
+#: includes/helpers.php
+msgid "Anthropic error"
+msgstr "Erreur Anthropic"
+
+#: includes/class-pageforge-frontend.php
+msgid "Appearance"
+msgstr "Apparence"
+
+#: includes/class-pageforge-admin.php
+msgid "Applies to pageforge_page URLs. Save to flush permalinks."
+msgstr "S’applique aux URL pageforge_page. Enregistrez pour régénérer les permaliens."
+
+#: includes/class-pageforge-plugin.php
+msgid "Assistant"
+msgstr "Assistant"
+
+#: includes/class-pageforge-admin.php
+msgid "Audience (optional)"
+msgstr "Audience (facultatif)"
+
+#: includes/class-pageforge-admin.php
+msgid "Available CSVs"
+msgstr "CSV disponibles"
+
+#: includes/class-pageforge-frontend.php
+msgid "Background color"
+msgstr "Couleur d’arrière-plan"
+
+#: includes/class-pageforge-admin.php
+msgid "Base layout cloning"
+msgstr "Clonage de mise en page de base"
+
+#: includes/class-pageforge-admin.php
+msgid "Base Layout from Existing Page or Template"
+msgstr "Mise en page de base depuis une page ou un modèle existant"
+
+#: includes/class-pageforge-admin.php
+msgid "Base Page/Template ID:"
+msgstr "ID de page/modèle de base :"
+
+#: includes/class-pageforge-admin.php
+msgid "Best {Service} in {City}, {State}"
+msgstr "Meilleur {Service} à {City}, {State}"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Blocks"
+msgstr "Blocs"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Blocks & Shortcodes"
+msgstr "Blocs et codes courts"
+
+#: includes/class-pageforge-admin.php
+msgid "Blog"
+msgstr "Blog"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Blog Generator"
+msgstr "Générateur de blog"
+
+#: includes/class-pageforge-admin.php
+msgid "Brand Context / Voice"
+msgstr "Contexte de marque / voix"
+
+#: includes/class-pageforge-admin.php
+msgid "Builder-ready tokens"
+msgstr "Jetons prêts pour les constructeurs"
+
+#: includes/class-pageforge-plugin.php
+msgid "Bulk request failed to start (JS error)."
+msgstr "La requête en lot n’a pas pu démarrer (erreur JS)."
+
+#: includes/class-pageforge-admin.php
+msgid "Business Type (Schema)"
+msgstr "Type d’entreprise (schéma)"
+
+#: includes/class-pageforge-frontend.php
+msgid "Cards"
+msgstr "Cartes"
+
+#: includes/class-pageforge-admin.php
+msgid "Chat-style assistant to plan your sitemap, pages, SEO, and launch."
+msgstr "Assistant sous forme de chat pour planifier votre sitemap, vos pages, votre SEO et votre lancement."
+
+#: includes/class-pageforge-admin.php
+msgid "Choose a CSV uploaded in Data Sources. Headers define available placeholders."
+msgstr "Choisissez un CSV téléversé dans Sources de données. Les en-têtes définissent les espaces réservés disponibles."
+
+#: includes/class-pageforge-admin.php
+msgid "Choose grouping, columns, colors, and heading level from the block sidebar."
+msgstr "Choisissez le regroupement, les colonnes, les couleurs et le niveau de titre dans la barre latérale du bloc."
+
+#: includes/class-pageforge-admin.php
+msgid "Choose which AI provider powers AI content, meta generation, the site planner, and blog drafts in the free plugin."
+msgstr "Choisissez le fournisseur d’IA qui alimente le contenu IA, la génération de métadonnées, le planificateur de site et les brouillons de blog dans l’extension gratuite."
+
+#: includes/class-pageforge-frontend.php
+msgid "City"
+msgstr "Ville"
+
+#: includes/class-pageforge-admin.php
+msgid "Claude API Key"
+msgstr "Clé API Claude"
+
+#: includes/class-pageforge-admin.php
+msgid "Claude Model"
+msgstr "Modèle Claude"
+
+#: includes/class-pageforge-admin.php
+msgid "Click Add Block and search for PageForge Sitemap."
+msgstr "Cliquez sur Ajouter un bloc et recherchez PageForge Sitemap."
+
+#: includes/class-pageforge-frontend.php
+msgid "Columns"
+msgstr "Colonnes"
+
+#: includes/class-pageforge-frontend.php
+msgid "Comma-separated. Example: pageforge_page,page,post"
+msgstr "Séparé par des virgules. Exemple : pageforge_page,page,post"
+
+#: includes/class-pageforge-frontend.php
+msgid "Compact"
+msgstr "Compact"
+
+#: includes/class-pageforge-admin.php
+msgid "Configure AI providers, generation defaults, analytics, and schema options."
+msgstr "Configurez les fournisseurs d’IA, les valeurs par défaut de génération, l’analytics et les options de schéma."
+
+#: includes/class-pageforge-admin.php
+msgid "Contact sales"
+msgstr "Contacter l’équipe commerciale"
+
+#: includes/class-pageforge-admin.php
+msgid "Content length"
+msgstr "Longueur du contenu"
+
+#: includes/class-pageforge-admin.php
+msgid "Control columns, page limit, counts, heading level, and colors."
+msgstr "Contrôlez les colonnes, la limite de pages, les compteurs, le niveau de titre et les couleurs."
+
+#: includes/class-pageforge-plugin.php
+msgid "Conversation"
+msgstr "Conversation"
+
+#: includes/class-pageforge-admin.php
+msgid "Conversion-focused structure + heading set"
+msgstr "Structure axée conversion + ensemble de titres"
+
+#: includes/class-pageforge-ai.php
+msgid "Create a complete website plan for my business. Ask me for my business name, location, services, and goals, then propose sitemap, page sections, SEO keywords, and a launch checklist."
+msgstr "Créez un plan complet de site web pour mon entreprise. Demandez-moi le nom de l’entreprise, l’emplacement, les services et les objectifs, puis proposez un sitemap, des sections de page, des mots-clés SEO et une checklist de lancement."
+
+#: includes/class-pageforge-admin.php
+msgid "Create reusable templates with dynamic placeholders like {City}, {State}, {Service} anywhere in your content, title, or slug pattern."
+msgstr "Créez des modèles réutilisables avec des espaces réservés dynamiques comme {City}, {State}, {Service} dans le contenu, le titre ou le modèle de slug."
+
+#: includes/class-pageforge-admin.php
+msgid "Create robust templates"
+msgstr "Créer des modèles robustes"
+
+#: includes/class-pageforge-admin.php
+msgid "Create Template"
+msgstr "Créer un modèle"
+
+#: includes/class-pageforge-admin.php
+msgid "Create up to 100 unique pages per run from CSV with dynamic tokens, schema, and builder-friendly templates."
+msgstr "Créez jusqu’à 100 pages uniques par exécution depuis un CSV avec des jetons dynamiques, du schéma et des modèles compatibles avec les constructeurs."
+
+#: includes/class-pageforge-plugin.php
+msgid "CSV has no rows"
+msgstr "Le CSV ne contient aucune ligne"
+
+#: includes/class-pageforge-admin.php
+msgid "CSV Sources"
+msgstr "Sources CSV"
+
+#: includes/class-pageforge-admin.php
+msgid "CSV Upload"
+msgstr "Téléversement CSV"
+
+#: includes/class-pageforge-admin.php
+msgid "Current plan:"
+msgstr "Offre actuelle :"
+
+#: includes/class-pageforge-admin.php
+msgid "Customize grouping by City, State, Service, or one list."
+msgstr "Personnalisez le regroupement par ville, état/région, service ou liste unique."
+
+#: includes/class-pageforge-admin.php
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: includes/class-pageforge-admin.php
+msgid "Data Source (CSV)"
+msgstr "Source de données (CSV)"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Data Sources"
+msgstr "Sources de données"
+
+#: includes/class-pageforge-admin.php
+msgid "DeepSeek API Key"
+msgstr "Clé API DeepSeek"
+
+#: includes/class-pageforge-admin.php
+msgid "DeepSeek Model"
+msgstr "Modèle DeepSeek"
+
+#: includes/class-pageforge-admin.php
+msgid "DeepSeek uses its current OpenAI-compatible API models. Legacy deepseek-chat and deepseek-reasoner are intentionally excluded."
+msgstr "DeepSeek utilise ses modèles API actuels compatibles OpenAI. Les anciens deepseek-chat et deepseek-reasoner sont volontairement exclus."
+
+#: includes/class-pageforge-admin.php
+msgid "Describe your brand, tone, USPs. Added to AI prompts."
+msgstr "Décrivez votre marque, votre ton et vos USP. Ajouté aux prompts IA."
+
+#: includes/class-pageforge-admin.php
+msgid "Describe your business, location, services, and goals…"
+msgstr "Décrivez votre entreprise, votre emplacement, vos services et vos objectifs…"
+
+#: includes/class-pageforge-plugin.php
+msgid "Description"
+msgstr "Description"
+
+#: includes/class-pageforge-admin.php
+msgid "Direct license key entry from this screen can be added later once the Freemius API integration is finalized."
+msgstr "La saisie directe de la clé de licence depuis cet écran pourra être ajoutée une fois l’intégration de l’API Freemius finalisée."
+
+#: includes/class-pageforge-frontend.php
+msgid "Displays generated PageForge pages grouped by city, state, service, or as one list."
+msgstr "Affiche les pages PageForge générées groupées par ville, état/région, service ou en liste unique."
+
+#: includes/class-pageforge-admin.php
+msgid "Documentation"
+msgstr "Documentation"
+
+#: includes/class-pageforge-plugin.php
+msgid "Done."
+msgstr "Terminé."
+
+#: includes/class-pageforge-admin.php
+msgid "Download a sample CSV to get started quickly."
+msgstr "Téléchargez un CSV d’exemple pour démarrer rapidement."
+
+#: includes/class-pageforge-admin.php
+msgid "Download JSON"
+msgstr "Télécharger le JSON"
+
+#: includes/class-pageforge-admin.php
+msgid "Download Markdown"
+msgstr "Télécharger le Markdown"
+
+#: includes/class-pageforge-admin.php
+msgid "Download Sample CSV"
+msgstr "Télécharger le CSV d’exemple"
+
+#: includes/class-pageforge-admin.php
+msgid "Draft"
+msgstr "Brouillon"
+
+#: includes/class-pageforge-plugin.php
+msgid "Draft created"
+msgstr "Brouillon créé"
+
+#: includes/class-pageforge-admin.php
+msgid "Dynamic Variables"
+msgstr "Variables dynamiques"
+
+#: includes/class-pageforge-admin.php
+msgid "e.g. AU, US, GB (ISO 2-letter)"
+msgstr "p. ex. AU, US, GB (ISO à 2 lettres)"
+
+#: includes/class-pageforge-admin.php
+msgid "e.g. Local SEO checklist for plumbers"
+msgstr "p. ex. checklist SEO local pour plombiers"
+
+#: includes/class-pageforge-admin.php
+msgid "e.g. Small business owners"
+msgstr "p. ex. propriétaires de petites entreprises"
+
+#: includes/class-pageforge-plugin.php
+msgid "Edit Post"
+msgstr "Modifier l’article"
+
+#: includes/class-pageforge-plugin.php
+msgid "Edit Template"
+msgstr "Modifier le modèle"
+
+#: includes/class-pageforge-ai.php
+msgid "Empty AI response"
+msgstr "Réponse IA vide"
+
+#: includes/class-pageforge-admin.php
+msgid "Ensure CSV headers match placeholders exactly (case-insensitive)."
+msgstr "Assurez-vous que les en-têtes CSV correspondent exactement aux espaces réservés (sans tenir compte de la casse)."
+
+#: includes/class-pageforge-plugin.php
+msgid "Enter a topic"
+msgstr "Saisissez un sujet"
+
+#: includes/class-pageforge-admin.php
+msgid "Enterprise"
+msgstr "Entreprise"
+
+#: includes/class-pageforge-plugin.php
+msgid "Error:"
+msgstr "Erreur :"
+
+#: includes/class-pageforge-plugin.php
+msgid "Error: Request failed. Check network / API key."
+msgstr "Erreur : la requête a échoué. Vérifiez le réseau / la clé API."
+
+#: includes/class-pageforge-plugin.php
+msgid "Errors:"
+msgstr "Erreurs :"
+
+#: includes/class-pageforge-generator.php
+msgid "Exists (ID: %d)"
+msgstr "Existe déjà (ID : %d)"
+
+#: includes/class-pageforge-admin.php
+msgid "Export"
+msgstr "Exporter"
+
+#: includes/class-pageforge-admin.php
+msgid "Feature"
+msgstr "Fonctionnalité"
+
+#: includes/class-pageforge-plugin.php
+msgid "Featured image attached (attachment #%s)"
+msgstr "Image mise en avant jointe (pièce jointe n° %s)"
+
+#: includes/class-pageforge-admin.php
+msgid "Focus Keyword (optional)"
+msgstr "Mot-clé principal (facultatif)"
+
+#: includes/class-pageforge-admin.php
+msgid "For higher volumes, custom workflows, or security reviews, talk to us about an Enterprise plan."
+msgstr "Pour des volumes plus élevés, des workflows personnalisés ou des revues de sécurité, contactez-nous au sujet d’une offre Entreprise."
+
+#: includes/class-pageforge-plugin.php
+msgid "for Post"
+msgstr "pour l’article"
+
+#: includes/class-pageforge-admin.php
+msgid "Free"
+msgstr "Gratuit"
+
+#: includes/class-pageforge-admin.php
+msgid "Free AI tools: %1$d of %2$d messages used this month on this site."
+msgstr "Outils d’IA gratuits : %1$d messages sur %2$d utilisés ce mois-ci sur ce site."
+
+#: includes/class-pageforge-plugin.php
+msgid "Free build processes up to %1$d pages per run. %2$d rows were skipped."
+msgstr "La version gratuite traite jusqu’à %1$d pages par exécution. %2$d lignes ont été ignorées."
+
+#: includes/class-pageforge-admin.php
+msgid "Free builds can generate up to %d rows once per site. After that, upgrading unlocks unlimited rows."
+msgstr "Les versions gratuites peuvent générer jusqu’à %d lignes une fois par site. Ensuite, une mise à niveau débloque les lignes illimitées."
+
+#: includes/class-pageforge-admin.php
+msgid "Free limit status:"
+msgstr "État de la limite gratuite :"
+
+#: includes/class-pageforge-admin.php
+msgid "Free plan: %1$d of %2$d AI messages used this month on this site."
+msgstr "Offre gratuite : %1$d messages IA sur %2$d utilisés ce mois-ci sur ce site."
+
+#: includes/class-pageforge-admin.php
+msgid "Freemius account portal"
+msgstr "Portail de compte Freemius"
+
+#: includes/class-pageforge-admin.php
+msgid "Full website plan"
+msgstr "Plan complet de site web"
+
+#: includes/class-pageforge-admin.php
+msgid "GA4 API Secret"
+msgstr "Secret API GA4"
+
+#: includes/class-pageforge-admin.php
+msgid "GA4 Measurement ID"
+msgstr "ID de mesure GA4"
+
+#: includes/class-pageforge-admin.php
+msgid "Gemini API Key"
+msgstr "Clé API Gemini"
+
+#: includes/helpers.php
+msgid "Gemini error"
+msgstr "Erreur Gemini"
+
+#: includes/class-pageforge-admin.php
+msgid "Gemini Model"
+msgstr "Modèle Gemini"
+
+#: includes/class-pageforge-admin.php
+msgid "Generate"
+msgstr "Générer"
+
+#: includes/class-pageforge-admin.php
+msgid "Generate & Save Meta"
+msgstr "Générer et enregistrer les métadonnées"
+
+#: includes/class-pageforge-admin.php
+msgid "Generate a full HTML blog draft and optionally attach a featured image from Pexels."
+msgstr "Générez un brouillon de blog HTML complet et joignez éventuellement une image mise en avant depuis Pexels."
+
+#: includes/class-pageforge-admin.php
+msgid "Generate a prioritized SEO plan for your site. Saves the latest report in the database."
+msgstr "Générez un plan SEO priorisé pour votre site. Le dernier rapport est enregistré dans la base de données."
+
+#: includes/class-pageforge-admin.php
+msgid "Generate Draft"
+msgstr "Générer le brouillon"
+
+#: includes/class-pageforge-admin.php
+msgid "Generate Pages"
+msgstr "Générer des pages"
+
+#: includes/class-pageforge-admin.php
+msgid "Generate Report"
+msgstr "Générer le rapport"
+
+#: includes/class-pageforge-admin.php
+msgid "Generate SEO meta and save to PageForge + Yoast + RankMath meta fields."
+msgstr "Générez les métadonnées SEO et enregistrez-les dans les champs PageForge, Yoast et RankMath."
+
+#: includes/class-pageforge-plugin.php
+msgid "Generated at:"
+msgstr "Généré le :"
+
+#: includes/class-pageforge-admin.php
+msgid "Generated CPT Slug Base"
+msgstr "Base de slug du CPT généré"
+
+#: includes/class-pageforge-admin.php
+msgid "Generated Post Status"
+msgstr "État de publication généré"
+
+#: includes/class-pageforge-admin.php
+msgid "Generated Post Type"
+msgstr "Type de contenu généré"
+
+#: includes/class-pageforge-admin.php
+msgid "Generated posts keep variables for runtime replacement, so builders like Elementor/Divi/Gutenberg show tokens correctly."
+msgstr "Les publications générées conservent les variables pour le remplacement à l’exécution, afin que les constructeurs comme Elementor/Divi/Gutenberg affichent correctement les jetons."
+
+#: includes/class-pageforge-admin.php
+msgid "Generated URLs"
+msgstr "URL générées"
+
+#: includes/class-pageforge-admin.php
+msgid "Generates pages immediately in your browser session, with up to 100 pages per run in free."
+msgstr "Génère les pages immédiatement dans votre session navigateur, jusqu’à 100 pages par exécution en gratuit."
+
+#: includes/class-pageforge-plugin.php
+msgid "Generating draft..."
+msgstr "Génération du brouillon..."
+
+#: includes/class-pageforge-plugin.php
+msgid "Generating report..."
+msgstr "Génération du rapport..."
+
+#: includes/class-pageforge-plugin.php
+msgid "Generating..."
+msgstr "Génération..."
+
+#: includes/class-pageforge-admin.php
+msgid "Google Sheets"
+msgstr "Google Sheets"
+
+#: includes/class-pageforge-admin.php
+msgid "Google Sheets integration is not included in this build."
+msgstr "L’intégration Google Sheets n’est pas incluse dans cette version."
+
+#: includes/class-pageforge-frontend.php
+msgid "Group by"
+msgstr "Regrouper par"
+
+#: includes/class-pageforge-frontend.php
+msgid "Heading level"
+msgstr "Niveau de titre"
+
+#: includes/class-pageforge-admin.php
+msgid "Home"
+msgstr "Accueil"
+
+#: includes/class-pageforge-admin.php
+msgid "Home page wireframe"
+msgstr "Wireframe de page d’accueil"
+
+#: includes/class-pageforge-admin.php
+msgid "How it works"
+msgstr "Fonctionnement"
+
+#: includes/class-pageforge-admin.php
+msgid "How to add the Sitemap block"
+msgstr "Comment ajouter le bloc Sitemap"
+
+#: includes/class-pageforge-admin.php
+msgid "If you have enabled white-label mode for this license, some owner and billing information may be hidden from your client sites."
+msgstr "Si vous avez activé le mode marque blanche pour cette licence, certaines informations de propriétaire et de facturation peuvent être masquées sur les sites clients."
+
+#: includes/class-pageforge-admin.php
+msgid "Include featured image (Pexels)"
+msgstr "Inclure une image mise en avant (Pexels)"
+
+#: includes/class-pageforge-admin.php
+msgid "Include recent site URLs for context"
+msgstr "Inclure les URL récentes du site comme contexte"
+
+#: includes/class-pageforge-admin.php
+msgid "Include up to 20 recent URLs in the report context"
+msgstr "Inclure jusqu’à 20 URL récentes dans le contexte du rapport"
+
+#: includes/class-pageforge-admin.php
+msgid "Included"
+msgstr "Inclus"
+
+#: includes/class-pageforge-admin.php
+msgid "Insert tokens like {City}, {State}, {Service}, or any CSV header directly into Gutenberg, Elementor, and Divi text areas. PageForge replaces them on generated pages, including theme titles and excerpts."
+msgstr "Insérez des jetons comme {City}, {State}, {Service} ou tout en-tête CSV directement dans les zones de texte Gutenberg, Elementor et Divi. PageForge les remplace sur les pages générées, y compris les titres de thème et les extraits."
+
+#: includes/class-pageforge-admin.php
+msgid "Instant (Run Now)"
+msgstr "Instantané (exécuter maintenant)"
+
+#: includes/class-pageforge-admin.php
+msgid "Instructions"
+msgstr "Instructions"
+
+#: includes/class-pageforge-ai.php
+msgid "Invalid post"
+msgstr "Article non valide"
+
+#: includes/class-pageforge-generator.php
+msgid "Invalid template"
+msgstr "Modèle non valide"
+
+#: includes/class-pageforge-plugin.php
+msgid "just now"
+msgstr "à l’instant"
+
+#: includes/class-pageforge-plugin.php
+msgid "Keyword"
+msgstr "Mot-clé"
+
+#: includes/class-pageforge-admin.php
+msgid "Leave blank to auto-detect. If an AI API key is connected, PageForge will prefer global prevalence (auto country) instead of forcing AU."
+msgstr "Laissez vide pour détecter automatiquement. Si une clé API IA est connectée, PageForge privilégiera la prévalence globale (pays auto) au lieu de forcer AU."
+
+#: includes/class-pageforge-admin.php
+msgid "License management"
+msgstr "Gestion des licences"
+
+#: includes/class-pageforge-admin.php
+msgid "Licenses and billing for PageForge are managed via Freemius. Use the account portal to update payment details, move licenses between sites, or cancel a subscription."
+msgstr "Les licences et la facturation de PageForge sont gérées via Freemius. Utilisez le portail de compte pour mettre à jour les informations de paiement, déplacer des licences entre sites ou annuler un abonnement."
+
+#: includes/class-pageforge-admin.php
+msgid "Licenses, billing details, invoices, and subscription management are handled by Freemius. Use the account portal to manage your license across sites."
+msgstr "Les licences, les informations de facturation, les factures et la gestion des abonnements sont gérées par Freemius. Utilisez le portail de compte pour gérer votre licence sur plusieurs sites."
+
+#: includes/class-pageforge-frontend.php
+msgid "Link color"
+msgstr "Couleur des liens"
+
+#: includes/class-pageforge-plugin.php
+msgid "Loading..."
+msgstr "Chargement..."
+
+#: includes/class-pageforge-admin.php
+msgid "Loading…"
+msgstr "Chargement…"
+
+#: includes/class-pageforge-admin.php
+msgid "Local"
+msgstr "Local"
+
+#: includes/class-pageforge-admin.php
+msgid "Local SEO plan"
+msgstr "Plan SEO local"
+
+#: includes/class-pageforge-admin.php
+msgid "Location pages + GBP + schema"
+msgstr "Pages locales + GBP + schéma"
+
+#: includes/class-pageforge-admin.php
+msgid "Long (~1000 words max in free)"
+msgstr "Long (~1000 mots max en gratuit)"
+
+#: includes/class-pageforge-admin.php
+msgid "Manage billing & license"
+msgstr "Gérer la facturation et la licence"
+
+#: includes/class-pageforge-admin.php
+msgid "Manage your PageForge connection, license, and access the Freemius account portal."
+msgstr "Gérez votre connexion PageForge, votre licence et l’accès au portail de compte Freemius."
+
+#: includes/class-pageforge-admin.php
+msgid "Medium (~700 words)"
+msgstr "Moyen (~700 mots)"
+
+#: includes/class-pageforge-admin.php
+msgid "Meta Description"
+msgstr "Méta description"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Meta Title & Description"
+msgstr "Méta titre et description"
+
+#: includes/class-pageforge-frontend.php
+msgid "Minimal"
+msgstr "Minimal"
+
+#: includes/class-pageforge-plugin.php
+msgid "Missing"
+msgstr "Manquant"
+
+#: includes/class-pageforge-plugin.php
+msgid "Missing template or data source"
+msgstr "Modèle ou source de données manquant"
+
+#: includes/class-pageforge-admin.php
+msgid "Mode"
+msgstr "Mode"
+
+#: includes/class-pageforge-admin.php
+msgid "Native Blocks"
+msgstr "Blocs natifs"
+
+#: includes/class-pageforge-admin.php
+msgid "Native Gutenberg blocks connected to generated PageForge content."
+msgstr "Blocs Gutenberg natifs connectés au contenu PageForge généré."
+
+#: includes/class-pageforge-admin.php
+msgid "Need Enterprise?"
+msgstr "Besoin de l’offre Entreprise ?"
+
+#: includes/class-pageforge-admin.php
+msgid "Need to move or deactivate a license?"
+msgstr "Besoin de déplacer ou désactiver une licence ?"
+
+#: includes/class-pageforge-admin.php
+msgid "New chat"
+msgstr "Nouveau chat"
+
+#: includes/class-pageforge-plugin.php
+msgid "New site plan"
+msgstr "Nouveau plan de site"
+
+#: includes/class-pageforge-plugin.php
+msgid "No CSVs yet"
+msgstr "Aucun CSV pour le moment"
+
+#: includes/class-pageforge-plugin.php
+msgid "No CSVs yet."
+msgstr "Aucun CSV pour le moment."
+
+#: includes/class-pageforge-plugin.php
+msgid "No file"
+msgstr "Aucun fichier"
+
+#: includes/class-pageforge-frontend.php
+msgid "No grouping"
+msgstr "Aucun regroupement"
+
+#: includes/helpers.php
+msgid "No messages provided"
+msgstr "Aucun message fourni"
+
+#: includes/class-pageforge-frontend.php
+msgid "No PageForge pages found."
+msgstr "Aucune page PageForge trouvée."
+
+#: includes/class-pageforge-admin.php
+msgid "No recent generations."
+msgstr "Aucune génération récente."
+
+#: includes/class-pageforge-admin.php
+msgid "No templates yet."
+msgstr "Aucun modèle pour le moment."
+
+#: includes/class-pageforge-plugin.php
+msgid "OK"
+msgstr "OK"
+
+#: includes/class-pageforge-admin.php
+msgid "One-time bulk generation (limited rows)"
+msgstr "Génération en lot unique (lignes limitées)"
+
+#: includes/class-pageforge-admin.php
+msgid "Open Account Portal"
+msgstr "Ouvrir le portail de compte"
+
+#: includes/class-pageforge-admin.php
+msgid "Open any page in the WordPress block editor."
+msgstr "Ouvrez n’importe quelle page dans l’éditeur de blocs WordPress."
+
+#: includes/class-pageforge-admin.php
+msgid "Open Freemius account portal"
+msgstr "Ouvrir le portail de compte Freemius"
+
+#: includes/class-pageforge-admin.php
+msgid "Open Templates"
+msgstr "Ouvrir les modèles"
+
+#: includes/class-pageforge-admin.php
+msgid "OpenAI API Key"
+msgstr "Clé API OpenAI"
+
+#: includes/class-pageforge-admin.php
+msgid "OpenAI Model"
+msgstr "Modèle OpenAI"
+
+#: includes/class-pageforge-frontend.php
+msgid "Other Cities"
+msgstr "Autres villes"
+
+#: includes/class-pageforge-frontend.php
+msgid "Other Pages"
+msgstr "Autres pages"
+
+#: includes/class-pageforge-frontend.php
+msgid "Other Services"
+msgstr "Autres services"
+
+#: includes/class-pageforge-frontend.php
+msgid "Other States"
+msgstr "Autres états/régions"
+
+#: includes/class-pageforge-admin.php
+msgid "Page"
+msgstr "Page"
+
+#: includes/class-pageforge-admin.php
+msgid "Page Generation Activity"
+msgstr "Activité de génération de pages"
+
+#: includes/class-pageforge-frontend.php
+msgid "Page limit"
+msgstr "Limite de pages"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "PageForge"
+msgstr "PageForge"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-frontend.php
+msgid "PageForge Blocks"
+msgstr "Blocs PageForge"
+
+#: includes/class-pageforge-admin.php
+msgid "PageForge can output basic SEO title and meta description when no dedicated SEO plugin is active."
+msgstr "PageForge peut produire un titre SEO et une méta description de base lorsqu’aucune extension SEO dédiée n’est active."
+
+#: includes/class-pageforge-admin.php
+msgid "PageForge navigation"
+msgstr "Navigation PageForge"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "PageForge Page"
+msgstr "Page PageForge"
+
+#: includes/class-pageforge-admin.php
+msgid "PageForge Page (pageforge_page)"
+msgstr "Page PageForge (pageforge_page)"
+
+#: includes/class-pageforge-plugin.php
+msgid "PageForge Pages"
+msgstr "Pages PageForge"
+
+#: includes/class-pageforge-admin.php
+msgid "PageForge Pages (pageforge_page)"
+msgstr "Pages PageForge (pageforge_page)"
+
+#: includes/class-pageforge-admin.php
+msgid "PageForge SEO"
+msgstr "SEO PageForge"
+
+#: includes/class-pageforge-frontend.php
+msgid "PageForge Sitemap"
+msgstr "Sitemap PageForge"
+
+#: includes/class-pageforge-plugin.php
+msgid "PageForge Template"
+msgstr "Modèle PageForge"
+
+#: includes/class-pageforge-admin.php
+msgid "PageForge Template Settings"
+msgstr "Réglages du modèle PageForge"
+
+#: includes/class-pageforge-plugin.php
+msgid "PageForge Templates"
+msgstr "Modèles PageForge"
+
+#: includes/class-pageforge-admin.php
+msgid "PageForge uses Freemius to manage billing, licensing, and plan entitlements for this site."
+msgstr "PageForge utilise Freemius pour gérer la facturation, les licences et les droits d’offre pour ce site."
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Pages"
+msgstr "Pages"
+
+#: includes/class-pageforge-admin.php
+msgid "Paid plans do not enforce a PageForge-level AI message cap. Usage is limited only by your selected AI provider account and fair-use."
+msgstr "Les offres payantes n’appliquent pas de plafond de messages IA au niveau de PageForge. L’utilisation n’est limitée que par le compte du fournisseur d’IA sélectionné et l’usage raisonnable."
+
+#: includes/class-pageforge-admin.php
+msgid "Parser auto-detects delimiter and strips BOM; blank lines are ignored."
+msgstr "L’analyseur détecte automatiquement le séparateur et supprime le BOM ; les lignes vides sont ignorées."
+
+#: includes/class-pageforge-admin.php
+msgid "Pending"
+msgstr "En attente"
+
+#: includes/class-pageforge-admin.php
+msgid "Pending Review"
+msgstr "En attente de relecture"
+
+#: includes/class-pageforge-admin.php
+msgid "Pexels API Key"
+msgstr "Clé API Pexels"
+
+#: includes/class-pageforge-admin.php
+msgid "Pick a page, post, Elementor template, Divi layout, or reusable block to clone its layout, or enter an ID manually."
+msgstr "Choisissez une page, un article, un modèle Elementor, une mise en page Divi ou un bloc réutilisable à cloner, ou saisissez un ID manuellement."
+
+#: includes/class-pageforge-admin.php
+msgid "Placeholders derived from headers (e.g., {City}, {State}, {Service}) can be used anywhere in your Template content, Title, and Slug patterns."
+msgstr "Les espaces réservés issus des en-têtes (p. ex. {City}, {State}, {Service}) peuvent être utilisés partout dans le contenu du modèle, le titre et les modèles de slug."
+
+#: includes/class-pageforge-admin.php
+msgid "Plan"
+msgstr "Plan"
+
+#: includes/class-pageforge-admin.php
+msgid "Plan & License"
+msgstr "Offre et licence"
+
+#: includes/class-pageforge-admin.php
+msgid "Plan overview"
+msgstr "Aperçu de l’offre"
+
+#: includes/class-pageforge-admin.php
+msgid "Planner"
+msgstr "Planificateur"
+
+#: includes/class-pageforge-admin.php
+msgid "Planner uses your Brand Context / Voice from Settings, your site details, and recent URLs (when enabled). Export produces Markdown you can save or share."
+msgstr "Le planificateur utilise le contexte / la voix de marque des réglages, les détails de votre site et les URL récentes (si activées). L’export produit du Markdown que vous pouvez enregistrer ou partager."
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Post"
+msgstr "Article"
+
+#: includes/class-pageforge-ai.php
+msgid "Post not found"
+msgstr "Article introuvable"
+
+#: includes/class-pageforge-admin.php
+msgid "Post Status"
+msgstr "État de publication"
+
+#: includes/class-pageforge-admin.php
+msgid "Post Type"
+msgstr "Type de contenu"
+
+#: includes/class-pageforge-frontend.php
+msgid "Post types"
+msgstr "Types de contenu"
+
+#: includes/class-pageforge-admin.php
+msgid "Posts"
+msgstr "Articles"
+
+#: includes/class-pageforge-admin.php
+msgid "Prepare a CSV with the first row as headers, e.g., City, State, Service. Delimiters supported: comma, semicolon, tab, or pipe."
+msgstr "Préparez un CSV dont la première ligne contient les en-têtes, p. ex. City, State, Service. Séparateurs pris en charge : virgule, point-virgule, tabulation ou barre verticale."
+
+#: includes/class-pageforge-admin.php
+msgid "Private"
+msgstr "Privé"
+
+#: includes/class-pageforge-plugin.php
+msgid "Processed %1$s / %2$s..."
+msgstr "%1$s / %2$s traités..."
+
+#: includes/class-pageforge-plugin.php
+msgid "Processed:"
+msgstr "Traité :"
+
+#: includes/class-pageforge-admin.php
+msgid "Products (product)"
+msgstr "Produits (product)"
+
+#: includes/class-pageforge-admin.php
+msgid "Professional"
+msgstr "Professionnel"
+
+#: includes/class-pageforge-admin.php
+msgid "Programmatic SEO for WordPress"
+msgstr "SEO programmatique pour WordPress"
+
+#: includes/class-pageforge-admin.php
+msgid "Provide a topic and (optionally) target keywords."
+msgstr "Indiquez un sujet et, facultativement, des mots-clés cibles."
+
+#: includes/class-pageforge-admin.php
+msgid "Public / Published"
+msgstr "Public / Publié"
+
+#: includes/class-pageforge-admin.php
+msgid "Publish"
+msgstr "Publier"
+
+#: includes/class-pageforge-plugin.php
+msgid "Queued rows:"
+msgstr "Lignes en file :"
+
+#: includes/class-pageforge-admin.php
+msgid "Recent chats"
+msgstr "Chats récents"
+
+#: includes/class-pageforge-admin.php
+msgid "Recent Generations"
+msgstr "Générations récentes"
+
+#: includes/class-pageforge-admin.php
+msgid "Recommended length: up to ~155 characters."
+msgstr "Longueur recommandée : jusqu’à ~155 caractères."
+
+#: includes/class-pageforge-plugin.php
+msgid "Request failed (nonce / permissions / network)."
+msgstr "La requête a échoué (nonce / autorisations / réseau)."
+
+#: includes/class-pageforge-admin.php
+msgid "Review your PageForge plan, usage limits, and license options."
+msgstr "Consultez votre offre PageForge, vos limites d’utilisation et vos options de licence."
+
+#: includes/class-pageforge-admin.php
+msgid "Rows per Run"
+msgstr "Lignes par exécution"
+
+#: includes/class-pageforge-admin.php
+msgid "Runtime replacement also applies when builders render content, ensuring tokens inside widgets are replaced on the front end."
+msgstr "Le remplacement à l’exécution s’applique aussi lorsque les constructeurs affichent le contenu, afin que les jetons dans les widgets soient remplacés côté public."
+
+#: includes/class-pageforge-admin.php
+msgid "Sample CSV"
+msgstr "CSV d’exemple"
+
+#: includes/class-pageforge-admin.php
+msgid "Save Settings"
+msgstr "Enregistrer les réglages"
+
+#: includes/class-pageforge-plugin.php
+msgid "saved"
+msgstr "enregistré"
+
+#: includes/class-pageforge-plugin.php
+msgid "Saved"
+msgstr "Enregistré"
+
+#: includes/class-pageforge-admin.php
+msgid "Search any page/post and generate its meta."
+msgstr "Recherchez une page/un article et générez ses métadonnées."
+
+#: includes/class-pageforge-admin.php
+msgid "Search post"
+msgstr "Rechercher un article"
+
+#: includes/class-pageforge-plugin.php
+msgid "Select a post first"
+msgstr "Sélectionnez d’abord un article"
+
+#: includes/class-pageforge-admin.php
+msgid "Select a Template that contains placeholders (e.g., {City}, {State}, {Service})."
+msgstr "Sélectionnez un modèle qui contient des espaces réservés (p. ex. {City}, {State}, {Service})."
+
+#: includes/class-pageforge-plugin.php
+msgid "Select CSV"
+msgstr "Sélectionner un CSV"
+
+#: includes/class-pageforge-admin.php
+msgid "Select Template"
+msgstr "Sélectionner un modèle"
+
+#: includes/class-pageforge-plugin.php
+msgid "Select template and CSV"
+msgstr "Sélectionnez un modèle et un CSV"
+
+#: includes/class-pageforge-admin.php
+msgid "Selected Post ID"
+msgstr "ID de l’article sélectionné"
+
+#: includes/class-pageforge-admin.php
+msgid "Send"
+msgstr "Envoyer"
+
+#: includes/class-pageforge-admin.php
+msgid "SEO"
+msgstr "SEO"
+
+#: includes/class-pageforge-admin.php
+msgid "SEO Report generation requires an Administrator role (manage_options)."
+msgstr "La génération du rapport SEO nécessite un rôle administrateur (manage_options)."
+
+#: includes/class-pageforge-admin.php
+msgid "SEO Title"
+msgstr "Titre SEO"
+
+#: includes/class-pageforge-frontend.php
+msgid "Service"
+msgstr "Service"
+
+#: includes/class-pageforge-admin.php
+msgid "Services architecture"
+msgstr "Architecture des services"
+
+#: includes/class-pageforge-admin.php
+msgid "Set Post Status and run the generation. This free build processes up to 100 CSV rows per run."
+msgstr "Définissez l’état de publication et lancez la génération. Cette version gratuite traite jusqu’à 100 lignes CSV par exécution."
+
+#: includes/class-pageforge-admin.php
+msgid "Set Title and Slug patterns in the metabox below. Examples: “Best {Service} in {City}, {State}” and “{service}-in-{city}-{state}”."
+msgstr "Définissez les modèles de titre et de slug dans la boîte méta ci-dessous. Exemples : « Meilleur {Service} à {City}, {State} » et « {service}-in-{city}-{state} »."
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Settings"
+msgstr "Réglages"
+
+#: includes/class-pageforge-plugin.php
+msgid "Settings saved"
+msgstr "Réglages enregistrés"
+
+#: includes/class-pageforge-admin.php
+msgid "Short (~400 words)"
+msgstr "Court (~400 mots)"
+
+#: includes/class-pageforge-admin.php
+msgid "Shortcodes render the value from the generated row for the current post. Direct tokens such as <code>{City}</code> are replaced at render time on generated pages."
+msgstr "Les codes courts affichent la valeur de la ligne générée pour la publication actuelle. Les jetons directs comme <code>{City}</code> sont remplacés au rendu sur les pages générées."
+
+#: includes/class-pageforge-admin.php
+msgid "Shortcuts"
+msgstr "Raccourcis"
+
+#: includes/class-pageforge-frontend.php
+msgid "Show group counts"
+msgstr "Afficher les compteurs de groupe"
+
+#: includes/class-pageforge-admin.php
+msgid "Single"
+msgstr "Unique"
+
+#: includes/class-pageforge-admin.php
+msgid "Single page optimization"
+msgstr "Optimisation d’une page"
+
+#: includes/class-pageforge-admin.php
+msgid "Site & plan status"
+msgstr "État du site et de l’offre"
+
+#: includes/class-pageforge-admin.php
+msgid "Site URL:"
+msgstr "URL du site :"
+
+#: includes/class-pageforge-admin.php
+msgid "Sitemap"
+msgstr "Sitemap"
+
+#: includes/class-pageforge-admin.php
+msgid "Sitemap + sections + SEO + launch checklist"
+msgstr "Sitemap + sections + SEO + checklist de lancement"
+
+#: includes/class-pageforge-frontend.php
+msgid "Sitemap Settings"
+msgstr "Réglages du sitemap"
+
+#: includes/class-pageforge-admin.php
+msgid "Sitemap Shortcode"
+msgstr "Code court du sitemap"
+
+#: includes/class-pageforge-admin.php
+msgid "Slug Pattern"
+msgstr "Modèle de slug"
+
+#: includes/class-pageforge-admin.php
+msgid "Split larger CSV files into batches of 100 rows for the smoothest runs."
+msgstr "Divisez les grands fichiers CSV en lots de 100 lignes pour des exécutions plus fluides."
+
+#: includes/class-pageforge-admin.php
+msgid "Start"
+msgstr "Démarrer"
+
+#: includes/class-pageforge-admin.php
+msgid "Start a plan with one click"
+msgstr "Démarrer un plan en un clic"
+
+#: includes/class-pageforge-admin.php
+msgid "Starter"
+msgstr "Starter"
+
+#: includes/class-pageforge-plugin.php
+msgid "Starting generation..."
+msgstr "Démarrage de la génération..."
+
+#: includes/class-pageforge-plugin.php
+msgid "Starting..."
+msgstr "Démarrage..."
+
+#: includes/class-pageforge-frontend.php
+msgid "State"
+msgstr "État/Région"
+
+#: includes/class-pageforge-admin.php
+msgid "Status"
+msgstr "État"
+
+#: includes/class-pageforge-plugin.php
+msgid "Stopped (error)."
+msgstr "Arrêté (erreur)."
+
+#: includes/class-pageforge-plugin.php
+msgid "Stopped (JS error)."
+msgstr "Arrêté (erreur JS)."
+
+#: includes/class-pageforge-plugin.php
+msgid "Stopped (request failed)."
+msgstr "Arrêté (requête échouée)."
+
+#: includes/class-pageforge-plugin.php
+msgid "Stopped."
+msgstr "Arrêté."
+
+#: includes/class-pageforge-frontend.php
+msgid "Style"
+msgstr "Style"
+
+#: includes/class-pageforge-admin.php
+msgid "Subpages, slugs, title tags, FAQs"
+msgstr "Sous-pages, slugs, balises de titre, FAQ"
+
+#: includes/class-pageforge-admin.php
+msgid "Target Country (Schema)"
+msgstr "Pays cible (schéma)"
+
+#: includes/class-pageforge-admin.php
+msgid "Target keywords (optional)"
+msgstr "Mots-clés cibles (facultatif)"
+
+#: includes/class-pageforge-admin.php
+msgid "Target Post Type"
+msgstr "Type de contenu cible"
+
+#: includes/class-pageforge-admin.php
+msgid "Template"
+msgstr "Modèle"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Templates"
+msgstr "Modèles"
+
+#: includes/class-pageforge-admin.php
+msgid "Templates can clone an existing Gutenberg, Elementor, or Divi page by setting its post ID in Base Layout from Existing Page."
+msgstr "Les modèles peuvent cloner une page Gutenberg, Elementor ou Divi existante en définissant son ID dans Mise en page de base depuis une page existante."
+
+#: includes/class-pageforge-admin.php
+msgid "The quota is shared across AI Meta, AI Blog, SEO report, and Site Planner tools. Upgrading removes this limit."
+msgstr "Le quota est partagé entre les outils Métadonnées IA, Blog IA, rapport SEO et Planificateur de site. La mise à niveau supprime cette limite."
+
+#: includes/class-pageforge-admin.php
+msgid "The shortcode lists published generated pages only, using PageForge metadata stored during generation."
+msgstr "Le code court liste uniquement les pages générées publiées, en utilisant les métadonnées PageForge enregistrées pendant la génération."
+
+#: includes/class-pageforge-admin.php
+msgid "Thinking…"
+msgstr "Réflexion…"
+
+#: includes/class-pageforge-admin.php
+msgid "This brand context is appended to AI prompts to keep generated pages on-message."
+msgstr "Ce contexte de marque est ajouté aux prompts IA pour garder les pages générées cohérentes avec le message."
+
+#: includes/class-pageforge-admin.php
+msgid "This build does not enforce a specific free row limit. Production builds typically include a one-time free allowance."
+msgstr "Cette version n’impose pas de limite gratuite spécifique de lignes. Les versions de production incluent généralement une allocation gratuite unique."
+
+#: includes/class-pageforge-admin.php
+msgid "Tips"
+msgstr "Conseils"
+
+#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+msgid "Title"
+msgstr "Titre"
+
+#: includes/class-pageforge-admin.php
+msgid "Title Pattern"
+msgstr "Modèle de titre"
+
+#: includes/class-pageforge-admin.php
+msgid "To use an existing Elementor/Gutenberg/Divi page as the base layout, set “Base Layout from Existing Page” to that post ID. Its layout will be cloned and text placeholders replaced."
+msgstr "Pour utiliser une page Elementor/Gutenberg/Divi existante comme mise en page de base, définissez « Mise en page de base depuis une page existante » sur cet ID de publication. Sa mise en page sera clonée et les espaces réservés de texte remplacés."
+
+#: includes/class-pageforge-admin.php
+msgid "Topic"
+msgstr "Sujet"
+
+#: includes/class-pageforge-ai.php
+msgid "Topic is required"
+msgstr "Le sujet est obligatoire"
+
+#: includes/class-pageforge-admin.php
+msgid "Total Pages"
+msgstr "Pages totales"
+
+#: includes/class-pageforge-admin.php
+msgid "Track CSV page generation, manage templates, and launch high-volume local SEO workflows from one place."
+msgstr "Suivez la génération de pages CSV, gérez les modèles et lancez des workflows SEO local à grand volume depuis un seul endroit."
+
+#: includes/class-pageforge-admin.php
+msgid "Type a title…"
+msgstr "Saisissez un titre…"
+
+#: includes/class-pageforge-plugin.php
+msgid "Unable to load CSVs"
+msgstr "Impossible de charger les CSV"
+
+#: includes/class-pageforge-plugin.php
+msgid "Unauthorized"
+msgstr "Non autorisé"
+
+#: includes/class-pageforge-admin.php
+msgid "Unlimited"
+msgstr "Illimité"
+
+#: includes/class-pageforge-admin.php
+msgid "Unlimited rows & automation"
+msgstr "Lignes illimitées et automatisation"
+
+#: includes/class-pageforge-plugin.php
+msgid "Untitled"
+msgstr "Sans titre"
+
+#: includes/class-pageforge-plugin.php
+msgid "Updated %s"
+msgstr "Mis à jour %s"
+
+#: includes/class-pageforge-admin.php
+msgid "Upgrade plan"
+msgstr "Mettre à niveau l’offre"
+
+#: includes/class-pageforge-admin.php
+msgid "Upgrade to Pro"
+msgstr "Passer à Pro"
+
+#: includes/class-pageforge-admin.php
+msgid "Upload CSV"
+msgstr "Téléverser un CSV"
+
+#: includes/class-pageforge-admin.php
+msgid "Upload CSV files and manage external data sources for your templates."
+msgstr "Téléversez des fichiers CSV et gérez les sources de données externes pour vos modèles."
+
+#: includes/class-pageforge-admin.php
+msgid "Upload data in Data Sources; refresh here to see new files."
+msgstr "Téléversez les données dans Sources de données ; actualisez ici pour voir les nouveaux fichiers."
+
+#: includes/class-pageforge-plugin.php
+msgid "Upload failed:"
+msgstr "Échec du téléversement :"
+
+#: includes/class-pageforge-plugin.php
+msgid "Uploaded:"
+msgstr "Téléversé :"
+
+#: includes/class-pageforge-admin.php
+msgid "URL"
+msgstr "URL"
+
+#: includes/class-pageforge-admin.php
+msgid "Usage & limits"
+msgstr "Utilisation et limites"
+
+#: includes/class-pageforge-admin.php
+msgid "Use a quick prompt to pre-fill the planner with a common scenario."
+msgstr "Utilisez un prompt rapide pour préremplir le planificateur avec un scénario courant."
+
+#: includes/class-pageforge-admin.php
+msgid "Use a shortcode when a builder field does not allow raw token text, or place tokens directly in supported text and heading controls."
+msgstr "Utilisez un code court lorsqu’un champ de constructeur n’autorise pas le texte brut des jetons, ou placez les jetons directement dans les champs de texte et de titre pris en charge."
+
+#: includes/class-pageforge-admin.php
+msgid "Use Generate screen setting"
+msgstr "Utiliser le réglage de l’écran de génération"
+
+#: includes/class-pageforge-admin.php
+msgid "Use PageForge content with native WordPress blocks, shortcodes, and builder tokens."
+msgstr "Utilisez le contenu PageForge avec les blocs WordPress natifs, les codes courts et les jetons de constructeur."
+
+#: includes/class-pageforge-admin.php
+msgid "Use placeholders anywhere in the content editor and above patterns: {City}, {State}, {Service}, and any CSV column header you provide."
+msgstr "Utilisez les espaces réservés partout dans l’éditeur de contenu et les modèles ci-dessus : {City}, {State}, {Service}, ainsi que tout en-tête CSV fourni."
+
+#: includes/class-pageforge-admin.php
+msgid "Use placeholders like {City}, {State}, {Service} directly in the editor content."
+msgstr "Utilisez des espaces réservés comme {City}, {State}, {Service} directement dans le contenu de l’éditeur."
+
+#: includes/class-pageforge-admin.php
+msgid "Use templates and CSV data sources to generate SEO-optimized pages in bulk, up to 100 pages per run in this free build."
+msgstr "Utilisez des modèles et des sources de données CSV pour générer des pages optimisées SEO en lot, jusqu’à 100 pages par exécution dans cette version gratuite."
+
+#: includes/class-pageforge-admin.php
+msgid "Use this when you are editing with a builder, classic editor, widget, or reusable pattern."
+msgstr "Utilisez ceci lorsque vous modifiez avec un constructeur, l’éditeur classique, un widget ou un modèle réutilisable."
+
+#: includes/class-pageforge-admin.php
+msgid "Used as the Schema.org @type for the business/provider object (and influences schema output)."
+msgstr "Utilisé comme @type Schema.org pour l’objet entreprise/fournisseur (et influence la sortie du schéma)."
+
+#: includes/class-pageforge-admin.php
+msgid "Using Brand Context from Settings"
+msgstr "Utilisation du contexte de marque des réglages"
+
+#: includes/class-pageforge-admin.php
+msgid "When set, PageForge uses this status automatically for every post generated from this template."
+msgstr "Lorsque défini, PageForge utilise automatiquement cet état pour chaque publication générée depuis ce modèle."
+
+#: includes/class-pageforge-admin.php
+msgid "Will be used as the browser title when no SEO plugin is installed."
+msgstr "Sera utilisé comme titre du navigateur lorsqu’aucune extension SEO n’est installée."
+
+#: includes/class-pageforge-plugin.php
+msgid "Working... (offset %s)"
+msgstr "Traitement... (décalage %s)"
+
+#: includes/class-pageforge-admin.php
+msgid "Works as a native block or shortcode on any page."
+msgstr "Fonctionne comme bloc natif ou code court sur n’importe quelle page."
+
+#: includes/class-pageforge-plugin.php
+msgid "You"
+msgstr "Vous"
+
+#: includes/class-pageforge-admin.php
+msgid "You can deactivate a license on this site and move it to another by using the Freemius account portal. Disconnecting a site from Freemius will also remove it from your user dashboard."
+msgstr "Vous pouvez désactiver une licence sur ce site et la déplacer vers un autre via le portail de compte Freemius. Déconnecter un site de Freemius le supprimera aussi de votre tableau de bord utilisateur."
