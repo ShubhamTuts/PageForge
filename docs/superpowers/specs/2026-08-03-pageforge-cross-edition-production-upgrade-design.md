@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-03
 
-**Status:** Approved for planning
+**Status:** Approved for implementation
 
 **Target releases:** PageForge Free 1.2.0 and PageForge Pro 1.1.0
 
