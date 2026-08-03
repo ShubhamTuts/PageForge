@@ -24,9 +24,10 @@ Before making product, UI, AI, MCP, docs, or pricing changes, read:
 - `docs/PAGEFORGE_UI_UX_PRD.md`
 - `docs/PAGEFORGE_MCP_CONNECTORS_PRD.md`
 - `docs/PAGEFORGE_IMPLEMENTATION_ROADMAP.md`
+- `docs/superpowers/specs/2026-08-03-pageforge-cross-edition-production-upgrade-design.md`
 - `docs/superpowers/plans/2026-08-03-pageforge-ui-mcp-connectors.md`
 
-If premium code is available, read these premium files for alignment only. Do not write to the premium directory unless the user explicitly changes the workspace and asks for premium edits:
+Premium is a separate repository. The user approved premium edits for the cross-edition production upgrade described in the specification above. Keep premium changes on their own branch and commits, do not edit its bundled vendor code, and do not broaden premium work beyond the approved specification without fresh approval:
 
 - `C:\Users\wpshu\OneDrive\Documents\pageforge-premium\pageforge.php`
 - `C:\Users\wpshu\OneDrive\Documents\pageforge-premium\includes\class-pageforge-plugin.php`
