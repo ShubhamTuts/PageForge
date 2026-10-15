@@ -1,3 +1,39 @@
+= 1.2.6 =
+* Added template global-target inheritance and effective output destination guidance.
+* Added Free static native Parent Page selection and hierarchy-aware preflight and duplicates.
+* Clarified the existing CPT slug-base setting, rejected empty bases, and refreshed rewrites only on actual base changes.
+* Existing content is never automatically converted or reparented; redirects are managed separately.
+
+= 1.2.5 =
+* Fixed spacing, word order, and placeholder placement across Portuguese (pt_PT) translations.
+* Added Claude Fable 5.1 to the Claude model list.
+* Removed GPT-4.1 nano ahead of OpenAI's October 23, 2026 shutdown; sites that selected it fall back to the default OpenAI model.
+* Show a clear message when Claude declines a request instead of a generic empty-response error.
+
+= 1.2.4 =
+* Fixed MCP protocol fallback negotiation and OAuth callback encoding for current and legacy remote clients.
+* Preserved read access for OAuth grants created by early MCP Lite builds.
+* Fixed MCP OAuth discovery POSTs being parsed before authentication.
+* Kept Free MCP strictly read-only while improving authenticated JSON and credential diagnostics.
+* Stopped expected credential-free OAuth challenges from appearing as rejected requests.
+* Made AI SEO Report generation Markdown-first with server-derived JSON downloads and legacy JSON compatibility.
+* Added explicit report errors for invalid responses, HTTP failures, and provider failures.
+
+= 1.2.3 =
+* Added template-level Meta Description Pattern support with CSV tokens and generated-description fallback.
+* Added current All in One SEO metadata read/write support.
+* Improved MCP OAuth discovery, automatic client registration, API-key headers, CORS, cache control, and Free read-only scope enforcement.
+
+= 1.2.2 =
+* Fixed DeepSeek V4 empty content responses and refreshed supported AI model choices.
+* Unified generated-page, Meta, and Blog SEO persistence with capability checks.
+
+= 1.2.1 =
+* Fixed Claude Sonnet 5 sampling, Gemini model identifiers, and UTF-8 fallbacks without mbstring.
+
+= 1.2.0 =
+* Added MCP Lite, OAuth connectors, scoped Personal Access Tokens, diagnostics, and security hardening.
+
 = 1.1.8 =
 * Added bundled German (de_DE) and French (fr_FR) translations for PageForge admin screens, block labels, JavaScript messages, and plugin notices.
 * Added bundled English (United States), English (United Kingdom), and Portuguese (Portugal) translation files.

@@ -4,7 +4,44 @@ namespace PageForge;
 if (!defined('ABSPATH')) exit;
 
 class Admin {
-        private static function topbar(string $active, string $subtitle = ''): void {
+        /**
+     * Render one secret input.
+     *
+     * The field is always blank on page load; it never carries the stored
+     * secret. A status pill shows Configured/Not configured plus a
+     * non-sensitive fingerprint. Submitting the form with the field left
+     * blank keeps the stored secret via the unchanged sentinel, so a normal
+     * "Save Settings" click can never accidentally wipe a working key.
+     */
+    private static function secret_field(string $name, string $stored_value): void {
+        $status = Secrets::status($stored_value);
+        $placeholder_value = Secrets::field_placeholder_value($stored_value);
+        ?>
+        <input
+            type="password"
+            name="<?php echo esc_attr($name); ?>"
+            value="<?php echo esc_attr($placeholder_value); ?>"
+            class="regular-text pf-secret-input"
+            data-pf-secret="1"
+            autocomplete="off"
+            placeholder="<?php echo $status['configured'] ? esc_attr__('Enter a new value to replace it', 'pageforge') : esc_attr__('Not configured', 'pageforge'); ?>"
+        />
+        <span class="pf-badge <?php echo $status['configured'] ? 'ok' : 'warn'; ?> pf-secret-status">
+            <?php echo $status['configured']
+                ? esc_html(sprintf(
+                    /* translators: %s: last characters of the stored secret, e.g. ****ab12 */
+                    __('Configured (%s)', 'pageforge'),
+                    $status['fingerprint']
+                ))
+                : esc_html__('Not configured', 'pageforge'); ?>
+        </span>
+        <?php if ($status['configured']): ?>
+            <button type="button" class="button-link pf-secret-remove" data-pf-secret-clear="<?php echo esc_attr($name); ?>"><?php echo esc_html__('Remove', 'pageforge'); ?></button>
+        <?php endif; ?>
+        <?php
+    }
+
+    private static function topbar(string $active, string $subtitle = ''): void {
         // Primary navigation inside PageForge screens.
         // Plan & Account tabs were removed from the main shell to avoid
         // duplicating Freemius UI and to keep the experience focused on
@@ -17,6 +54,7 @@ class Admin {
 			'blocks'      => [__('Blocks', 'pageforge'), 'pageforge-shortcodes'],
 			'ai'          => [__('AI Site Planner', 'pageforge'), 'pageforge-ai'],
 			'blog'        => [__('AI Blog', 'pageforge'), 'pageforge-blog'],
+			'connections' => [__('Connections', 'pageforge'), 'pageforge-connections'],
 			'settings'    => [__('Settings', 'pageforge'), 'pageforge-settings'],
 		];
 
@@ -82,8 +120,8 @@ class Admin {
     // ---------- MENU RENDERERS ----------
     public static function render_dashboard() {
         if (!\current_user_can('manage_options')) return;
-        $tpl_count = (int) \wp_count_posts('pageforge_template')->publish;
-        $pg_count  = (int) \wp_count_posts('pageforge_page')->publish;
+        $tpl_count = self::count_published_posts(Compatibility::template_post_types());
+        $pg_count  = self::count_published_posts(Compatibility::generated_post_types());
         $activity  = (array) \get_option('pageforge_activity', []);
         $settings  = settings_get();
         $run_limit = PAGEFORGE_FREE_ROW_LIMIT > 0 ? (string) PAGEFORGE_FREE_ROW_LIMIT : __('Unlimited', 'pageforge');
@@ -236,7 +274,7 @@ class Admin {
 
 	public static function render_templates() {
 		if (!\current_user_can('edit_posts')) return;
-		$list = \get_posts(['post_type' => 'pageforge_template', 'numberposts' => -1, 'post_status' => 'any']); ?>
+		$list = \get_posts(self::template_query_args()); ?>
         <div class="wrap pf-wrap pf-shell">
             <?php self::topbar('templates', __('Templates', 'pageforge')); ?>
 
@@ -292,7 +330,7 @@ class Admin {
 
 	public static function render_pages() {
         if (!\current_user_can('edit_posts')) return;
-		$tpls = \get_posts(['post_type' => 'pageforge_template', 'numberposts' => -1, 'post_status' => 'any']);
+		$tpls = \get_posts(self::template_query_args());
 		?>
         <div class="wrap pf-wrap pf-shell">
             <?php self::topbar('pages', __('Generate Pages', 'pageforge')); ?>
@@ -324,7 +362,7 @@ class Admin {
                                 <tr>
                                     <th scope="row"><?php echo esc_html__('Data Source (CSV)', 'pageforge'); ?></th>
                                     <td>
-                                        <select id="pf-csv" class="regular-text pf-input-wide"><option value=""><?php echo esc_html__('Loading…', 'pageforge'); ?></option></select>
+                                        <p id="pf-generation-destination" role="status" aria-live="polite"></p><select id="pf-csv" class="regular-text pf-input-wide"><option value=""><?php echo esc_html__('Loading…', 'pageforge'); ?></option></select>
                                     </td>
                                 </tr>
                                 <tr>
@@ -383,12 +421,10 @@ class Admin {
     public static function render_shortcodes() {
         if (!\current_user_can('edit_posts')) return;
         $generated_count = self::count_generated_posts();
-        $template_count = (int) count(\get_posts([
-            'post_type'      => 'pageforge_template',
-            'post_status'    => 'any',
+        $template_count = (int) count(\get_posts(self::template_query_args([
             'posts_per_page' => -1,
             'fields'         => 'ids',
-        ]));
+        ])));
         $csv_count = (int) count(DataSource::list_csv_attachments(200));
         ?>
         <div class="wrap pf-wrap pf-shell">
@@ -522,7 +558,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                                     </tr>
                                     <tr data-ai-provider-section="openai"<?php echo $active_provider === 'openai' ? '' : ' style="display:none"'; ?>>
                                         <th scope="row"><?php echo esc_html__('OpenAI API Key', 'pageforge'); ?></th>
-                                        <td><input type="password" name="openai_key" value="<?php echo \esc_attr(array_get($s,'openai_key')); ?>" class="regular-text" /></td>
+                                        <td><?php self::secret_field('openai_key', (string) array_get($s, 'openai_key', '')); ?></td>
                                     </tr>
                                     <tr data-ai-provider-section="openai"<?php echo $active_provider === 'openai' ? '' : ' style="display:none"'; ?>>
                                         <th scope="row"><?php echo esc_html__('OpenAI Model', 'pageforge'); ?></th>
@@ -536,7 +572,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                                     </tr>
                                     <tr data-ai-provider-section="anthropic"<?php echo $active_provider === 'anthropic' ? '' : ' style="display:none"'; ?>>
                                         <th scope="row"><?php echo esc_html__('Claude API Key', 'pageforge'); ?></th>
-                                        <td><input type="password" name="anthropic_key" value="<?php echo \esc_attr(array_get($s,'anthropic_key')); ?>" class="regular-text" /></td>
+                                        <td><?php self::secret_field('anthropic_key', (string) array_get($s, 'anthropic_key', '')); ?></td>
                                     </tr>
                                     <tr data-ai-provider-section="anthropic"<?php echo $active_provider === 'anthropic' ? '' : ' style="display:none"'; ?>>
                                         <th scope="row"><?php echo esc_html__('Claude Model', 'pageforge'); ?></th>
@@ -550,7 +586,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                                     </tr>
                                     <tr data-ai-provider-section="gemini"<?php echo $active_provider === 'gemini' ? '' : ' style="display:none"'; ?>>
                                         <th scope="row"><?php echo esc_html__('Gemini API Key', 'pageforge'); ?></th>
-                                        <td><input type="password" name="gemini_key" value="<?php echo \esc_attr(array_get($s,'gemini_key')); ?>" class="regular-text" /></td>
+                                        <td><?php self::secret_field('gemini_key', (string) array_get($s, 'gemini_key', '')); ?></td>
                                     </tr>
                                     <tr data-ai-provider-section="gemini"<?php echo $active_provider === 'gemini' ? '' : ' style="display:none"'; ?>>
                                         <th scope="row"><?php echo esc_html__('Gemini Model', 'pageforge'); ?></th>
@@ -564,7 +600,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                                     </tr>
                                     <tr data-ai-provider-section="deepseek"<?php echo $active_provider === 'deepseek' ? '' : ' style="display:none"'; ?>>
                                         <th scope="row"><?php echo esc_html__('DeepSeek API Key', 'pageforge'); ?></th>
-                                        <td><input type="password" name="deepseek_key" value="<?php echo \esc_attr(array_get($s,'deepseek_key')); ?>" class="regular-text" /></td>
+                                        <td><?php self::secret_field('deepseek_key', (string) array_get($s, 'deepseek_key', '')); ?></td>
                                     </tr>
                                     <tr data-ai-provider-section="deepseek"<?php echo $active_provider === 'deepseek' ? '' : ' style="display:none"'; ?>>
                                         <th scope="row"><?php echo esc_html__('DeepSeek Model', 'pageforge'); ?></th>
@@ -579,7 +615,10 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                                     </tr>
                                     <tr>
                                         <th scope="row"><?php echo esc_html__('Pexels API Key', 'pageforge'); ?></th>
-                                        <td><input type="password" name="pexels_key" value="<?php echo \esc_attr(array_get($s,'pexels_key')); ?>" class="regular-text" /></td>
+                                        <td>
+                                            <?php self::secret_field('pexels_key', (string) array_get($s, 'pexels_key', '')); ?>
+                                            <p class="description"><?php echo \wp_kses_post(sprintf(__('Photos provided by %s. Credit photographers when possible.', 'pageforge'), '<a href="https://www.pexels.com/" target="_blank" rel="noopener noreferrer">Pexels</a>')); ?></p>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><?php echo esc_html__('Brand Context / Voice', 'pageforge'); ?></th>
@@ -619,7 +658,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                                     </tr>
                                     <tr>
                                         <th scope="row"><?php echo esc_html__('Generated CPT Slug Base', 'pageforge'); ?></th>
-                                        <td><input type="text" name="cpt_base" value="<?php echo esc_attr(array_get($s,'cpt_base','pageforge')); ?>" class="regular-text" /> <span class="description"><?php echo esc_html__('Applies to pageforge_page URLs. Save to flush permalinks.', 'pageforge'); ?></span></td>
+                                        <td><input type="text" name="cpt_base" value="<?php echo esc_attr(array_get($s,'cpt_base','pageforge')); ?>" class="regular-text" /> <span class="description"><?php echo esc_html__('Changes only /{base}/slug/ for PageForge custom content. A nonempty base is required. Choose native Page output with no parent for /the-magnolias/, or assign a Parent Page for /maths-tuition-gurgaon/dlf-phase-iv/. Changing an established base changes custom-content URLs: plan redirects separately; PageForge does not create them.', 'pageforge'); ?></span></td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><?php echo esc_html__('GA4 Measurement ID', 'pageforge'); ?></th>
@@ -627,7 +666,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                                     </tr>
                                     <tr>
                                         <th scope="row"><?php echo esc_html__('GA4 API Secret', 'pageforge'); ?></th>
-                                        <td><input type="password" name="ga4_api_secret" value="<?php echo esc_attr(array_get($s,'ga4_api_secret')); ?>" class="regular-text" /></td>
+                                        <td><?php self::secret_field('ga4_api_secret', (string) array_get($s, 'ga4_api_secret', '')); ?></td>
                                     </tr>
                                   </table>
                                   <p class="pf-mt-md"><button class="button button-primary" type="submit"><?php echo esc_html__('Save Settings', 'pageforge'); ?></button></p>
@@ -783,13 +822,13 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                             <?php else: ?>
                                 <p class="pf-note"><?php echo esc_html__('Account portal URL is not available in this environment. Use your Freemius dashboard to manage licenses.', 'pageforge'); ?></p>
                             <?php endif; ?>
-                            <p class="pf-note pf-mt-sm"><?php echo esc_html__('Direct license key entry from this screen can be added later once the Freemius API integration is finalized.', 'pageforge'); ?></p>
+                            <p class="pf-note pf-mt-sm"><?php echo esc_html__('Use the Freemius account portal for license activation, billing, and subscription changes.', 'pageforge'); ?></p>
                         </div>
 
                         <div class="pf-card pf-mt-md">
                             <h3><?php echo esc_html__('Need Enterprise?', 'pageforge'); ?></h3>
                             <p><?php echo esc_html__('For higher volumes, custom workflows, or security reviews, talk to us about an Enterprise plan.', 'pageforge'); ?></p>
-                            <a class="button button-primary" href="mailto:support@pageforge.app?subject=PageForge%20Enterprise">
+                            <a class="button button-primary" href="mailto:support@pageforge.pro?subject=PageForge%20Enterprise">
                                 <?php echo esc_html__('Contact sales', 'pageforge'); ?>
                             </a>
                         </div>
@@ -1102,7 +1141,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
 	                <header class="pf-page-header">
 	                    <div class="pf-page-title-group">
 	                        <h1 class="pf-page-title"><?php echo esc_html__('Meta Title & Description', 'pageforge'); ?></h1>
-	                        <p class="pf-page-subtitle"><?php echo esc_html__('Generate SEO meta and save to PageForge + Yoast + RankMath meta fields.', 'pageforge'); ?></p>
+	                        <p class="pf-page-subtitle"><?php echo esc_html__('Generate search and social metadata, then save it through a supported SEO integration or PageForge built-in metadata.', 'pageforge'); ?></p>
 	                    </div>
 	                </header>
 
@@ -1156,7 +1195,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
 	                <header class="pf-page-header">
 	                    <div class="pf-page-title-group">
 	                        <h1 class="pf-page-title"><?php echo esc_html__('Blog Generator', 'pageforge'); ?></h1>
-	                        <p class="pf-page-subtitle"><?php echo esc_html__('Generate a full HTML blog draft and optionally attach a featured image from Pexels.', 'pageforge'); ?></p>
+	                        <p class="pf-page-subtitle"><?php echo esc_html__('Generate a standard WordPress blog post with SEO metadata and an optional Pexels featured image.', 'pageforge'); ?></p>
 	                    </div>
 	                </header>
 
@@ -1170,7 +1209,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
 	                            <div class="pf-card-head">
 	                                <div>
 	                                    <div class="pf-h"><?php echo esc_html__('AI Blog Generator', 'pageforge'); ?></div>
-	                                    <div class="pf-sub"><?php echo esc_html__('Provide a topic and (optionally) target keywords.', 'pageforge'); ?></div>
+	                                    <div class="pf-sub"><?php echo esc_html__('Provide a topic and optional target keywords. Output is always saved as a WordPress post.', 'pageforge'); ?></div>
 	                                </div>
 	                                <span class="pf-tag"><?php echo esc_html__('Blog', 'pageforge'); ?></span>
 	                            </div>
@@ -1194,15 +1233,8 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                                         <option value="long"><?php echo esc_html__('Long (~1000 words max in free)', 'pageforge'); ?></option>
                                     </select>
 	                            </div>
+                                <input type="hidden" id="pf-blog-post-type" value="post" />
 	                            <div class="pf-field-row">
-	                                <div class="pf-field">
-	                                    <label><?php echo esc_html__('Post Type', 'pageforge'); ?></label>
-	                                    <select id="pf-blog-post-type">
-	                                        <option value="post"><?php echo esc_html__('Post', 'pageforge'); ?></option>
-	                                        <option value="page"><?php echo esc_html__('Page', 'pageforge'); ?></option>
-	                                        <option value="pageforge_page"><?php echo esc_html__('PageForge Page', 'pageforge'); ?></option>
-	                                    </select>
-	                                </div>
 	                                <div class="pf-field">
 	                                    <label><?php echo esc_html__('Status', 'pageforge'); ?></label>
 	                                    <select id="pf-blog-status">
@@ -1216,9 +1248,10 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
 	                                    <input type="checkbox" id="pf-blog-image" value="1" />
 	                                    <?php echo esc_html__('Include featured image (Pexels)', 'pageforge'); ?>
 	                                </label>
+                                    <p class="description"><?php echo \wp_kses_post(sprintf(__('Featured image searches use Pexels. Photos provided by %s.', 'pageforge'), '<a href="https://www.pexels.com/" target="_blank" rel="noopener noreferrer">Pexels</a>')); ?></p>
 	                            </div>
 	                            <div class="pf-actions">
-	                                <button class="button button-primary" id="pf-ai-blog-generate" <?php disabled(!$ai_context['has_key']); ?>><?php echo esc_html__('Generate Draft', 'pageforge'); ?></button>
+	                                <button class="button button-primary" id="pf-ai-blog-generate" <?php disabled(!$ai_context['has_key']); ?>><?php echo esc_html__('Generate Post', 'pageforge'); ?></button>
 	                            </div>
 	                            <div id="pf-ai-blog-output" class="pf-output"></div>
 	                        </div>
@@ -1231,25 +1264,32 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
 
     // ---------- Template Meta ----------
      public static function register_template_metabox() {
-         \add_meta_box('pageforge_template_meta', __('PageForge Template Settings', 'pageforge'), [__CLASS__, 'metabox_template'], 'pageforge_template', 'normal', 'high');
+         foreach (Compatibility::template_post_types() as $template_post_type) {
+             \add_meta_box('pageforge_template_meta', __('PageForge Template Settings', 'pageforge'), [__CLASS__, 'metabox_template'], $template_post_type, 'normal', 'high');
+         }
      }
 
     public static function metabox_template($post) {
-        $title_pattern = get_post_meta($post->ID, '_pageforge_title_pattern', true);
-        $slug_pattern  = get_post_meta($post->ID, '_pageforge_slug_pattern', true);
-        $post_type     = get_post_meta($post->ID, '_pageforge_post_type', true) ?: 'pageforge_page';
-        $post_status   = get_post_meta($post->ID, '_pageforge_post_status', true) ?: '';
-        $base_post_id  = (int) get_post_meta($post->ID, '_pageforge_base_post_id', true);
-        $base_post_types = array_values(array_filter([
+        $title_pattern = Compatibility::read_meta((int) $post->ID, 'title_pattern', '');
+        $meta_description_pattern = Compatibility::read_meta((int) $post->ID, 'meta_description_pattern', '');
+        $slug_pattern  = Compatibility::read_meta((int) $post->ID, 'slug_pattern', '');
+        $post_type = (string) Compatibility::read_meta((int) $post->ID, 'post_type', '');
+        $global_type = Generator::resolve_generated_post_type((string) array_get(settings_get(), 'post_type', Compatibility::post_type('generated')));
+        $effective_type = $post_type !== '' ? Generator::resolve_generated_post_type($post_type) : $global_type;
+        $parent_page_raw = (string) Compatibility::read_meta((int) $post->ID, 'parent_page_id', '0');
+        $parent_page_id = ctype_digit($parent_page_raw) ? (int) $parent_page_raw : 0;
+        $post_status   = Compatibility::read_meta((int) $post->ID, 'default_status', '') ?: '';
+        $base_post_id  = (int) Compatibility::read_meta((int) $post->ID, 'base_post_id', 0);
+        $base_post_types = array_values(array_filter(array_merge([
             'page',
             'post',
-            'pageforge_page',
+        ], Compatibility::generated_post_types(), [
             'elementor_library',
             'et_pb_layout',
             'wp_block',
             'wp_template',
             'wp_template_part',
-        ], 'post_type_exists'));
+        ]), 'post_type_exists'));
         $base_choices  = get_posts([
             'post_type'      => $base_post_types,
             'post_status'    => ['publish', 'draft', 'pending', 'private'],
@@ -1265,18 +1305,45 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                 <td><input type="text" class="regular-text" name="pageforge_title_pattern" value="<?php echo esc_attr($title_pattern); ?>" placeholder="<?php echo esc_attr__('Best {Service} in {City}, {State}', 'pageforge'); ?>"/></td>
             </tr>
             <tr>
+                <th scope="row"><?php echo esc_html__('Meta Description Pattern', 'pageforge'); ?></th>
+                <td>
+                    <textarea class="large-text" rows="2" name="pageforge_meta_description_pattern" placeholder="<?php echo esc_attr__('Need {Service} in {City}, {State}? Contact us for fast local help.', 'pageforge'); ?>"><?php echo esc_textarea($meta_description_pattern); ?></textarea>
+                    <p class="description"><?php echo esc_html__('Optional. CSV placeholders are replaced for each generated post and written to PageForge and the active supported SEO plugin. Leave blank to use generated metadata.', 'pageforge'); ?></p>
+                </td>
+            </tr>
+            <tr>
                 <th scope="row"><?php echo esc_html__('Slug Pattern', 'pageforge'); ?></th>
                 <td><input type="text" class="regular-text" name="pageforge_slug_pattern" value="<?php echo esc_attr($slug_pattern); ?>" placeholder="{service}-in-{city}-{state}"/></td>
             </tr>
             <tr>
                 <th scope="row"><?php echo esc_html__('Target Post Type', 'pageforge'); ?></th>
                 <td>
-                    <select name="pageforge_post_type">
-                        <option value="pageforge_page" <?php selected($post_type,'pageforge_page'); ?>><?php echo esc_html__('PageForge Page (pageforge_page)', 'pageforge'); ?></option>
+                    <select name="pageforge_post_type" id="pageforge-template-post-type" data-global-type="<?php echo esc_attr($global_type); ?>">
+                        <option value="" <?php selected($post_type, ''); ?>><?php echo esc_html(sprintf(__('Use global default (%s)', 'pageforge'), $global_type)); ?></option>
+                        <option value="<?php echo esc_attr(Compatibility::post_type('generated')); ?>" <?php selected($post_type,Compatibility::post_type('generated')); ?>><?php echo esc_html__('PageForge Page (pageforge_page)', 'pageforge'); ?></option>
+                        <?php if (in_array($post_type, Compatibility::generated_post_types(), true) && $post_type !== Compatibility::post_type('generated')) : ?>
+                        <option value="<?php echo esc_attr($post_type); ?>" selected><?php echo esc_html($post_type); ?></option>
+                        <?php endif; ?>
                         <option value="page" <?php selected($post_type,'page'); ?>><?php echo esc_html__('Page', 'pageforge'); ?></option>
                         <option value="post" <?php selected($post_type,'post'); ?>><?php echo esc_html__('Post', 'pageforge'); ?></option>
                     </select>
                 </td>
+            </tr>
+            <tr id="pageforge-parent-page-row" <?php echo $effective_type !== 'page' ? 'hidden' : ''; ?>>
+                <th scope="row"><?php echo esc_html__('Parent Page', 'pageforge'); ?></th>
+                <td><?php $eligible_parents = static function ($pages) { return array_values(array_filter($pages, static function ($page) { return current_user_can('read_post', $page->ID) && current_user_can('edit_post', $page->ID); })); };
+                add_filter('get_pages', $eligible_parents);
+                $parent_dropdown = wp_dropdown_pages(['name' => 'pageforge_parent_page_id', 'selected' => $parent_page_id, 'show_option_none' => __('None (root Page)', 'pageforge'), 'option_none_value' => '0', 'post_status' => ['publish', 'private', 'draft', 'pending', 'future'], 'echo' => 0]);
+                if ($parent_dropdown === '') {
+                    $parent_dropdown = '<select name="pageforge_parent_page_id" id="pageforge_parent_page_id"><option value="0">' . esc_html__('None (root Page)', 'pageforge') . '</option></select>';
+                }
+                if ($parent_page_raw !== '' && $parent_page_raw !== '0' && (strpos($parent_dropdown, 'value="' . esc_attr($parent_page_raw) . '"') === false || !ctype_digit($parent_page_raw))) {
+                    $parent_dropdown = str_replace('</select>', '<option value="' . esc_attr($parent_page_raw) . '" selected>' . esc_html__('Invalid configured parent — choose an existing Page or None', 'pageforge') . '</option></select>', $parent_dropdown);
+                }
+                echo $parent_dropdown; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Core dropdown plus escaped option.
+
+                remove_filter('get_pages', $eligible_parents); ?>
+                <p class="description"><?php echo esc_html__('Native Pages only. Choose an existing Page for /parent/child/ URLs; choose None for /child/. Parent permissions are checked before generation.', 'pageforge'); ?></p></td>
             </tr>
             <tr>
                 <th scope="row"><?php echo esc_html__('Generated Post Status', 'pageforge'); ?></th>
@@ -1294,7 +1361,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                 </td>
             </tr>
             <tr>
-                <th scope="row"><?php echo esc_html__('Base Layout from Existing Page or Template', 'pageforge'); ?></th>
+                <th scope="row"><?php echo esc_html__('Base Layout to Clone', 'pageforge'); ?></th>
                 <td>
                     <select name="pageforge_base_post_select" id="pageforge_base_post_select" onchange="var f=document.getElementById('pageforge_base_post_id');if(f){f.value=this.value;}">
                         <option value="0"><?php esc_html_e('— None —', 'pageforge'); ?></option>
@@ -1305,7 +1372,7 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
                         <?php endforeach; ?>
                     </select>
                     <p class="description">
-                        <?php esc_html_e('Pick a page, post, Elementor template, Divi layout, or reusable block to clone its layout, or enter an ID manually.', 'pageforge'); ?>
+                        <?php esc_html_e('Pick a page, post, Elementor template, Divi layout, or reusable block to clone its layout, or enter an ID manually. This does not set the Parent Page or URL hierarchy.', 'pageforge'); ?>
                     </p>
                     <label>
                         <?php esc_html_e('Base Page/Template ID:', 'pageforge'); ?>
@@ -1318,6 +1385,18 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
         <?php
     }
 
+     /**
+      * Template lists must cover both namespaces so a mixed site never hides
+      * legacy templates from the operator.
+      */
+     private static function template_query_args(array $overrides = []): array {
+         return array_merge([
+             'post_type'   => Compatibility::template_post_types(),
+             'post_status' => 'any',
+             'numberposts' => -1,
+         ], $overrides);
+     }
+
      public static function save_template_meta($post_id) {
          $nonce = isset($_POST['pageforge_template_nonce']) ? sanitize_text_field(wp_unslash($_POST['pageforge_template_nonce'])) : '';
          if (!$nonce || !\wp_verify_nonce($nonce,'pageforge_template_save')) return;
@@ -1328,11 +1407,22 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
          if (!in_array($post_status, $allowed_statuses, true)) {
              $post_status = '';
          }
-         \update_post_meta($post_id, '_pageforge_title_pattern', \sanitize_text_field(isset($_POST['pageforge_title_pattern']) ? wp_unslash($_POST['pageforge_title_pattern']) : ''));
-         \update_post_meta($post_id, '_pageforge_slug_pattern', \sanitize_text_field(isset($_POST['pageforge_slug_pattern']) ? wp_unslash($_POST['pageforge_slug_pattern']) : ''));
-         \update_post_meta($post_id, '_pageforge_post_type', \sanitize_text_field(isset($_POST['pageforge_post_type']) ? wp_unslash($_POST['pageforge_post_type']) : 'pageforge_page'));
-         \update_post_meta($post_id, '_pageforge_post_status', $post_status);
-         \update_post_meta($post_id, '_pageforge_base_post_id', isset($_POST['pageforge_base_post_id']) ? absint(wp_unslash($_POST['pageforge_base_post_id'])) : 0);
+         $target_post_type = \sanitize_text_field(isset($_POST['pageforge_post_type']) ? wp_unslash($_POST['pageforge_post_type']) : '');
+         Compatibility::write_meta($post_id, 'title_pattern', \sanitize_text_field(isset($_POST['pageforge_title_pattern']) ? wp_unslash($_POST['pageforge_title_pattern']) : ''));
+         Compatibility::write_meta($post_id, 'meta_description_pattern', \sanitize_textarea_field(isset($_POST['pageforge_meta_description_pattern']) ? wp_unslash($_POST['pageforge_meta_description_pattern']) : ''));
+         Compatibility::write_meta($post_id, 'slug_pattern', \sanitize_text_field(isset($_POST['pageforge_slug_pattern']) ? wp_unslash($_POST['pageforge_slug_pattern']) : ''));
+         if ($target_post_type === '') {
+             foreach (Compatibility::meta_keys('post_type') as $key) { \delete_post_meta($post_id, $key); }
+         } elseif (Generator::resolve_generated_post_type($target_post_type) !== '') {
+             Compatibility::write_meta($post_id, 'post_type', Generator::resolve_generated_post_type($target_post_type));
+         }
+         $saved_type = (string) Compatibility::read_meta((int) $post_id, 'post_type', '');
+         $effective_type = Generator::resolve_generated_post_type($saved_type !== '' ? $saved_type : (string) array_get(settings_get(), 'post_type', Compatibility::post_type('generated')));
+         $raw_parent = isset($_POST['pageforge_parent_page_id']) ? sanitize_text_field(wp_unslash($_POST['pageforge_parent_page_id'])) : '0';
+         Compatibility::write_meta($post_id, 'parent_page_id', $effective_type === 'page' ? (ctype_digit($raw_parent) ? $raw_parent : 'invalid') : 0);
+         Compatibility::write_meta($post_id, 'parent_source', $effective_type === 'page' ? 'static' : 'none');
+         Compatibility::write_meta($post_id, 'default_status', $post_status);
+         Compatibility::write_meta($post_id, 'base_post_id', isset($_POST['pageforge_base_post_id']) ? absint(wp_unslash($_POST['pageforge_base_post_id'])) : 0);
      }
 
 
@@ -1389,9 +1479,9 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
          $meta_desc  = isset($_POST['pageforge_meta_description']) ? \sanitize_textarea_field(wp_unslash($_POST['pageforge_meta_description'])) : '';
          $focus_kw   = isset($_POST['pageforge_focus_keyword']) ? \sanitize_text_field(wp_unslash($_POST['pageforge_focus_keyword'])) : '';
 
-         \update_post_meta($post_id, '_pageforge_meta_title', $meta_title);
-         \update_post_meta($post_id, '_pageforge_meta_description', $meta_desc);
-         \update_post_meta($post_id, '_pageforge_focus_keyword', $focus_kw);
+         Compatibility::write_meta($post_id, 'meta_title', $meta_title);
+         Compatibility::write_meta($post_id, 'meta_description', $meta_desc);
+         Compatibility::write_meta($post_id, 'focus_keyword', $focus_kw);
 
          // Keep Yoast/Rank Math keys in sync in case a plugin is installed later.
          if ($meta_title !== '') {
@@ -1408,27 +1498,479 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
          }
      }
 
+    // ---------- Connections ----------
+    public static function render_connections(): void {
+        if (!\current_user_can('manage_options')) return;
+        $settings = settings_get();
+        $mcp_enabled = !empty($settings['mcp_enabled']);
+        $rest_url = \untrailingslashit((string) \home_url()) . '/wp-json/pageforge/v1/mcp';
+        ?>
+        <div class="wrap pf-wrap pf-shell">
+            <?php self::topbar('connections', __('Connections', 'pageforge')); ?>
+            <div class="pf-shell-main">
+                <header class="pf-page-header">
+                    <div class="pf-page-title-group">
+                        <h1 class="pf-page-title"><?php echo esc_html__('Connections', 'pageforge'); ?></h1>
+                        <p class="pf-page-subtitle"><?php echo esc_html__('AI providers live in Settings. This screen covers external AI clients and services PageForge talks to.', 'pageforge'); ?></p>
+                    </div>
+                </header>
+
+                <div class="pf-page-layout">
+                    <main class="pf-page-main">
+                        <section class="pf-card pf-mcp-panel">
+                            <div class="pf-mcp-panel-head">
+                                <div>
+                                    <h2 class="pf-mcp-title"><?php echo esc_html__('MCP / AI Clients', 'pageforge'); ?></h2>
+                                    <p class="description">
+                                        <?php echo esc_html__('Let ChatGPT, Claude, or any MCP-compatible client read your PageForge site: templates, generated pages, SEO status, and preview/validate tools. Protocol 2026-07-28.', 'pageforge'); ?>
+                                    </p>
+                                </div>
+                                <span class="pf-badge <?php echo $mcp_enabled ? 'ok' : 'warn'; ?>" id="pf-mcp-state-badge">
+                                    <?php echo esc_html($mcp_enabled ? __('Enabled', 'pageforge') : __('Disabled', 'pageforge')); ?>
+                                </span>
+                            </div>
+
+                            <div class="pf-mcp-toggle-row">
+                                <label class="pf-toggle">
+                                    <input type="checkbox" id="pf-mcp-enable" <?php checked($mcp_enabled); ?> />
+                                    <span><?php echo esc_html__('Enable PageForge MCP Lite (read, analyze, validate, preview only)', 'pageforge'); ?></span>
+                                </label>
+                                <span class="pf-pill" title="<?php echo esc_attr__('PageForge Free never registers a write MCP tool.', 'pageforge'); ?>">
+                                    <?php echo esc_html__('MCP Lite · Read & Preview', 'pageforge'); ?>
+                                </span>
+                            </div>
+
+                            <table class="pf-mcp-meta">
+                                <tr><th scope="row"><?php echo esc_html__('Protocol', 'pageforge'); ?></th><td>2026-07-28</td></tr>
+                                <tr><th scope="row"><?php echo esc_html__('Endpoint', 'pageforge'); ?></th><td><code id="pf-mcp-endpoint"><?php echo esc_html($rest_url); ?></code></td></tr>
+                            </table>
+
+                            <?php
+                            /*
+                             * Two distinct authentication models, kept visually
+                             * apart because conflating them is what previously
+                             * made these buttons unable to complete a
+                             * connection:
+                             *
+                             *  - ChatGPT and Claude are remote connectors. They
+                             *    perform OAuth discovery against this site and
+                             *    never accept a pasted PageForge token, so their
+                             *    action is "Set up", not "Connect", and it mints
+                             *    nothing.
+                             *  - Other MCP clients supply an Authorization
+                             *    header themselves, so they get a Personal
+                             *    Access Token.
+                             */
+                            ?>
+                            <h3 class="pf-mcp-subhead"><?php echo esc_html__('Remote connectors (OAuth)', 'pageforge'); ?></h3>
+                            <p class="description pf-mcp-subhead-note"><?php echo esc_html__('These clients sign in to your site with OAuth. You approve the connection in WordPress; no token is copied by hand.', 'pageforge'); ?></p>
+                            <div class="pf-mcp-clients">
+                                <div class="pf-mcp-client-card">
+                                    <div class="pf-mcp-client-head">
+                                        <img src="<?php echo esc_url(PAGEFORGE_URL . 'assets/mcp/icon-chatgpt.png'); ?>" width="28" height="28" alt="ChatGPT" />
+                                        <strong><?php echo esc_html__('ChatGPT', 'pageforge'); ?></strong>
+                                    </div>
+                                    <span class="pf-mcp-client-state" data-pf-mcp-state-for="chatgpt"><?php echo esc_html__('Checking…', 'pageforge'); ?></span>
+                                    <button type="button" class="button button-primary pf-mcp-oauth-setup" data-pf-mcp-client="chatgpt" data-pf-mcp-label="ChatGPT"><?php echo esc_html__('Set up ChatGPT', 'pageforge'); ?></button>
+                                </div>
+                                <div class="pf-mcp-client-card">
+                                    <div class="pf-mcp-client-head">
+                                        <img src="<?php echo esc_url(PAGEFORGE_URL . 'assets/mcp/icon-claude.png'); ?>" width="28" height="28" alt="Claude" />
+                                        <strong><?php echo esc_html__('Claude', 'pageforge'); ?></strong>
+                                    </div>
+                                    <span class="pf-mcp-client-state" data-pf-mcp-state-for="claude"><?php echo esc_html__('Checking…', 'pageforge'); ?></span>
+                                    <button type="button" class="button button-primary pf-mcp-oauth-setup" data-pf-mcp-client="claude" data-pf-mcp-label="Claude"><?php echo esc_html__('Set up Claude', 'pageforge'); ?></button>
+                                </div>
+                            </div>
+
+                            <h3 class="pf-mcp-subhead"><?php echo esc_html__('Other MCP clients (personal access token)', 'pageforge'); ?></h3>
+                            <div class="pf-mcp-clients">
+                                <div class="pf-mcp-client-card pf-mcp-client-card-wide">
+                                    <div class="pf-mcp-client-head">
+                                        <img src="<?php echo esc_url(PAGEFORGE_URL . 'assets/mcp/mcp.svg'); ?>" width="28" height="28" alt="" />
+                                        <strong><?php echo esc_html__('Other MCP Clients', 'pageforge'); ?></strong>
+                                    </div>
+                            <p class="description"><?php echo esc_html__('For clients where you supply an authentication header yourself: VS Code, Codex, GitHub Copilot, Roo Code, Cursor, Claude Code, or any generic MCP client.', 'pageforge'); ?></p>
+                                    <button type="button" class="button pf-mcp-create-pat" data-pf-mcp-client="generic" data-pf-mcp-label="Generic MCP Client"><?php echo esc_html__('Create personal access token', 'pageforge'); ?></button>
+                                </div>
+                            </div>
+
+                            <?php
+                            /*
+                             * Claude's remote connector UI can ask for a Client
+                             * ID and Secret. Those are OAuth client credentials
+                             * and are NOT the Claude API key in Settings, a
+                             * PageForge personal access token, or a PageForge
+                             * licence key, so they get their own section rather
+                             * than being confused with any of the three.
+                             */
+                            ?>
+                            <h3 class="pf-mcp-subhead"><?php echo esc_html__('OAuth clients', 'pageforge'); ?></h3>
+                            <p class="description pf-mcp-subhead-note"><?php echo esc_html__('Only needed when a connector asks you to supply a Client ID and Client Secret. These are separate from your AI provider API keys.', 'pageforge'); ?></p>
+                            <div id="pf-mcp-oauth-client-list" class="pf-mcp-credential-list">
+                                <p class="pf-mcp-empty"><?php echo esc_html__('Loading…', 'pageforge'); ?></p>
+                            </div>
+                            <p>
+                                <button type="button" class="button" id="pf-mcp-create-oauth-client"><?php echo esc_html__('Create OAuth client', 'pageforge'); ?></button>
+                            </p>
+
+                            <h3 class="pf-mcp-subhead"><?php echo esc_html__('Personal access tokens', 'pageforge'); ?></h3>
+                            <div id="pf-mcp-credential-list" class="pf-mcp-credential-list">
+                                <p class="pf-mcp-empty"><?php echo esc_html__('Loading…', 'pageforge'); ?></p>
+                            </div>
+
+                            <h3 class="pf-mcp-subhead"><?php echo esc_html__('OAuth grants', 'pageforge'); ?></h3>
+                            <div id="pf-mcp-grant-list" class="pf-mcp-credential-list">
+                                <p class="pf-mcp-empty"><?php echo esc_html__('Loading…', 'pageforge'); ?></p>
+                            </div>
+                        </section>
+
+                        <?php
+                        /*
+                         * Diagnostics are on the page rather than behind a
+                         * button because the failure they explain (a stripped
+                         * Authorization header, a blocked REST route, a
+                         * subdirectory install) is invisible from the client
+                         * side and produces a generic "connection failed".
+                         */
+                        $diagnostics = Mcp_Diagnostics::run();
+                        $overall = Mcp_Diagnostics::overall($diagnostics);
+                        ?>
+                        <section class="pf-card pf-mcp-panel">
+                            <div class="pf-mcp-panel-head">
+                                <div>
+                                    <h2 class="pf-mcp-title"><?php echo esc_html__('Connection diagnostics', 'pageforge'); ?></h2>
+                                    <p class="description"><?php echo esc_html__('What PageForge can verify from inside WordPress about whether an AI client can reach and authenticate to this site.', 'pageforge'); ?></p>
+                                </div>
+                                <span class="pf-badge <?php echo esc_attr(Mcp_Diagnostics::OK === $overall ? 'ok' : (Mcp_Diagnostics::FAIL === $overall ? 'bad' : 'warn')); ?>">
+                                    <?php
+                                    echo esc_html(
+                                        Mcp_Diagnostics::OK === $overall
+                                            ? __('All checks passed', 'pageforge')
+                                            : (Mcp_Diagnostics::FAIL === $overall ? __('Action required', 'pageforge') : __('Review recommended', 'pageforge'))
+                                    );
+                                    ?>
+                                </span>
+                            </div>
+                            <?php
+                            /*
+                             * Problems first, in plain language. Protocol
+                             * internals and endpoint URLs are real diagnostic
+                             * value but they are not what a normal operator
+                             * needs to read, so they live behind a disclosure.
+                             */
+                            $problems = array_values(array_filter($diagnostics, static function (array $check): bool {
+                                return Mcp_Diagnostics::OK !== $check['state'];
+                            }));
+                            ?>
+                            <?php if (empty($problems)) : ?>
+                                <p class="pf-mcp-diag-summary pf-mcp-diag-ok">
+                                    <?php echo esc_html__('MCP is ready. PageForge can serve OAuth discovery and accept authenticated AI clients.', 'pageforge'); ?>
+                                </p>
+                            <?php else : ?>
+                                <p class="pf-mcp-diag-summary pf-mcp-diag-attention">
+                                    <?php
+                                    echo esc_html(
+                                        sprintf(
+                                            /* translators: %d: number of diagnostic items needing attention. */
+                                            _n(
+                                                'Action required: %d item needs attention before AI clients can connect reliably.',
+                                                'Action required: %d items need attention before AI clients can connect reliably.',
+                                                count($problems),
+                                                'pageforge'
+                                            ),
+                                            count($problems)
+                                        )
+                                    );
+                                    ?>
+                                </p>
+                                <ul class="pf-mcp-diag-list">
+                                    <?php foreach ($problems as $check) : ?>
+                                        <li>
+                                            <span class="pf-diag-dot pf-diag-<?php echo esc_attr($check['state']); ?>" aria-hidden="true"></span>
+                                            <strong><?php echo esc_html($check['label']); ?></strong>
+                                            <span class="screen-reader-text"><?php echo esc_html($check['state']); ?></span>
+                                            <span class="pf-mcp-diag-detail"><?php echo esc_html($check['detail']); ?></span>
+                                            <?php if ('' !== $check['remedy']) : ?>
+                                                <span class="description pf-diag-remedy"><?php echo esc_html($check['remedy']); ?></span>
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+
+                            <details class="pf-mcp-advanced">
+                                <summary><?php echo esc_html__('Advanced diagnostics', 'pageforge'); ?></summary>
+
+                                <table class="pf-mcp-diagnostics widefat striped">
+                                    <caption class="screen-reader-text"><?php echo esc_html__('All PageForge MCP diagnostic checks', 'pageforge'); ?></caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><?php echo esc_html__('Check', 'pageforge'); ?></th>
+                                            <th scope="col"><?php echo esc_html__('Result', 'pageforge'); ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($diagnostics as $check) : ?>
+                                        <tr>
+                                            <th scope="row">
+                                                <span class="pf-diag-dot pf-diag-<?php echo esc_attr($check['state']); ?>" aria-hidden="true"></span>
+                                                <?php echo esc_html($check['label']); ?>
+                                                <span class="screen-reader-text"><?php echo esc_html($check['state']); ?></span>
+                                            </th>
+                                            <td>
+                                                <?php echo esc_html($check['detail']); ?>
+                                                <?php if ('' !== $check['remedy']) : ?>
+                                                    <p class="description pf-diag-remedy"><?php echo esc_html($check['remedy']); ?></p>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+
+                                <table class="pf-mcp-meta">
+                                    <tr><th scope="row"><?php echo esc_html__('Protocol', 'pageforge'); ?></th><td><?php echo esc_html(Mcp_Server::PROTOCOL_VERSION); ?></td></tr>
+                                    <tr><th scope="row"><?php echo esc_html__('Resource', 'pageforge'); ?></th><td><code><?php echo esc_html(Oauth::resource_identifier()); ?></code></td></tr>
+                                    <tr><th scope="row"><?php echo esc_html__('Protected resource metadata', 'pageforge'); ?></th><td><code><?php echo esc_html(Oauth::protected_resource_metadata_url()); ?></code></td></tr>
+                                    <tr><th scope="row"><?php echo esc_html__('Authorization server metadata', 'pageforge'); ?></th><td><code><?php echo esc_html(Oauth::wellknown_as_url()); ?></code></td></tr>
+                                    <tr><th scope="row"><?php echo esc_html__('Authorization endpoint', 'pageforge'); ?></th><td><code><?php echo esc_html(Oauth::authorize_url()); ?></code></td></tr>
+                                    <tr><th scope="row"><?php echo esc_html__('Token endpoint', 'pageforge'); ?></th><td><code><?php echo esc_html(Oauth::token_url()); ?></code></td></tr>
+                                </table>
+                            </details>
+                        </section>
+                    </main>
+
+                    <?php
+                    /*
+                     * The right column was empty on this screen, which both
+                     * wasted half the width and left the setup instructions
+                     * buried in a modal. It now carries contextual help that
+                     * changes with the selected client, using the existing
+                     * PageForge card/section classes rather than a new design
+                     * system.
+                     */
+                    ?>
+                    <aside class="pf-page-aside">
+                        <div class="pf-card pf-mcp-help" id="pf-mcp-help">
+                            <div class="pf-mcp-help-default" id="pf-mcp-help-default">
+                                <h3><?php echo esc_html__('Connect an AI Client', 'pageforge'); ?></h3>
+                                <p class="description">
+                                    <?php echo esc_html__('Connect ChatGPT, Claude or another MCP-compatible AI client to securely inspect PageForge.', 'pageforge'); ?>
+                                </p>
+                                <p class="description">
+                                    <?php echo esc_html__('Choose a client on the left to see its setup steps here.', 'pageforge'); ?>
+                                </p>
+
+                                <div class="pf-mcp-help-clients">
+                                    <span class="pf-mcp-help-chip">
+                                        <img src="<?php echo esc_url(PAGEFORGE_URL . 'assets/mcp/icon-chatgpt.png'); ?>" width="16" height="16" alt="" />
+                                        <?php echo esc_html__('ChatGPT', 'pageforge'); ?>
+                                    </span>
+                                    <span class="pf-mcp-help-chip">
+                                        <img src="<?php echo esc_url(PAGEFORGE_URL . 'assets/mcp/icon-claude.png'); ?>" width="16" height="16" alt="" />
+                                        <?php echo esc_html__('Claude', 'pageforge'); ?>
+                                    </span>
+                                    <span class="pf-mcp-help-chip">
+                                        <img src="<?php echo esc_url(PAGEFORGE_URL . 'assets/mcp/mcp.svg'); ?>" width="16" height="16" alt="" />
+                                        <?php echo esc_html__('IDEs & other clients', 'pageforge'); ?>
+                                    </span>
+                                </div>
+
+                                <p class="description pf-mcp-help-note">
+                                    <?php echo esc_html__('PageForge Free lets an AI client read, analyse and preview. It never lets one change your site.', 'pageforge'); ?>
+                                </p>
+                            </div>
+
+                            <div class="pf-mcp-help-detail" id="pf-mcp-help-detail" hidden>
+                                <div class="pf-mcp-help-head">
+                                    <img id="pf-mcp-help-icon" src="" width="20" height="20" alt="" />
+                                    <h3 id="pf-mcp-help-title"></h3>
+                                </div>
+                                <p class="description" id="pf-mcp-help-intro"></p>
+                                <ol class="pf-mcp-steps" id="pf-mcp-help-steps"></ol>
+                                <p class="description pf-mcp-help-note" id="pf-mcp-help-caveat"></p>
+                                <p>
+                                    <button type="button" class="button-link" id="pf-mcp-help-back">
+                                        <?php echo esc_html__('← All clients', 'pageforge'); ?>
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <?php
+        /*
+         * Two dialogs, not one. The previous single dialog said "Connection
+         * created" and showed a raw token in an unexplained textarea for every
+         * client, including the two that cannot use a token at all.
+         */
+        ?>
+        <div id="pf-mcp-oauth-dialog" class="pf-mcp-dialog" hidden>
+            <div class="pf-mcp-dialog-box" role="dialog" aria-modal="true" aria-labelledby="pf-mcp-oauth-title" tabindex="-1">
+                <div class="pf-mcp-dialog-head">
+                    <img id="pf-mcp-oauth-icon" src="" width="28" height="28" alt="" />
+                    <h3 id="pf-mcp-oauth-title"><?php echo esc_html__('Set up connector', 'pageforge'); ?></h3>
+                </div>
+                <p class="description" id="pf-mcp-oauth-intro"></p>
+
+                <table class="pf-mcp-meta">
+                    <tr>
+                        <th scope="row"><?php echo esc_html__('MCP server URL', 'pageforge'); ?></th>
+                        <td>
+                            <code id="pf-mcp-oauth-endpoint"><?php echo esc_html(Oauth::resource_identifier()); ?></code>
+                            <button type="button" class="button button-small" id="pf-mcp-copy-endpoint" data-pf-copy-target="pf-mcp-oauth-endpoint"><?php echo esc_html__('Copy', 'pageforge'); ?></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php echo esc_html__('Authentication', 'pageforge'); ?></th>
+                        <td><?php echo esc_html__('OAuth 2.1 (discovered automatically)', 'pageforge'); ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php echo esc_html__('Requested access', 'pageforge'); ?></th>
+                        <td>
+                            <?php
+                            $advertised_scopes = array_map([Mcp_Scopes::class, 'label'], Mcp_Scopes::advertised());
+                            echo esc_html(implode(', ', $advertised_scopes));
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php echo esc_html__('PageForge readiness', 'pageforge'); ?></th>
+                        <td><span id="pf-mcp-oauth-readiness"><?php echo esc_html__('Checking…', 'pageforge'); ?></span></td>
+                    </tr>
+                </table>
+
+                <ol class="pf-mcp-steps" id="pf-mcp-oauth-steps"></ol>
+
+                <p class="description" id="pf-mcp-oauth-caveat"></p>
+
+                <div class="pf-mcp-dialog-actions">
+                    <button type="button" class="button" id="pf-mcp-oauth-test"><?php echo esc_html__('Test configuration', 'pageforge'); ?></button>
+                    <a class="button" id="pf-mcp-oauth-docs" href="#" target="_blank" rel="noopener noreferrer"><?php echo esc_html__('Setup guide', 'pageforge'); ?></a>
+                    <button type="button" class="button button-primary pf-mcp-dialog-close"><?php echo esc_html__('Done', 'pageforge'); ?></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="pf-mcp-token-dialog" class="pf-mcp-dialog" hidden>
+            <div class="pf-mcp-dialog-box" role="dialog" aria-modal="true" aria-labelledby="pf-mcp-dialog-title" tabindex="-1">
+                <h3 id="pf-mcp-dialog-title"><?php echo esc_html__('Personal access token created', 'pageforge'); ?></h3>
+                <p class="pf-mcp-warn"><?php echo esc_html__('Copy this token now. PageForge stores only a hash of it and cannot show it again.', 'pageforge'); ?></p>
+
+                <div class="pf-mcp-token-row">
+                    <label class="screen-reader-text" for="pf-mcp-token-value"><?php echo esc_html__('Personal access token', 'pageforge'); ?></label>
+                    <input type="text" id="pf-mcp-token-value" class="pf-mcp-token-input code" readonly />
+                    <button type="button" class="button button-primary" id="pf-mcp-copy-token"><?php echo esc_html__('Copy token', 'pageforge'); ?></button>
+                </div>
+
+                <table class="pf-mcp-meta">
+                    <tr><th scope="row"><?php echo esc_html__('Label', 'pageforge'); ?></th><td id="pf-mcp-token-label"></td></tr>
+                    <tr><th scope="row"><?php echo esc_html__('Scopes', 'pageforge'); ?></th><td id="pf-mcp-token-scopes"></td></tr>
+                    <tr><th scope="row"><?php echo esc_html__('Expires', 'pageforge'); ?></th><td id="pf-mcp-token-expiry"><?php echo esc_html__('Never (revoke it manually when finished)', 'pageforge'); ?></td></tr>
+                </table>
+
+                <h4 class="pf-mcp-subhead"><?php echo esc_html__('Client configuration', 'pageforge'); ?></h4>
+                <div class="pf-mcp-config-tabs" id="pf-mcp-config-tabs" role="tablist"></div>
+                <pre id="pf-mcp-config-snippet" class="pf-mcp-config-snippet" tabindex="0"></pre>
+
+                <div class="pf-mcp-dialog-actions">
+                    <button type="button" class="button" id="pf-mcp-copy-config"><?php echo esc_html__('Copy configuration', 'pageforge'); ?></button>
+                    <button type="button" class="button button-primary pf-mcp-dialog-close" id="pf-mcp-dialog-close"><?php echo esc_html__('Done', 'pageforge'); ?></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="pf-mcp-client-dialog" class="pf-mcp-dialog" hidden>
+            <div class="pf-mcp-dialog-box" role="dialog" aria-modal="true" aria-labelledby="pf-mcp-client-title" tabindex="-1">
+                <h3 id="pf-mcp-client-title"><?php echo esc_html__('OAuth client created', 'pageforge'); ?></h3>
+                <p class="pf-mcp-warn"><?php echo esc_html__('The client secret is shown once. PageForge stores only a hash of it.', 'pageforge'); ?></p>
+                <p class="description"><?php echo esc_html__('Paste these into the connector that asked for them. They are not an API key.', 'pageforge'); ?></p>
+
+                <div class="pf-mcp-token-row">
+                    <label class="screen-reader-text" for="pf-mcp-client-id"><?php echo esc_html__('Client ID', 'pageforge'); ?></label>
+                    <input type="text" id="pf-mcp-client-id" class="pf-mcp-token-input code" readonly />
+                    <button type="button" class="button" data-pf-copy-input="pf-mcp-client-id"><?php echo esc_html__('Copy ID', 'pageforge'); ?></button>
+                </div>
+                <div class="pf-mcp-token-row">
+                    <label class="screen-reader-text" for="pf-mcp-client-secret"><?php echo esc_html__('Client secret', 'pageforge'); ?></label>
+                    <input type="text" id="pf-mcp-client-secret" class="pf-mcp-token-input code" readonly />
+                    <button type="button" class="button button-primary" data-pf-copy-input="pf-mcp-client-secret"><?php echo esc_html__('Copy secret', 'pageforge'); ?></button>
+                </div>
+
+                <table class="pf-mcp-meta">
+                    <tr><th scope="row"><?php echo esc_html__('Redirect URI', 'pageforge'); ?></th><td><code id="pf-mcp-client-redirect"></code></td></tr>
+                    <tr><th scope="row"><?php echo esc_html__('Authorization endpoint', 'pageforge'); ?></th><td><code><?php echo esc_html(Oauth::authorize_url()); ?></code></td></tr>
+                    <tr><th scope="row"><?php echo esc_html__('Token endpoint', 'pageforge'); ?></th><td><code><?php echo esc_html(Oauth::token_url()); ?></code></td></tr>
+                </table>
+
+                <div class="pf-mcp-dialog-actions">
+                    <button type="button" class="button button-primary pf-mcp-dialog-close"><?php echo esc_html__('Done', 'pageforge'); ?></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen-reader-text" role="status" aria-live="polite" id="pf-mcp-live"></div>
+        <?php
+    }
+
 	    // ---------- Checkout Embed (Freemius) ----------
-        private static function count_generated_posts(): int {
-            $q = new \WP_Query([
-                'post_type'      => ['pageforge_page', 'page', 'post'],
+    private static function count_generated_posts(): int {
+        $generated_meta_query = ['relation' => 'OR'];
+        foreach (Compatibility::meta_keys('generated') as $key) {
+            $generated_meta_query[] = [
+                'key'     => $key,
+                'compare' => 'EXISTS',
+            ];
+        }
+        $generated_meta_query[] = [
+            'key'     => '_pageforge_vars',
+            'compare' => 'EXISTS',
+        ];
+        $generated_meta_query[] = [
+            'key'     => '_pageforge_city',
+            'compare' => 'EXISTS',
+        ];
+
+        $q = new \WP_Query([
+                'post_type'      => array_values(array_unique(array_merge(
+                    Compatibility::generated_post_types(),
+                    ['page', 'post']
+                ))),
                 'post_status'    => ['publish', 'draft', 'pending', 'private'],
                 'posts_per_page' => 1,
                 'fields'         => 'ids',
-                'meta_query'     => [
-                    'relation' => 'OR',
-                    [
-                        'key'     => '_pageforge_vars',
-                        'compare' => 'EXISTS',
-                    ],
-                    [
-                        'key'     => '_pageforge_city',
-                        'compare' => 'EXISTS',
-                    ],
-                ],
+                'meta_query'     => $generated_meta_query,
             ]);
 
             return (int) $q->found_posts;
+        }
+
+        private static function count_published_posts(array $post_types): int {
+            $count = 0;
+            foreach ($post_types as $post_type) {
+                $counts = \wp_count_posts($post_type);
+                if ($counts && isset($counts->publish)) {
+                    $count += (int) $counts->publish;
+                    continue;
+                }
+
+                global $wpdb;
+                if (!isset($wpdb->posts) || !method_exists($wpdb, 'prepare') || !method_exists($wpdb, 'get_var')) {
+                    continue;
+                }
+
+                $query = $wpdb->prepare(
+                    "SELECT COUNT(1) FROM {$wpdb->posts} WHERE post_type = %s AND post_status = %s",
+                    $post_type,
+                    'publish'
+                );
+                $count += (int) $wpdb->get_var($query);
+            }
+            return $count;
         }
 
 	    private static function checkout_snippet() {
@@ -1439,7 +1981,10 @@ Slug Pattern: {service}-in-{city}-{state}</pre>
 
 // Hooks for template meta
 \add_action('add_meta_boxes', [Admin::class, 'register_template_metabox']);
-\add_action('save_post_pageforge_template', [Admin::class, 'save_template_meta']);
+foreach (Compatibility::template_post_types() as $pageforge_template_post_type) {
+    \add_action('save_post_' . $pageforge_template_post_type, [Admin::class, 'save_template_meta']);
+}
+unset($pageforge_template_post_type);
 \add_action('add_meta_boxes', [Admin::class, 'register_seo_metabox']);
 \add_action('save_post', [Admin::class, 'save_seo_meta']);
 

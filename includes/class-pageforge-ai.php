@@ -113,6 +113,19 @@ final class AI {
         return isset(self::BLOG_LENGTH_PRESETS[$preset]) ? $preset : 'medium';
     }
 
+    private static function truncate_text(string $text, int $length): string {
+        if (function_exists(__NAMESPACE__ . '\\pf_utf8_substr')) {
+            return pf_utf8_substr($text, 0, $length);
+        }
+        if (function_exists('mb_substr')) {
+            return (string) \mb_substr($text, 0, $length, 'UTF-8');
+        }
+        if (false !== preg_match_all('/./us', $text, $matches)) {
+            return implode('', array_slice($matches[0], 0, $length));
+        }
+        return substr($text, 0, $length);
+    }
+
 	    /**
 	     * Lightweight helper for chat-based site planning.
 	     * Returns: ['reply_markdown' => string]
@@ -139,7 +152,7 @@ final class AI {
 	            }
 	            $normalized[] = [
 	                'role'    => $role,
-	                'content' => mb_substr($content, 0, 8000),
+	                'content' => self::truncate_text($content, 8000),
 	            ];
 	        }
 
@@ -182,6 +195,9 @@ final class AI {
                 'fields' => 'ids',
             ]);
             foreach ($q->posts as $pid) {
+                if (!Access::can_read_post((int) $pid)) {
+                    continue;
+                }
                 $samples[] = [
                     'id' => (int) $pid,
                     'title' => (string) get_the_title($pid),
@@ -251,6 +267,86 @@ final class AI {
         return $json;
     }
 
+    /** Build a stable JSON download from the provider's Markdown report. */
+    private static function seo_report_data(string $markdown): array {
+        $sections = [];
+        $parts = preg_split('/^#{1,6}\s+(.+)\s*$/m', trim($markdown), -1, PREG_SPLIT_DELIM_CAPTURE);
+        if (is_array($parts)) {
+            $preamble = trim((string) array_shift($parts));
+            if ('' !== $preamble) {
+                $sections[] = ['heading' => __('Overview', 'pageforge'), 'content' => $preamble];
+            }
+            while (count($parts) >= 2) {
+                $heading = sanitize_text_field((string) array_shift($parts));
+                $content = trim((string) array_shift($parts));
+                if ('' !== $heading && '' !== $content) {
+                    $sections[] = ['heading' => $heading, 'content' => $content];
+                }
+            }
+        }
+
+        $summary = '';
+        foreach ($sections as $section) {
+            $plain = trim((string) wp_strip_all_tags((string) ($section['content'] ?? '')));
+            $plain = trim((string) preg_replace('/^[\-*\d.\s]+/m', '', $plain));
+            if ('' !== $plain) {
+                $summary = self::truncate_text($plain, 500);
+                break;
+            }
+        }
+
+        return [
+            'format_version' => 2,
+            'summary' => $summary,
+            'sections' => $sections,
+            'markdown' => trim($markdown),
+        ];
+    }
+
+    /** Convert a legacy provider JSON response into readable Markdown. */
+    private static function seo_report_json_to_markdown(array $json): string {
+        if (!empty($json['markdown']) && is_string($json['markdown'])) {
+            return trim($json['markdown']);
+        }
+
+        $lines = ['# ' . __('SEO Action Plan', 'pageforge')];
+        foreach ($json as $key => $value) {
+            if ('markdown' === $key || null === $value || '' === $value || [] === $value) {
+                continue;
+            }
+            $lines[] = '';
+            $lines[] = '## ' . ucwords(str_replace('_', ' ', (string) $key));
+            if (is_array($value)) {
+                foreach ($value as $item) {
+                    $lines[] = '- ' . (is_scalar($item) ? (string) $item : wp_json_encode($item));
+                }
+            } else {
+                $lines[] = (string) $value;
+            }
+        }
+        return trim(implode("\n", $lines));
+    }
+
+    private static function normalise_meta_fields(array $json, string $fallback_title, string $fallback_description, string $fallback_keyword = ''): array {
+        $title = sanitize_text_field((string) ($json['meta_title'] ?? $fallback_title));
+        $description = sanitize_text_field((string) ($json['meta_description'] ?? $fallback_description));
+        $keyword = sanitize_text_field((string) ($json['focus_keyword'] ?? $fallback_keyword));
+        $og_title = sanitize_text_field((string) ($json['og_title'] ?? $title));
+        $og_description = sanitize_text_field((string) ($json['og_description'] ?? $description));
+        $twitter_title = sanitize_text_field((string) ($json['twitter_title'] ?? $og_title));
+        $twitter_description = sanitize_text_field((string) ($json['twitter_description'] ?? $og_description));
+
+        return [
+            'title' => self::truncate_text($title, 60),
+            'description' => self::truncate_text($description, 155),
+            'focus_keyword' => $keyword,
+            'og_title' => self::truncate_text($og_title, 60),
+            'og_description' => self::truncate_text($og_description, 200),
+            'twitter_title' => self::truncate_text($twitter_title, 60),
+            'twitter_description' => self::truncate_text($twitter_description, 200),
+        ];
+    }
+
     public static function generate_meta_for_post(int $post_id): array {
         if ($post_id <= 0) {
             return ['_error' => __('Invalid post', 'pageforge')];
@@ -263,11 +359,12 @@ final class AI {
         $title = (string) $post->post_title;
         $content_plain = wp_strip_all_tags((string) $post->post_content);
         $content_plain = preg_replace('/\s+/', ' ', $content_plain);
-        $content_plain = trim(substr($content_plain, 0, 2500));
-        $existing_desc = (string) get_post_meta($post_id, '_yoast_wpseo_metadesc', true);
+        $content_plain = trim(self::truncate_text($content_plain, 2500));
+        $current = Seo::read($post_id);
+        $existing_desc = (string) ($current['fields']['description'] ?? $current['pageforge_fields']['description'] ?? '');
 
         $prompt = "Generate SEO meta for a WordPress page/post.\n" .
-            "Return ONLY a JSON object with keys: meta_title, meta_description, focus_keyword.\n" .
+            "Return ONLY a JSON object with keys: meta_title, meta_description, focus_keyword, og_title, og_description, twitter_title, twitter_description.\n" .
             "Rules:\n" .
             "- meta_title <= 60 characters\n" .
             "- meta_description <= 155 characters\n" .
@@ -276,51 +373,53 @@ final class AI {
             "Existing meta description (may be empty): {$existing_desc}\n" .
             "Content excerpt: {$content_plain}";
 
-        $json = self::ai_json($prompt, 500);
+        $json = self::ai_json($prompt, 700);
         if (isset($json['_error'])) return $json;
 
-        $meta_title = sanitize_text_field((string) ($json['meta_title'] ?? ''));
-        $meta_desc  = sanitize_text_field((string) ($json['meta_description'] ?? ''));
-        $focus_kw   = sanitize_text_field((string) ($json['focus_keyword'] ?? ''));
+        $fields = self::normalise_meta_fields($json, '', '', '');
 
-        if ($meta_title === '' || $meta_desc === '') {
+        if ($fields['title'] === '' || $fields['description'] === '') {
             return ['_error' => __('AI did not return meta_title/meta_description', 'pageforge')];
         }
 
-        // Store in PageForge keys
-        update_post_meta($post_id, '_pageforge_meta_title', $meta_title);
-        update_post_meta($post_id, '_pageforge_meta_description', $meta_desc);
-        update_post_meta($post_id, '_pageforge_focus_keyword', $focus_kw);
-
-        // Yoast SEO compatibility
-        update_post_meta($post_id, '_yoast_wpseo_title', $meta_title);
-        update_post_meta($post_id, '_yoast_wpseo_metadesc', $meta_desc);
-        if ($focus_kw !== '') {
-            update_post_meta($post_id, '_yoast_wpseo_focuskw', $focus_kw);
-        }
-
-        // Rank Math compatibility
-        update_post_meta($post_id, 'rank_math_title', $meta_title);
-        update_post_meta($post_id, 'rank_math_description', $meta_desc);
-        if ($focus_kw !== '') {
-            update_post_meta($post_id, 'rank_math_focus_keyword', $focus_kw);
+        $fields['canonical'] = (string) get_permalink($post_id);
+        $written = Seo::write($post_id, $fields);
+        if (is_wp_error($written)) {
+            return ['_error' => $written->get_error_message()];
         }
 
         return [
             'post_id' => $post_id,
-            'meta_title' => $meta_title,
-            'meta_description' => $meta_desc,
-            'focus_keyword' => $focus_kw,
+            'meta_title' => $fields['title'],
+            'meta_description' => $fields['description'],
+            'focus_keyword' => $fields['focus_keyword'],
+            'og_title' => $fields['og_title'],
+            'og_description' => $fields['og_description'],
+            'twitter_title' => $fields['twitter_title'],
+            'twitter_description' => $fields['twitter_description'],
+            'canonical' => $fields['canonical'],
+            'integration' => (string) ($written['write_integration'] ?? Seo::NATIVE),
+            'integration_label' => (string) ($written['write_integration_label'] ?? Seo::label(Seo::NATIVE)),
+            'metadata_warning' => (string) ($written['warning'] ?? ''),
         ];
     }
 
 	    public static function generate_blog_draft(array $args): array {
 	        $topic = sanitize_text_field((string) ($args['topic'] ?? ''));
 	        $audience = sanitize_text_field((string) ($args['audience'] ?? ''));
-	        $post_type = sanitize_text_field((string) ($args['post_type'] ?? 'post'));
-	        $status = sanitize_text_field((string) ($args['status'] ?? 'draft'));
+	        // Blog Generator creates standard posts. Generated landing pages
+	        // remain the responsibility of the Generate workflow.
+	        $post_type = 'post';
+	        $status = sanitize_key((string) ($args['status'] ?? 'draft'));
 	        $include_image = !empty($args['include_image']);
 	        $keywords_raw = (string) ($args['keywords_raw'] ?? '');
+            if (!Access::can_create($post_type)) {
+                return ['_error' => __('Your account cannot create blog posts.', 'pageforge')];
+            }
+            if (!in_array($status, ['publish', 'private', 'draft', 'pending'], true)) {
+                $status = 'draft';
+            }
+            $status = Access::clamp_status($post_type, $status);
             $length_preset = self::normalize_blog_length_preset((string) ($args['content_length'] ?? 'medium'));
             $target_words = (int) (self::BLOG_LENGTH_PRESETS[$length_preset] ?? self::BLOG_LENGTH_PRESETS['medium']);
 
@@ -346,7 +445,7 @@ final class AI {
         }
 
 	        $prompt = "Write a high-quality SEO blog post for WordPress.\n" .
-	            "Return ONLY a JSON object with keys: title, slug, excerpt, content_html, tags, image_keyword.\n" .
+	            "Return ONLY a JSON object with keys: title, slug, excerpt, content_html, tags, image_keyword, meta_title, meta_description, focus_keyword, og_title, og_description, twitter_title, twitter_description.\n" .
 	            "Rules:\n" .
 	            "- content_html must be valid HTML using h2/h3/p/ul/ol only (no markdown)\n" .
 	            "- excerpt <= 160 characters\n" .
@@ -362,8 +461,8 @@ final class AI {
 
         $title = sanitize_text_field((string) ($json['title'] ?? ''));
         $slug = sanitize_title((string) ($json['slug'] ?? ''));
-        $excerpt = sanitize_text_field((string) ($json['excerpt'] ?? ''));
-        $content = (string) ($json['content_html'] ?? '');
+        $excerpt = self::truncate_text(sanitize_text_field((string) ($json['excerpt'] ?? '')), 160);
+        $content = wp_kses_post((string) ($json['content_html'] ?? ''));
 	        $tags = $json['tags'] ?? [];
 	        $image_keyword = sanitize_text_field((string) ($json['image_keyword'] ?? $topic));
 
@@ -384,6 +483,11 @@ final class AI {
         if (is_wp_error($post_id)) {
             return ['_error' => $post_id->get_error_message()];
         }
+
+        $fallback_keyword = !empty($keywords) ? (string) $keywords[0] : $topic;
+        $meta_fields = self::normalise_meta_fields($json, $title, $excerpt, $fallback_keyword);
+        $meta_fields['canonical'] = (string) get_permalink((int) $post_id);
+        $meta_result = Seo::write((int) $post_id, $meta_fields);
 
 	        // Merge AI-suggested tags with any explicit target keywords.
 	        $final_tags = [];
@@ -426,16 +530,29 @@ final class AI {
             'title' => $title,
             'thumbnail_id' => (int) $thumb_id,
             'content_length' => $length_preset,
+            'status' => $status,
+            'meta_title' => $meta_fields['title'],
+            'meta_description' => $meta_fields['description'],
+            'integration_label' => is_wp_error($meta_result)
+                ? ''
+                : (string) ($meta_result['write_integration_label'] ?? Seo::label(Seo::NATIVE)),
+            'metadata_warning' => is_wp_error($meta_result)
+                ? $meta_result->get_error_message()
+                : (string) ($meta_result['warning'] ?? ''),
         ];
     }
 
     public static function generate_seo_report(array $args): array {
         $include_urls = !empty($args['include_urls']);
-        $post_types = $args['post_types'] ?? ['page', 'post'];
+        $default_post_types = array_values(array_unique(array_merge(['page', 'post'], Compatibility::generated_post_types())));
+        $post_types = $args['post_types'] ?? $default_post_types;
         if (!is_array($post_types) || empty($post_types)) {
-            $post_types = ['page', 'post'];
+            $post_types = $default_post_types;
         }
         $post_types = array_values(array_filter(array_map('sanitize_text_field', $post_types)));
+        if (array_intersect($post_types, Compatibility::generated_post_types())) {
+            $post_types = array_values(array_unique(array_merge($post_types, Compatibility::generated_post_types())));
+        }
 
         $site = [
             'name' => get_bloginfo('name'),
@@ -456,6 +573,9 @@ final class AI {
                 'fields' => 'ids',
             ]);
             foreach ($q->posts as $pid) {
+                if (!Access::can_read_post((int) $pid)) {
+                    continue;
+                }
                 $samples[] = [
                     'id' => (int) $pid,
                     'title' => (string) get_the_title($pid),
@@ -464,21 +584,46 @@ final class AI {
             }
         }
 
-        $prompt = "Create a practical SEO optimization plan/report for this WordPress site.\n" .
-            "Return ONLY a JSON object with keys: summary, quick_wins, technical_seo, content_strategy, schema, tracking, priorities, markdown.\n" .
-            "Rules:\n" .
-            "- quick_wins, technical_seo, content_strategy, schema, tracking are arrays of bullet strings\n" .
-            "- priorities is an array of objects with keys: item, impact (High/Med/Low), effort (High/Med/Low), steps (array)\n" .
-            "- markdown is a complete markdown report (no code fences)\n\n" .
-            "Site JSON:\n" . wp_json_encode(['site' => $site, 'sample_urls' => $samples]);
+        $prompt = "Create a practical, prioritized SEO action plan for this WordPress site.\n" .
+            "Return Markdown only, with no JSON and no code fences.\n" .
+            "Use these headings: Executive Summary, Prioritized Actions, Quick Wins, Technical SEO, Content Strategy, Schema, Tracking, and 30-Day Plan.\n" .
+            "For each prioritized action state Impact (High/Medium/Low), Effort (High/Medium/Low), and concrete implementation steps.\n" .
+            "Keep recommendations specific to the supplied site context and do not claim that you crawled URLs whose content was not supplied.\n\n" .
+            "Site context JSON:\n" . wp_json_encode(['site' => $site, 'sample_urls' => $samples]);
 
-        $json = self::ai_json($prompt, 2000);
-        if (isset($json['_error'])) return $json;
+        $s = settings_get();
+        $ai = ai_provider_credentials($s);
+        $out = openai_chat(
+            [
+                ['role' => 'system', 'content' => 'You are a senior technical SEO strategist. Follow the requested output format exactly.'],
+                ['role' => 'user', 'content' => $prompt . self::brand_context_suffix()],
+            ],
+            (string) $ai['model'],
+            (string) $ai['key'],
+            2400,
+            (string) $ai['provider']
+        );
+        if (is_wp_error($out)) {
+            return ['_error' => $out->get_error_message()];
+        }
+
+        $markdown = trim((string) $out);
+        if ('' === $markdown) {
+            return ['_error' => __('The AI provider returned an empty SEO report.', 'pageforge')];
+        }
+
+        // Accept legacy JSON if a provider insists on returning it. The normal
+        // path stays Markdown so a long report cannot fail on JSON escaping.
+        $legacy = self::decode_json($markdown);
+        if (!empty($legacy)) {
+            $markdown = self::seo_report_json_to_markdown($legacy);
+        }
+        $data = self::seo_report_data($markdown);
 
         $report = [
             'generated_at' => time(),
             'site' => $site,
-            'data' => $json,
+            'data' => $data,
         ];
 
         update_option(self::OPT_LAST_SEO_REPORT, $report, false);

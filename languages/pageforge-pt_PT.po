@@ -1,64 +1,172 @@
+# Translation of PageForge – AI Programmatic SEO, Bulk Page Generator, SEO MCP & Local SEO for pt_PT.
 msgid ""
 msgstr ""
-"Project-Id-Version: PageForge 1.1.8\n"
-"Report-Msgid-Bugs-To: https://pageforge.pro\n"
-"POT-Creation-Date: 2026-07-06 00:00+0530\n"
-"PO-Revision-Date: 2026-07-06 00:00+0530\n"
-"Last-Translator: Codefreex <support@codefreex.com>\n"
-"Language-Team: Portuguese (Portugal)\n"
-"Language: pt_PT\n"
+"Project-Id-Version: PageForge – AI Programmatic SEO, Bulk Page Generator, SEO MCP & Local SEO 1.2.6\n"
+"POT-Creation-Date: 2026-10-15 10:28+0000\n"
+"PO-Revision-Date: 2026-10-15 10:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Codex\n"
+"X-Domain: pageforge\n"
+
+#. translators: 1: time ago, 2: HTTP status, 3: HTTP method, 4: reason.
+msgid "%1$s ago — HTTP %2$d on %3$s: %4$s"
+msgstr ""
+
+#. translators: 1: AI provider label, 2: HTTP status code.
+msgid "%1$s request failed with HTTP %2$d."
+msgstr ""
 
 msgid "%d page"
 msgid_plural "%d pages"
 msgstr[0] "%d página"
 msgstr[1] "%d páginas"
 
-msgid "— None —"
-msgstr "- Nenhum -"
-
+#. translators: %s: AI provider label
 msgid "%s API key missing"
-msgstr "Chave%sAPIem falta"
+msgstr "Chave de API %s em falta"
 
 msgid "%s API key missing."
-msgstr "Chave%sAPIem falta."
+msgstr "Chave de API %s em falta."
 
 msgid "%s day ago"
-msgstr "%shá dia"
+msgstr "há %s dia"
 
 msgid "%s days ago"
-msgstr "%shá dias"
+msgstr "há %s dias"
 
+#. translators: %s: AI provider label
 msgid "%s error"
-msgstr "Erro%s"
+msgstr "Erro de %s"
 
 msgid "%s hr ago"
-msgstr "%shá horas"
+msgstr "há %s h"
 
 msgid "%s min ago"
-msgstr "%sHá minutos"
+msgstr "há %s min"
 
+#. translators: %s: selected generation mode
 msgid "%s mode is not available in this free build. Running instantly instead."
-msgstr "O modo%snão está disponível nesta versão gratuita. Executando instantaneamente."
+msgstr "O modo %s não está disponível nesta versão gratuita. Executando instantaneamente."
+
+#. translators: %s: AI provider label.
+msgid "%s reached its output limit before returning final content. Try again or choose a shorter output."
+msgstr ""
+
+#. translators: %s: AI provider label.
+msgid "%s returned an empty response."
+msgstr ""
+
+#. translators: %s: AI provider label.
+msgid "%s returned an invalid response."
+msgstr ""
+
+msgid "-"
+msgstr ""
+
+msgid "400 means an authenticated request had an invalid JSON body or conflicting protocol metadata. \"Malformed JSON\" identifies a body problem; unsupported versions and header conflicts are named separately above."
+msgstr ""
+
+msgid "401 in this list means a supplied credential was rejected. Credential-free OAuth discovery challenges are expected and are not logged. Reconnect the client or regenerate its API key."
+msgstr ""
+
+msgid "403 means MCP is disabled, the Origin was rejected, or the grant lacked the scope for that operation. Check the MCP toggle above and the scopes on the connected client."
+msgstr ""
+
+msgid "405 is expected when a client probes for the legacy GET event stream; this server is stateless and accepts POST only. It is not an error unless the client then gives up."
+msgstr ""
+
+msgid "429 means a rate limit was hit. This is protective; if a legitimate client is affected, reduce its polling frequency."
+msgstr ""
+
+msgid "A personal access token is not an OAuth client secret and not an AI provider API key. Revoke it here if a machine holding it is lost."
+msgstr ""
+
+msgid "A personal access token must belong to a WordPress user."
+msgstr ""
+
+msgid "A security plugin, WAF, or server rule is likely blocking the WordPress REST API. Allow requests to /wp-json/pageforge/v1/."
+msgstr ""
 
 msgid "A template-level Generated Post Status overrides this setting."
 msgstr "Um estado de publicação geradotemplate-levelsubstitui esta configuração."
 
-msgid "Accent color"
-msgstr "Cor de destaque"
+msgid "AI Blog"
+msgstr "Blog AI"
+
+msgid "AI Blog Generator"
+msgstr "Gerador de Blogs AI"
+
+msgid "AI Blog generator & images"
+msgstr "Gerador de blogues AI e imagens"
+
+msgid "AI Meta Generator"
+msgstr "Gerador de metadados AI"
+
+msgid "AI Provider"
+msgstr "Fornecedor AI"
+
+msgid "AI SEO Page Generator"
+msgstr "Gerador de páginas SEO com AI"
+
+msgid "AI SEO Report / Planner"
+msgstr "AISEORelatório / Planificador"
+
+msgid "AI Site Planner"
+msgstr "Planeador de sites AI"
+
+msgid "AI Site Planner & SEO report"
+msgstr "Planeador de sites AI e relatório SEO"
+
+msgid "AI chat and tools"
+msgstr "Chat e ferramentas AI"
+
+msgid "AI did not return meta_title/meta_description"
+msgstr "A AI não devolveu meta_title/meta_description"
+
+msgid "AI did not return title/content_html"
+msgstr "A AI não devolveu title/content_html"
+
+msgid "AI navigation and conversations"
+msgstr "Navegação e conversas AI"
+
+msgid "AI providers live in Settings. This screen covers external AI clients and services PageForge talks to."
+msgstr ""
+
+msgid "AI returned invalid JSON"
+msgstr "A AI devolveu JSON inválido"
+
+msgid "AI tools are unlimited for paid plans."
+msgstr "As ferramentas AI são ilimitadas para planos pagos."
+
+msgid "AI usage limits"
+msgstr "Limites de utilização AI"
+
+msgid "Access token was not issued for this MCP server."
+msgstr ""
 
 msgid "Account"
 msgstr "Conta"
 
+msgid "Account cannot authorize AI clients"
+msgstr ""
+
 msgid "Account portal URL is currently unavailable. Ensure the Freemius SDK is loaded and this site is connected."
-msgstr "O URL do portal da conta não está disponível de momento. Certifique-se de que o SDKFreemiusestá carregado e que este site está ligado."
+msgstr "O URL do portal da conta não está disponível de momento. Certifique-se de que o SDK Freemius está carregado e que este site está ligado."
 
 msgid "Account portal URL is not available in this environment. Use your Freemius dashboard to manage licenses."
-msgstr "O URL do portal da conta não está disponível neste ambiente. Utilize o seu painelFreemiuspara gerir licenças."
+msgstr "O URL do portal da conta não está disponível neste ambiente. Utilize o seu painel Freemius para gerir licenças."
+
+msgid "Action required"
+msgstr ""
+
+#. translators: %d: number of diagnostic items needing attention.
+msgid "Action required: %d item needs attention before AI clients can connect reliably."
+msgid_plural "Action required: %d items need attention before AI clients can connect reliably."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Actions"
 msgstr "Ações"
@@ -67,103 +175,112 @@ msgid "Active Templates"
 msgstr "Modelos ativos"
 
 msgid "Add API key in Settings"
-msgstr "Adicione a chaveAPInas definições"
+msgstr "Adicione a chave API nas definições"
 
 msgid "Add Data Source"
 msgstr "Adicionar fonte de dados"
 
-msgid "Add keywords separated by commas or new lines"
-msgstr "Adicione palavras-chave separadas por vírgulas ou novas linhas"
-
 msgid "Add New Template"
 msgstr "Adicionar novo modelo"
 
+msgid "Add an AI provider API key in PageForge settings first."
+msgstr ""
+
+msgid "Add keywords separated by commas or new lines"
+msgstr "Adicione palavras-chave separadas por vírgulas ou novas linhas"
+
 msgid "Add your selected AI provider API key to enable the Site Planner and other AI tools."
-msgstr "Adicione a chaveAPIdo fornecedorAIselecionado para ativar o Site Planner e outras ferramentasAI."
+msgstr "Adicione a chave API do fornecedor AI selecionado para ativar o Site Planner e outras ferramentas AI."
 
 msgid "Adds an internal-linking sitemap of generated PageForge pages. It groups by City by default and links every matching generated URL."
-msgstr "Adiciona um mapa do siteinternal-linkingde páginasPageForgegeradas. Agrupa por cidade por defeito e liga todos os URLs gerados correspondentes."
+msgstr "Adiciona um mapa do site com ligações internas para as páginas PageForge geradas. Agrupa por cidade por defeito e liga todos os URLs gerados correspondentes."
 
-msgid "AI Blog"
-msgstr "BlogAI"
+msgid "Administer PageForge"
+msgstr ""
 
-msgid "AI Blog Generator"
-msgstr "Gerador de BlogsAI"
+msgid "Advanced diagnostics"
+msgstr ""
 
-msgid "AI Blog generator & images"
-msgstr "Gerador e imagens de bloguesAI"
+msgid "All PageForge MCP diagnostic checks"
+msgstr ""
 
-msgid "AI chat and tools"
-msgstr "Chat e ferramentasAI"
+msgid "All checks passed"
+msgstr ""
 
-msgid "AI did not return meta_title/meta_description"
-msgstr "AInão retornou meta_title/meta_description"
+msgid "Allow-list /wp-json/pageforge/v1/mcp and the OAuth endpoints in that plugin. Do not disable it wholesale."
+msgstr ""
 
-msgid "AI did not return title/content_html"
-msgstr "AInão retornou title/content_html"
+msgid "Another PageForge edition was deactivated so only one PageForge runtime is active. No templates, generated pages or settings were changed."
+msgstr ""
 
-msgid "AI Meta Generator"
-msgstr "MetageradorAI"
-
-msgid "AI navigation and conversations"
-msgstr "Navegação e conversasAI"
-
-msgid "AI Provider"
-msgstr "FornecedorAI"
-
-msgid "AI returned invalid JSON"
-msgstr "AIretornouJSONinválido"
-
-msgid "AI SEO Page Generator"
-msgstr "Gerador de páginasAISEO"
-
-msgid "AI SEO Report / Planner"
-msgstr "AISEORelatório / Planificador"
-
-msgid "AI Site Planner"
-msgstr "Planeador de localAI"
-
-msgid "AI Site Planner & SEO report"
-msgstr "Planeador de siteAIe relatórioSEO"
-
-msgid "AI tools are unlimited for paid plans."
-msgstr "As ferramentasAIsão ilimitadas para planos pagos."
-
-msgid "AI usage limits"
-msgstr "Limites de utilizaçãoAI"
+msgid "Another plugin may be filtering REST responses. Test with other plugins disabled."
+msgstr ""
 
 msgid "Anthropic error"
-msgstr "ErroAnthropic"
+msgstr "Erro Anthropic"
 
-msgid "Appearance"
-msgstr "Aspeto"
+msgid "Anthropic request failed with HTTP %d."
+msgstr ""
 
-msgid "Applies to pageforge_page URLs. Save to flush permalinks."
-msgstr "Aplica-se aos URLspageforge_page. Guarde para libertar links permanentes."
+msgid "Anthropic returned an empty response."
+msgstr ""
+
+msgid "Anthropic returned an invalid response."
+msgstr ""
+
+msgid "Approve the connection when Claude sends you to this site."
+msgstr ""
+
+msgid "Ask it: “Show my PageForge site status.”"
+msgstr ""
 
 msgid "Assistant"
 msgstr "Assistente"
 
+msgid "At least one valid redirect URI is required."
+msgstr ""
+
 msgid "Audience (optional)"
 msgstr "Público (opcional)"
+
+msgid "Authentication"
+msgstr ""
+
+msgid "Authorization code is invalid, expired, or already used."
+msgstr ""
+
+msgid "Authorization code was not issued to this client."
+msgstr ""
+
+msgid "Authorization endpoint"
+msgstr ""
+
+msgid "Authorization header"
+msgstr ""
+
+msgid "Authorization must use the Bearer scheme."
+msgstr ""
+
+msgid "Authorization required."
+msgstr ""
+
+msgid "Authorization server metadata"
+msgstr ""
 
 msgid "Available CSVs"
 msgstr "CSVs disponíveis"
 
-msgid "Background color"
-msgstr "Cor de fundo"
-
-msgid "Base layout cloning"
-msgstr "Clonagem de layout básico"
-
-msgid "Base Layout from Existing Page or Template"
-msgstr "Layout base de página ou modelo existente"
+msgid "Base Layout to Clone"
+msgstr ""
 
 msgid "Base Page/Template ID:"
 msgstr "ID da página base/modelo:"
 
+msgid "Base layout cloning"
+msgstr "Clonagem de layout básico"
+
 msgid "Best {Service} in {City}, {State}"
-msgstr "Melhor{Service}em{City},{State}"
+msgstr "Melhor {Service} em {City}, {State}"
 
 msgid "Blocks"
 msgstr "Blocos"
@@ -189,44 +306,118 @@ msgstr "Falha ao iniciar o pedido em massa (erro JS)."
 msgid "Business Type (Schema)"
 msgstr "Tipo de negócio (esquema)"
 
-msgid "Cards"
-msgstr "Cartões"
+msgid "CSV Sources"
+msgstr "Fontes CSV"
+
+msgid "CSV Upload"
+msgstr "Carregar CSV"
+
+msgid "CSV has no rows"
+msgstr "CSV não tem linhas"
+
+msgid "Change PageForge settings and connector configuration."
+msgstr ""
+
+msgid "Changes only /{base}/slug/ for PageForge custom content. A nonempty base is required. Choose native Page output with no parent for /the-magnolias/, or assign a Parent Page for /maths-tuition-gurgaon/dlf-phase-iv/. Changing an established base changes custom-content URLs: plan redirects separately; PageForge does not create them."
+msgstr ""
 
 msgid "Chat-style assistant to plan your sitemap, pages, SEO, and launch."
-msgstr "Assistente estilo chat para planear o seu mapa do site, páginas,SEOe lançamento."
+msgstr "Assistente estilo chat para planear o seu mapa do site, páginas, SEO e lançamento."
+
+msgid "ChatGPT"
+msgstr ""
+
+msgid "ChatGPT connects to PageForge as a custom MCP connector. It discovers OAuth from the server URL below, then asks you to sign in to WordPress and approve the connection."
+msgstr ""
+
+msgid "ChatGPT will send you to this site to sign in and approve the requested access."
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Check the reason above. If it mentions a credential, reconnect the client; if it mentions the protocol, the client and this server disagree on a version."
+msgstr ""
+
+msgid "Checking…"
+msgstr ""
 
 msgid "Choose a CSV uploaded in Data Sources. Headers define available placeholders."
-msgstr "Escolha umCSVcarregado em fontes de dados. Os cabeçalhos definem os espaços reservados disponíveis."
+msgstr "Escolha um CSV carregado em fontes de dados. Os cabeçalhos definem os espaços reservados disponíveis."
+
+msgid "Choose a client on the left to see its setup steps here."
+msgstr ""
+
+msgid "Choose a supported generation post type."
+msgstr ""
 
 msgid "Choose grouping, columns, colors, and heading level from the block sidebar."
 msgstr "Escolha o agrupamento, as colunas, as cores e o nível do título na barra lateral do bloco."
 
 msgid "Choose which AI provider powers AI content, meta generation, the site planner, and blog drafts in the free plugin."
-msgstr "Escolha qual o fornecedorAIque fornece conteúdoAI, metageração, planeador de sites e rascunhos de blogues no plugin gratuito."
+msgstr "Escolha qual o fornecedor AI que fornece conteúdo AI, metageração, planeador de sites e rascunhos de blogues no plugin gratuito."
 
-msgid "City"
-msgstr "Cidade"
+msgid "Claude"
+msgstr ""
 
 msgid "Claude API Key"
-msgstr "ChaveClaudeAPI"
+msgstr "Chave de API Claude"
 
 msgid "Claude Model"
-msgstr "ModeloClaude"
+msgstr "Modelo Claude"
+
+msgid "Claude connects to PageForge as a remote custom connector over OAuth. If Claude asks for a Client ID and Client Secret, create an OAuth client below rather than using an API key or your PageForge licence key."
+msgstr ""
+
+msgid "Claude declined this request. Rephrase the prompt or choose a different Claude model."
+msgstr "O Claude recusou este pedido. Reformule o prompt ou escolha outro modelo Claude."
 
 msgid "Click Add Block and search for PageForge Sitemap."
-msgstr "Clique em Adicionar bloco e pesquise o mapa do sitePageForge."
+msgstr "Clique em Adicionar bloco e pesquise PageForge Sitemap."
 
-msgid "Columns"
-msgstr "Colunas"
+msgid "Client ID"
+msgstr ""
 
-msgid "Comma-separated. Example: pageforge_page,page,post"
-msgstr "Separados por vírgula. Exemplo:pageforge_page,página,post"
+msgid "Client activity"
+msgstr ""
 
-msgid "Compact"
-msgstr "Compactar"
+msgid "Client authentication failed."
+msgstr ""
+
+msgid "Client configuration"
+msgstr ""
+
+msgid "Client secret"
+msgstr ""
+
+msgid "Clients that read the WWW-Authenticate challenge (all current MCP clients must) will still discover OAuth correctly. To also serve the root paths, proxy /.well-known/oauth-protected-resource and /.well-known/oauth-authorization-server to the PageForge REST equivalents shown below."
+msgstr ""
+
+msgid "Complete the setup in your AI client. PageForge will report the connection here once it sees an authenticated request."
+msgstr ""
 
 msgid "Configure AI providers, generation defaults, analytics, and schema options."
-msgstr "Configure os fornecedoresAI, os padrões de geração, as análises e as opções de esquema."
+msgstr "Configure os fornecedores AI, os padrões de geração, as análises e as opções de esquema."
+
+#. translators: %s: last characters of the stored secret, e.g. ****ab12
+msgid "Configured (%s)"
+msgstr ""
+
+msgid "Connect ChatGPT, Claude or another MCP-compatible AI client to securely inspect PageForge."
+msgstr ""
+
+msgid "Connect an AI Client"
+msgstr ""
+
+#. translators: %s: human-readable time difference.
+msgid "Connected · approved %s ago"
+msgstr ""
+
+msgid "Connection diagnostics"
+msgstr ""
+
+msgid "Connections"
+msgstr ""
 
 msgid "Contact sales"
 msgstr "Entre em contacto com vendas"
@@ -237,35 +428,74 @@ msgstr "Comprimento do conteúdo"
 msgid "Control columns, page limit, counts, heading level, and colors."
 msgstr "Colunas de controlo, limite de páginas, contagens, nível de título e cores."
 
+msgid "Controlled by Settings > Default Post Type."
+msgstr ""
+
+msgid "Controlled by template Target Post Type."
+msgstr ""
+
 msgid "Conversation"
 msgstr "Conversa"
 
 msgid "Conversion-focused structure + heading set"
 msgstr "Estrutura focada na conversão + conjunto de títulos"
 
-msgid "Create a complete website plan for my business. Ask me for my business name, location, services, and goals, then propose sitemap, page sections, SEO keywords, and a launch checklist."
-msgstr "Crie um plano de website completo para o meu negócio. Pergunte-me o nome da minha empresa, a localização, os serviços e os objetivos e, em seguida, proponha o mapa do site, as secções da página, as palavras-chaveSEOe uma lista de verificação de lançamento."
+msgid "Copy"
+msgstr ""
 
-msgid "Create reusable templates with dynamic placeholders like {City}, {State}, {Service} anywhere in your content, title, or slug pattern."
-msgstr "Crie modelos reutilizáveis ​​com espaços reservados dinâmicos como{City},{State},{Service}em qualquer lugar do seu conteúdo, título ou padrão de slug."
+msgid "Copy ID"
+msgstr ""
 
-msgid "Create robust templates"
-msgstr "Crie modelos robustos"
+msgid "Copy configuration"
+msgstr ""
+
+msgid "Copy secret"
+msgstr ""
+
+msgid "Copy the MCP server URL below."
+msgstr ""
+
+msgid "Copy this token now. PageForge stores only a hash of it and cannot show it again."
+msgstr ""
+
+msgid "Copy token"
+msgstr ""
+
+msgid "Create OAuth client"
+msgstr ""
 
 msgid "Create Template"
 msgstr "Criar modelo"
 
+msgid "Create a complete website plan for my business. Ask me for my business name, location, services, and goals, then propose sitemap, page sections, SEO keywords, and a launch checklist."
+msgstr "Crie um plano de website completo para o meu negócio. Pergunte-me o nome da minha empresa, a localização, os serviços e os objetivos e, em seguida, proponha o mapa do site, as secções da página, as palavras-chave SEO e uma lista de verificação de lançamento."
+
+msgid "Create a personal access token and copy it. It is shown only once."
+msgstr ""
+
+msgid "Create and update content"
+msgstr ""
+
+msgid "Create personal access token"
+msgstr ""
+
+msgid "Create reusable templates with dynamic placeholders like {City}, {State}, {Service} anywhere in your content, title, or slug pattern."
+msgstr "Crie modelos reutilizáveis com espaços reservados dinâmicos como {City}, {State}, {Service} em qualquer lugar do seu conteúdo, título ou padrão de slug."
+
+msgid "Create robust templates"
+msgstr "Crie modelos robustos"
+
 msgid "Create up to 100 unique pages per run from CSV with dynamic tokens, schema, and builder-friendly templates."
-msgstr "Crie até 100 páginas únicas por execução doCSVcom tokens dinâmicos, esquema e modelosbuilder-friendly."
+msgstr "Crie até 100 páginas únicas por execução a partir de um CSV com tokens dinâmicos, esquema e modelos compatíveis com construtores."
 
-msgid "CSV has no rows"
-msgstr "CSVnão tem linhas"
+msgid "Create, update, and publish PageForge-generated pages."
+msgstr ""
 
-msgid "CSV Sources"
-msgstr "FontesCSV"
+msgid "Credential active · Never used"
+msgstr ""
 
-msgid "CSV Upload"
-msgstr "CarregarCSV"
+msgid "Credential not found"
+msgstr ""
 
 msgid "Current plan:"
 msgstr "Plano atual:"
@@ -283,16 +513,16 @@ msgid "Data Sources"
 msgstr "Fontes de dados"
 
 msgid "DeepSeek API Key"
-msgstr "ChaveDeepSeekAPI"
+msgstr "Chave de API DeepSeek"
 
 msgid "DeepSeek Model"
-msgstr "ModeloDeepSeek"
+msgstr "Modelo DeepSeek"
 
 msgid "DeepSeek uses its current OpenAI-compatible API models. Legacy deepseek-chat and deepseek-reasoner are intentionally excluded."
-msgstr "DeepSeekutiliza os seus modelosAPIatuais compatíveis comOpenAI.deepseek-chatedeepseek-reasonerherdados foram eliminados intencionalmente."
+msgstr "O DeepSeek utiliza os seus modelos de API atuais compatíveis com OpenAI. Os modelos antigos deepseek-chat e deepseek-reasoner foram excluídos intencionalmente."
 
 msgid "Describe your brand, tone, USPs. Added to AI prompts."
-msgstr "Descreva a sua marca, tom,USPs. Adicionado aos avisosAI."
+msgstr "Descreva a sua marca, tom e USPs. Adicionado aos prompts de AI."
 
 msgid "Describe your business, location, services, and goals…"
 msgstr "Descreva o seu negócio, localização, serviços e objetivos…"
@@ -300,47 +530,54 @@ msgstr "Descreva o seu negócio, localização, serviços e objetivos…"
 msgid "Description"
 msgstr "Descrição"
 
-msgid "Direct license key entry from this screen can be added later once the Freemius API integration is finalized."
-msgstr "A introdução direta da chave de licença neste ecrã pode ser adicionada posteriormente, quando a integração doFreemiusAPIestiver finalizada."
+#. translators: %s: comma-separated plugin names.
+msgid "Detected: %s. These can block REST requests or strip Authorization headers."
+msgstr ""
 
-msgid "Displays generated PageForge pages grouped by city, state, service, or as one list."
-msgstr "Apresenta as páginasPageForgegeradas agrupadas por cidade, estado, serviço ou como uma lista."
+msgid "Disabled"
+msgstr ""
+
+msgid "Disabled. Every MCP request is refused, including OAuth authorization."
+msgstr ""
 
 msgid "Documentation"
 msgstr "Documentação"
 
+msgid "Done"
+msgstr ""
+
 msgid "Done."
 msgstr "Concluído."
 
-msgid "Download a sample CSV to get started quickly."
-msgstr "Descarregue um exemplo deCSVpara começar rapidamente."
-
 msgid "Download JSON"
-msgstr "DownloadJSON"
+msgstr "Descarregar JSON"
 
 msgid "Download Markdown"
-msgstr "DownloadMarkdown"
+msgstr "Descarregar Markdown"
 
 msgid "Download Sample CSV"
-msgstr "Descarregue a amostraCSV"
+msgstr "Descarregue a amostra CSV"
+
+msgid "Download a sample CSV to get started quickly."
+msgstr "Descarregue um exemplo de CSV para começar rapidamente."
 
 msgid "Draft"
 msgstr "Rascunho"
 
-msgid "Draft created"
-msgstr "Rascunho criado"
-
 msgid "Dynamic Variables"
-msgstr "Variáveis ​​​​Dinâmicas"
+msgstr "Variáveis Dinâmicas"
 
-msgid "e.g. AU, US, GB (ISO 2-letter)"
-msgstr "por exemploAU,US,GB(ISO2 letras)"
+msgid "Dynamic client registration is disabled on this site."
+msgstr ""
 
-msgid "e.g. Local SEO checklist for plumbers"
-msgstr "por exemplo Lista de verificaçãoSEOlocal para canalizadores"
+msgid "Dynamic client registration is disabled. Use a Client ID Metadata Document, or ask the site administrator for a pre-registered client."
+msgstr ""
 
-msgid "e.g. Small business owners"
-msgstr "por exemplo Os proprietários de pequenas empresas"
+msgid "Dynamic parent mapping requires licensed PageForge Premium. Select a static parent Page instead."
+msgstr ""
+
+msgid "Dynamically registered client"
+msgstr ""
 
 msgid "Edit Post"
 msgstr "Editar publicação"
@@ -349,13 +586,37 @@ msgid "Edit Template"
 msgstr "Editar modelo"
 
 msgid "Empty AI response"
-msgstr "RespostaAIvazia"
+msgstr "Resposta AI vazia"
+
+msgid "Enable PageForge MCP Lite (read, analyze, validate, preview only)"
+msgstr ""
+
+msgid "Enable PageForge MCP above before connecting a client."
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Enabled. The MCP endpoint accepts authenticated requests."
+msgstr ""
+
+msgid "Endpoint"
+msgstr ""
 
 msgid "Ensure CSV headers match placeholders exactly (case-insensitive)."
-msgstr "Certifique-se de que os cabeçalhosCSVcorrespondem exatamente aos espaços reservados (case-insensitive)."
+msgstr "Certifique-se de que os cabeçalhos CSV correspondem exatamente aos espaços reservados (sem distinção entre maiúsculas e minúsculas)."
+
+msgid "Enter a new value to replace it"
+msgstr ""
+
+msgid "Enter a nonempty Generated CPT Slug Base, such as pageforge. For root URLs choose native Page output."
+msgstr ""
 
 msgid "Enter a topic"
 msgstr "Insira um tópico"
+
+msgid "Enter an HTTPS redirect URI, or an http://127.0.0.1 address for a local client."
+msgstr ""
 
 msgid "Enterprise"
 msgstr "Empresa"
@@ -369,8 +630,15 @@ msgstr "Erro: pedido falhou. Verifique a chave de rede/API."
 msgid "Errors:"
 msgstr "Erros:"
 
+#. translators: %d: existing post ID
 msgid "Exists (ID: %d)"
-msgstr "Existe (ID:%d)"
+msgstr "Existe (ID: %d)"
+
+msgid "Expired"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
 
 msgid "Export"
 msgstr "Exportar"
@@ -381,35 +649,45 @@ msgstr "Característica"
 msgid "Featured image attached (attachment #%s)"
 msgstr "Imagem em destaque em anexo (anexo #%s)"
 
+msgid "Featured image searches use Pexels. Photos provided by %s."
+msgstr ""
+
 msgid "Focus Keyword (optional)"
 msgstr "Palavra-chave de foco (opcional)"
+
+msgid "For clients where you supply an authentication header yourself: VS Code, Codex, GitHub Copilot, Roo Code, Cursor, Claude Code, or any generic MCP client."
+msgstr ""
 
 msgid "For higher volumes, custom workflows, or security reviews, talk to us about an Enterprise plan."
 msgstr "Para volumes maiores, fluxos de trabalho personalizados ou análises de segurança, fale connosco sobre um plano Enterprise."
 
-msgid "for Post"
-msgstr "para postagem"
-
 msgid "Free"
 msgstr "Livre"
 
+#. translators: 1: used AI messages, 2: monthly AI quota
 msgid "Free AI tools: %1$d of %2$d messages used this month on this site."
-msgstr "FerramentasAIgratuitas:%1$dde mensagens%2$dutilizadas este mês neste site."
+msgstr "Ferramentas AI gratuitas: %1$d de %2$d mensagens utilizadas este mês neste site."
 
+#. translators: 1: row limit, 2: skipped rows
 msgid "Free build processes up to %1$d pages per run. %2$d rows were skipped."
-msgstr "Processos de compilação gratuitos até páginas%1$dpor execução. As linhas%2$dforam ignoradas."
+msgstr "A versão gratuita processa até %1$d páginas por execução. %2$d linhas foram ignoradas."
 
+#. translators: %d: free row limit
 msgid "Free builds can generate up to %d rows once per site. After that, upgrading unlocks unlimited rows."
-msgstr "As compilações gratuitas podem gerar até linhas%duma vez por site. Depois disso, a atualização desbloqueia linhas ilimitadas."
+msgstr "As compilações gratuitas podem gerar até %d linhas uma vez por site. Depois disso, a atualização desbloqueia linhas ilimitadas."
 
 msgid "Free limit status:"
 msgstr "Estado de limite gratuito:"
 
+#. translators: 1: used AI messages, 2: limit per month
 msgid "Free plan: %1$d of %2$d AI messages used this month on this site."
-msgstr "Plano gratuito:%1$dde mensagens%2$dAIutilizadas este mês neste site."
+msgstr "Plano gratuito: %1$d de %2$d mensagens AI utilizadas este mês neste site."
+
+msgid "Free processes at most %d rows per run. Split the remaining rows into another run."
+msgstr ""
 
 msgid "Freemius account portal"
-msgstr "Portal da contaFreemius"
+msgstr "Portal da conta Freemius"
 
 msgid "Full website plan"
 msgstr "Plano completo do site"
@@ -418,16 +696,25 @@ msgid "GA4 API Secret"
 msgstr "GA4APISegredo"
 
 msgid "GA4 Measurement ID"
-msgstr "ID de mediçãoGA4"
+msgstr "ID de medição GA4"
 
 msgid "Gemini API Key"
-msgstr "ChaveGeminiAPI"
-
-msgid "Gemini error"
-msgstr "ErroGemini"
+msgstr "Chave de API Gemini"
 
 msgid "Gemini Model"
-msgstr "ModeloGemini"
+msgstr "Modelo Gemini"
+
+msgid "Gemini error"
+msgstr "Erro Gemini"
+
+msgid "Gemini request failed with HTTP %d."
+msgstr ""
+
+msgid "Gemini returned an empty response."
+msgstr ""
+
+msgid "Gemini returned an invalid response."
+msgstr ""
 
 msgid "Generate"
 msgstr "Gerar"
@@ -435,29 +722,26 @@ msgstr "Gerar"
 msgid "Generate & Save Meta"
 msgstr "Gerar e guardar meta"
 
-msgid "Generate a full HTML blog draft and optionally attach a featured image from Pexels."
-msgstr "Gere um rascunho completo do blogue em HTML e, opcionalmente, anexe uma imagem de destaque doPexels."
-
-msgid "Generate a prioritized SEO plan for your site. Saves the latest report in the database."
-msgstr "Gere um planoSEOpriorizado para o seu website. Guarda o relatório mais recente na base de dados."
-
-msgid "Generate Draft"
-msgstr "Gerar rascunho"
-
 msgid "Generate Pages"
 msgstr "Gerar páginas"
+
+msgid "Generate Post"
+msgstr ""
 
 msgid "Generate Report"
 msgstr "Gerar relatório"
 
-msgid "Generate SEO meta and save to PageForge + Yoast + RankMath meta fields."
-msgstr "Gere o metaSEOe guarde nos metacamposPageForge+Yoast+RankMath."
+msgid "Generate a prioritized SEO plan for your site. Saves the latest report in the database."
+msgstr "Gere um plano SEO priorizado para o seu website. Guarda o relatório mais recente na base de dados."
 
-msgid "Generated at:"
-msgstr "Gerado em:"
+msgid "Generate a standard WordPress blog post with SEO metadata and an optional Pexels featured image."
+msgstr ""
+
+msgid "Generate search and social metadata, then save it through a supported SEO integration or PageForge built-in metadata."
+msgstr ""
 
 msgid "Generated CPT Slug Base"
-msgstr "Base de slugCPTgerada"
+msgstr "Base do slug do CPT gerado"
 
 msgid "Generated Post Status"
 msgstr "Estado da postagem gerada"
@@ -465,17 +749,20 @@ msgstr "Estado da postagem gerada"
 msgid "Generated Post Type"
 msgstr "Tipo de publicação gerada"
 
-msgid "Generated posts keep variables for runtime replacement, so builders like Elementor/Divi/Gutenberg show tokens correctly."
-msgstr "As publicações geradas mantêm variáveis ​​para substituição de tempo de execução, para que construtores comoElementor/Divi/Gutenbergmostrem os tokens corretamente."
-
 msgid "Generated URLs"
 msgstr "URLs gerados"
+
+msgid "Generated at:"
+msgstr "Gerado em:"
+
+msgid "Generated posts keep variables for runtime replacement, so builders like Elementor/Divi/Gutenberg show tokens correctly."
+msgstr "As publicações geradas mantêm variáveis para substituição em tempo de execução, para que construtores como Elementor/Divi/Gutenberg mostrem os tokens corretamente."
 
 msgid "Generates pages immediately in your browser session, with up to 100 pages per run in free."
 msgstr "Gera páginas imediatamente na sessão do seu browser, com até 100 páginas por execução gratuitamente."
 
-msgid "Generating draft..."
-msgstr "Gerando rascunho..."
+msgid "Generating post..."
+msgstr ""
 
 msgid "Generating report..."
 msgstr "Gerando relatório..."
@@ -489,11 +776,11 @@ msgstr "Google Sheets"
 msgid "Google Sheets integration is not included in this build."
 msgstr "A integração do Google Sheets não está incluída nesta versão."
 
-msgid "Group by"
-msgstr "Agrupar por"
+msgid "HTTPS"
+msgstr ""
 
-msgid "Heading level"
-msgstr "Nível de título"
+msgid "HTTPS required"
+msgstr ""
 
 msgid "Home"
 msgstr "Casa"
@@ -507,8 +794,23 @@ msgstr "Como funciona"
 msgid "How to add the Sitemap block"
 msgstr "Como adicionar o bloco Sitemap"
 
+msgid "IDEs & other clients"
+msgstr ""
+
+msgid "If clients report invalid credentials while the token is correct, add this to .htaccess: RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}] — or the nginx equivalent. Do not work around it by putting tokens in a URL."
+msgstr ""
+
 msgid "If you have enabled white-label mode for this license, some owner and billing information may be hidden from your client sites."
 msgstr "Se ativou o modowhite-labelpara esta licença, algumas informações do proprietário e de faturação poderão ficar ocultas dos sites dos seus clientes."
+
+msgid "In ChatGPT, open Settings and add a new connector, choosing the MCP / custom connector option."
+msgstr ""
+
+msgid "In Claude, add a custom connector and paste the server URL."
+msgstr ""
+
+msgid "In use"
+msgstr ""
 
 msgid "Include featured image (Pexels)"
 msgstr "Incluir imagem de destaque (Pexels)"
@@ -523,7 +825,7 @@ msgid "Included"
 msgstr "Incluído"
 
 msgid "Insert tokens like {City}, {State}, {Service}, or any CSV header directly into Gutenberg, Elementor, and Divi text areas. PageForge replaces them on generated pages, including theme titles and excerpts."
-msgstr "Introduza tokens como{City},{State},{Service}ou qualquer cabeçalhoCSVdiretamente nas áreas de textoGutenberg,ElementoreDivi.PageForgesubstitui-os nas páginas geradas, incluindo títulos e excertos de temas."
+msgstr "Introduza tokens como {City}, {State}, {Service} ou qualquer cabeçalho CSV diretamente nas áreas de texto do Gutenberg, Elementor e Divi. O PageForge substitui-os nas páginas geradas, incluindo títulos e excertos do tema."
 
 msgid "Instant (Run Now)"
 msgstr "Instantâneo (executar agora)"
@@ -531,32 +833,52 @@ msgstr "Instantâneo (executar agora)"
 msgid "Instructions"
 msgstr "Instruções"
 
+#. translators: %s: OAuth scope name.
+msgid "Insufficient scope. This operation requires: %s"
+msgstr ""
+
+msgid "Invalid JSON-RPC request."
+msgstr ""
+
+msgid "Invalid Origin header."
+msgstr ""
+
+msgid "Invalid configured parent — choose an existing Page or None"
+msgstr ""
+
 msgid "Invalid post"
 msgstr "Postagem inválida"
 
 msgid "Invalid template"
 msgstr "Modelo inválido"
 
-msgid "just now"
-msgstr "agora mesmo"
-
 msgid "Keyword"
 msgstr "Palavra-chave"
 
+msgid "Label"
+msgstr ""
+
+#. translators: 1: client name, 2: human-readable time difference.
+msgid "Last authenticated request: %1$s, %2$s ago."
+msgstr ""
+
+msgid "Leave authentication set to OAuth so Claude discovers it automatically."
+msgstr ""
+
 msgid "Leave blank to auto-detect. If an AI API key is connected, PageForge will prefer global prevalence (auto country) instead of forcing AU."
-msgstr "Deixe em branco paraauto-detect. Se estiver ligada uma chaveAIAPI,PageForgepreferirá a prevalência global (país automático) em vez de forçarAU."
+msgstr "Deixe em branco para detetar automaticamente. Se estiver ligada uma chave de API de AI, o PageForge dará preferência à prevalência global (país automático) em vez de forçar AU."
+
+msgid "Let ChatGPT, Claude, or any MCP-compatible client read your PageForge site: templates, generated pages, SEO status, and preview/validate tools. Protocol 2026-07-28."
+msgstr ""
 
 msgid "License management"
 msgstr "Gestão de licenças"
 
 msgid "Licenses and billing for PageForge are managed via Freemius. Use the account portal to update payment details, move licenses between sites, or cancel a subscription."
-msgstr "As licenças e a faturação doPageForgesão geridas através doFreemius. Utilize o portal da conta para atualizar os dados de pagamento, mover licenças entre sites ou cancelar uma subscrição."
+msgstr "As licenças e a faturação do PageForge são geridas através do Freemius. Utilize o portal da conta para atualizar os dados de pagamento, mover licenças entre sites ou cancelar uma subscrição."
 
 msgid "Licenses, billing details, invoices, and subscription management are handled by Freemius. Use the account portal to manage your license across sites."
-msgstr "As licenças, detalhes de faturação, faturas e gestão de assinaturas são geridos peloFreemius. Utilize o portal da conta para gerir a sua licença entre sites."
-
-msgid "Link color"
-msgstr "Cor do link"
+msgstr "As licenças, detalhes de faturação, faturas e gestão de assinaturas são geridos pelo Freemius. Utilize o portal da conta para gerir a sua licença entre sites."
 
 msgid "Loading..."
 msgstr "Carregando..."
@@ -568,7 +890,7 @@ msgid "Local"
 msgstr "Local"
 
 msgid "Local SEO plan"
-msgstr "Plano localSEO"
+msgstr "Plano de SEO local"
 
 msgid "Location pages + GBP + schema"
 msgstr "Páginas de localização +GBP+ esquema"
@@ -576,11 +898,66 @@ msgstr "Páginas de localização +GBP+ esquema"
 msgid "Long (~1000 words max in free)"
 msgstr "Longo (cerca de 1000 palavras no máximo em versão gratuita)"
 
+msgid "Long-running MCP jobs and scheduled generation depend on cron. Configure a real system cron to call wp-cron.php."
+msgstr ""
+
+msgid "MCP / AI Clients"
+msgstr ""
+
+msgid "MCP Lite · Read & Preview"
+msgstr ""
+
+msgid "MCP disabled"
+msgstr ""
+
+msgid "MCP is disabled"
+msgstr ""
+
+msgid "MCP is disabled on this site."
+msgstr ""
+
+msgid "MCP is ready. PageForge can serve OAuth discovery and accept authenticated AI clients."
+msgstr ""
+
+msgid "MCP server URL"
+msgstr ""
+
+msgid "MCP-Protocol-Version header does not match the protocol version in _meta."
+msgstr ""
+
+#. translators: %s: PHP JSON parser error.
+msgid "Malformed JSON: %s"
+msgstr ""
+
+msgid "Malformed JSON: the POST body is empty."
+msgstr ""
+
+msgid "Malformed authentication token."
+msgstr ""
+
+msgid "Manage SEO"
+msgstr ""
+
 msgid "Manage billing & license"
 msgstr "Gerir faturamento e licença"
 
+msgid "Manage data sources"
+msgstr ""
+
+msgid "Manage datasets, CSV imports, and Google Sheets connections."
+msgstr ""
+
 msgid "Manage your PageForge connection, license, and access the Freemius account portal."
-msgstr "Gira a sua ligaçãoPageForge, licencie e aceda ao portal da contaFreemius."
+msgstr "Gira a sua ligação PageForge, licencie e aceda ao portal da conta Freemius."
+
+msgid "Mcp-Method header does not match the JSON-RPC method in the body."
+msgstr ""
+
+msgid "Mcp-Name header does not match the tool name in the body."
+msgstr ""
+
+msgid "Mcp-Name header is not a valid Base64 sentinel value."
+msgstr ""
 
 msgid "Medium (~700 words)"
 msgstr "Médio (~700 palavras)"
@@ -588,14 +965,30 @@ msgstr "Médio (~700 palavras)"
 msgid "Meta Description"
 msgstr "Meta descrição"
 
+msgid "Meta Description Pattern"
+msgstr ""
+
 msgid "Meta Title & Description"
 msgstr "Metatítulo e descrição"
 
-msgid "Minimal"
-msgstr "Mínimo"
+msgid "Metadata warning:"
+msgstr ""
+
+#. translators: %s: JSON-RPC method name.
+msgid "Method not found: %s"
+msgstr ""
 
 msgid "Missing"
 msgstr "Em falta"
+
+msgid "Missing client"
+msgstr ""
+
+msgid "Missing grant reference"
+msgstr ""
+
+msgid "Missing redirect URI"
+msgstr ""
 
 msgid "Missing template or data source"
 msgstr "Modelo ou fonte de dados em falta"
@@ -607,7 +1000,16 @@ msgid "Native Blocks"
 msgstr "Blocos Nativos"
 
 msgid "Native Gutenberg blocks connected to generated PageForge content."
-msgstr "BlocosGutenbergnativos ligados ao conteúdoPageForgegerado."
+msgstr "Blocos Gutenberg nativos ligados ao conteúdo PageForge gerado."
+
+msgid "Native Page → Pages > All Pages"
+msgstr ""
+
+msgid "Native Pages only. Choose an existing Page for /parent/child/ URLs; choose None for /child/. Parent permissions are checked before generation."
+msgstr ""
+
+msgid "Native Post → Posts > All Posts → WordPress post permalinks"
+msgstr ""
 
 msgid "Need Enterprise?"
 msgstr "Precisa de empresa?"
@@ -615,11 +1017,23 @@ msgstr "Precisa de empresa?"
 msgid "Need to move or deactivate a license?"
 msgstr "Precisa de mover ou desativar uma licença?"
 
+msgid "Need {Service} in {City}, {State}? Contact us for fast local help."
+msgstr ""
+
+msgid "Never (revoke it manually when finished)"
+msgstr ""
+
 msgid "New chat"
 msgstr "Novo bate-papo"
 
 msgid "New site plan"
 msgstr "Novo plano do local"
+
+msgid "No AI client has successfully authenticated yet."
+msgstr ""
+
+msgid "No Authorization header was present on this admin request, which is normal. PageForge cannot confirm from here whether your host forwards it on API requests."
+msgstr ""
 
 msgid "No CSVs yet"
 msgstr "Ainda não há CSVs"
@@ -627,23 +1041,65 @@ msgstr "Ainda não há CSVs"
 msgid "No CSVs yet."
 msgstr "Ainda não há CSVs."
 
+msgid "No MCP request has been rejected recently."
+msgstr ""
+
+msgid "No PageForge pages found."
+msgstr "Nenhuma página PageForge encontrada."
+
+msgid "No data source was selected."
+msgstr ""
+
 msgid "No file"
 msgstr "Nenhum ficheiro"
 
-msgid "No grouping"
-msgstr "Sem agrupamento"
+msgid "No matching post types are available."
+msgstr ""
 
 msgid "No messages provided"
 msgstr "Nenhuma mensagem fornecida"
 
-msgid "No PageForge pages found."
-msgstr "Nenhuma páginaPageForgeencontrada."
+msgid "No plugin known to block REST bearer authentication was detected."
+msgstr ""
 
 msgid "No recent generations."
 msgstr "Sem geração recente."
 
+msgid "No scopes in this grant can still be honoured on this site."
+msgstr ""
+
+msgid "No supported SEO fields were supplied."
+msgstr ""
+
 msgid "No templates yet."
 msgstr "Ainda não há modelos."
+
+msgid "None (root Page)"
+msgstr ""
+
+msgid "Not configured"
+msgstr ""
+
+msgid "Not ready · see Connection diagnostics below"
+msgstr ""
+
+msgid "OAuth 2.1 (discovered automatically)"
+msgstr ""
+
+msgid "OAuth client created"
+msgstr ""
+
+msgid "OAuth client not found"
+msgstr ""
+
+msgid "OAuth clients"
+msgstr ""
+
+msgid "OAuth grants"
+msgstr ""
+
+msgid "OAuth metadata"
+msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -651,26 +1107,50 @@ msgstr "OK"
 msgid "One-time bulk generation (limited rows)"
 msgstr "Geração em massa única (linhas limitadas)"
 
+msgid "Only CSV data sources can be used for generation."
+msgstr ""
+
+msgid "Only needed when a connector asks you to supply a Client ID and Client Secret. These are separate from your AI provider API keys."
+msgstr ""
+
 msgid "Open Account Portal"
 msgstr "Abra o Portal da Conta"
 
-msgid "Open any page in the WordPress block editor."
-msgstr "Abra qualquer página no editor de blocosWordPress."
-
 msgid "Open Freemius account portal"
-msgstr "Abra o portal da contaFreemius"
+msgstr "Abra o portal da conta Freemius"
+
+msgid "Open Graph title"
+msgstr ""
 
 msgid "Open Templates"
 msgstr "Abrir modelos"
 
+msgid "Open any page in the WordPress block editor."
+msgstr "Abra qualquer página no editor de blocos WordPress."
+
 msgid "OpenAI API Key"
-msgstr "ChaveOpenAIAPI"
+msgstr "Chave de API OpenAI"
 
 msgid "OpenAI Model"
-msgstr "ModeloOpenAI"
+msgstr "Modelo OpenAI"
+
+msgid "Operate campaigns"
+msgstr ""
+
+msgid "Optional. CSV placeholders are replaced for each generated post and written to PageForge and the active supported SEO plugin. Leave blank to use generated metadata."
+msgstr ""
+
+msgid "Origin is not allowed to access this MCP endpoint."
+msgstr ""
 
 msgid "Other Cities"
 msgstr "Outras cidades"
+
+msgid "Other MCP Clients"
+msgstr ""
+
+msgid "Other MCP clients (personal access token)"
+msgstr ""
 
 msgid "Other Pages"
 msgstr "Outras páginas"
@@ -681,65 +1161,130 @@ msgstr "Outros serviços"
 msgid "Other States"
 msgstr "Outros estados"
 
+msgid "Overview"
+msgstr ""
+
+msgid "PHP can see Authorization headers on this request."
+msgstr ""
+
+msgid "PKCE S256 not advertised"
+msgstr ""
+
+msgid "PKCE verification failed."
+msgstr ""
+
 msgid "Page"
 msgstr "Página"
 
 msgid "Page Generation Activity"
 msgstr "Atividade de geração de páginas"
 
-msgid "Page limit"
-msgstr "Limite de páginas"
-
 msgid "PageForge"
 msgstr "PageForge"
 
 msgid "PageForge Blocks"
-msgstr "BlocosPageForge"
+msgstr "Blocos PageForge"
 
-msgid "PageForge can output basic SEO title and meta description when no dedicated SEO plugin is active."
-msgstr "PageForgepode gerar títuloSEObásico e meta descrição quando nenhum pluginSEOdedicado está ativo."
+msgid "PageForge Free lets an AI client read, analyse and preview. It never lets one change your site."
+msgstr ""
 
-msgid "PageForge navigation"
-msgstr "NavegaçãoPageForge"
+msgid "PageForge Free never registers a write MCP tool."
+msgstr ""
+
+msgid "PageForge Free previews metadata only. Applying SEO changes through MCP requires PageForge Pro."
+msgstr ""
+
+msgid "PageForge MCP"
+msgstr ""
+
+msgid "PageForge MCP is turned off on this site, so it cannot authorize AI clients. An administrator can enable it under PageForge → Connections."
+msgstr ""
 
 msgid "PageForge Page"
-msgstr "PáginaPageForge"
+msgstr "Página PageForge"
 
 msgid "PageForge Page (pageforge_page)"
-msgstr "PáginaPageForge(pageforge_page)"
+msgstr "Página PageForge (pageforge_page)"
 
 msgid "PageForge Pages"
-msgstr "PáginasPageForge"
+msgstr "Páginas PageForge"
 
 msgid "PageForge Pages (pageforge_page)"
-msgstr "PáginasPageForge(pageforge_page)"
+msgstr "Páginas PageForge (pageforge_page)"
+
+msgid "PageForge Premium is active, so the free PageForge plugin was deactivated. Premium includes the complete PageForge feature set and all of your templates, pages and settings are unchanged."
+msgstr ""
 
 msgid "PageForge SEO"
-msgstr "PageForgeSEO"
-
-msgid "PageForge Sitemap"
-msgstr "Mapa do sitePageForge"
+msgstr "PageForge SEO"
 
 msgid "PageForge Template"
-msgstr "ModeloPageForge"
+msgstr "Modelo PageForge"
 
 msgid "PageForge Template Settings"
-msgstr "Configurações do modeloPageForge"
+msgstr "Configurações do modelo PageForge"
 
 msgid "PageForge Templates"
-msgstr "ModelosPageForge"
+msgstr "Modelos PageForge"
+
+msgid "PageForge can detect this SEO plugin but cannot read or write its metadata, because it does not store that data in post meta."
+msgstr ""
+
+msgid "PageForge can output basic SEO title and meta description when no dedicated SEO plugin is active."
+msgstr "PageForge pode gerar título SEO básico e meta descrição quando nenhum plugin SEO dedicado está ativo."
+
+msgid "PageForge content list"
+msgstr ""
+
+#. translators: %s: HTTP error message.
+msgid "PageForge could not reach its own discovery document: %s"
+msgstr ""
+
+msgid "PageForge could not verify the AI client making this request. If the client uses a Client ID Metadata Document, the document must be reachable over HTTPS and its client_id must exactly match its own URL."
+msgstr ""
+
+msgid "PageForge custom content → PageForge list"
+msgstr ""
+
+msgid "PageForge navigation"
+msgstr "Navegação PageForge"
+
+msgid "PageForge readiness"
+msgstr ""
+
+#. translators: 1: required PHP version, 2: PHP version running on the server.
+msgid "PageForge requires PHP %1$s or newer. This site is running PHP %2$s, so PageForge has not started. Ask your host to update PHP."
+msgstr ""
 
 msgid "PageForge uses Freemius to manage billing, licensing, and plan entitlements for this site."
-msgstr "PageForgeutilizaFreemiuspara gerir a faturação, licenciamento e planos de direitos para este website."
+msgstr "PageForge utiliza Freemius para gerir a faturação, licenciamento e planos de direitos para este website."
 
 msgid "Pages"
 msgstr "Páginas"
 
+msgid "Pages > All Pages"
+msgstr ""
+
 msgid "Paid plans do not enforce a PageForge-level AI message cap. Usage is limited only by your selected AI provider account and fair-use."
-msgstr "Os planos pagos não impõem um limite de mensagensAIao nívelPageForge. A utilização é limitada apenas pela conta do fornecedorAIselecionado e pelofair-use."
+msgstr "Os planos pagos não impõem um limite de mensagens AI ao nível do PageForge. A utilização é limitada apenas pela conta do fornecedor AI selecionado e pela utilização razoável."
+
+msgid "Parent Page"
+msgstr ""
 
 msgid "Parser auto-detects delimiter and strips BOM; blank lines are ignored."
 msgstr "Delimitadorauto-detectsdo analisador e tiras BOM; linhas em branco são ignoradas."
+
+msgid "Partly unverifiable · see Connection diagnostics below"
+msgstr ""
+
+msgid "Paste the configuration into that client’s MCP config file."
+msgstr ""
+
+msgid "Paste the server URL and choose OAuth as the authentication method."
+msgstr ""
+
+msgid "Paste these into the connector that asked for them. They are not an API key."
+msgstr ""
 
 msgid "Pending"
 msgstr "Pendente"
@@ -747,14 +1292,35 @@ msgstr "Pendente"
 msgid "Pending Review"
 msgstr "Revisão pendente"
 
-msgid "Pexels API Key"
-msgstr "ChavePexelsAPI"
+msgid "Permalinks"
+msgstr ""
 
-msgid "Pick a page, post, Elementor template, Divi layout, or reusable block to clone its layout, or enter an ID manually."
-msgstr "Escolha uma página, publicação, modeloElementor, layoutDiviou bloco reutilizável para clonar o seu layout ou introduza um ID manualmente."
+msgid "Personal access token"
+msgstr ""
+
+msgid "Personal access token created"
+msgstr ""
+
+msgid "Personal access tokens"
+msgstr ""
+
+msgid "Pexels API Key"
+msgstr "Chave de API Pexels"
+
+msgid "Photos provided by %s. Credit photographers when possible."
+msgstr ""
+
+msgid "Pick a page, post, Elementor template, Divi layout, or reusable block to clone its layout, or enter an ID manually. This does not set the Parent Page or URL hierarchy."
+msgstr ""
+
+msgid "Pick your client on the configuration tab in the dialog."
+msgstr ""
 
 msgid "Placeholders derived from headers (e.g., {City}, {State}, {Service}) can be used anywhere in your Template content, Title, and Slug patterns."
-msgstr "Os espaços reservados derivados de cabeçalhos (por exemplo,{City},{State},{Service}) podem ser utilizados em qualquer lugar no conteúdo do modelo, título e padrões de slug."
+msgstr "Os espaços reservados derivados de cabeçalhos (por exemplo, {City}, {State}, {Service}) podem ser utilizados em qualquer lugar no conteúdo do modelo, título e padrões de slug."
+
+msgid "Plain permalinks are active."
+msgstr ""
 
 msgid "Plan"
 msgstr "Plano"
@@ -769,34 +1335,40 @@ msgid "Planner"
 msgstr "Planejador"
 
 msgid "Planner uses your Brand Context / Voice from Settings, your site details, and recent URLs (when enabled). Export produces Markdown you can save or share."
-msgstr "O Planner utiliza o contexto/voz da sua marca nas definições, os detalhes do seu website e os URLs recentes (quando ativado). A exportação produzMarkdownque pode guardar ou partilhar."
+msgstr "O Planner utiliza o contexto/voz da sua marca nas definições, os detalhes do seu website e os URLs recentes (quando ativado). A exportação produz Markdown que pode guardar ou partilhar."
 
 msgid "Post"
 msgstr "Publicação"
 
-msgid "Post not found"
-msgstr "Postagem não encontrada"
-
 msgid "Post Status"
 msgstr "Estado da postagem"
 
-msgid "Post Type"
-msgstr "Tipo de postagem"
+msgid "Post created"
+msgstr ""
 
-msgid "Post types"
-msgstr "Tipos de postagem"
+msgid "Post not found"
+msgstr "Postagem não encontrada"
 
 msgid "Posts"
 msgstr "Postagens"
 
+msgid "Posts > All Posts"
+msgstr ""
+
 msgid "Prepare a CSV with the first row as headers, e.g., City, State, Service. Delimiters supported: comma, semicolon, tab, or pipe."
-msgstr "Prepare umCSVcom a primeira linha como cabeçalho, por exemplo, Cidade, Estado, Serviço. Delimitadores suportados: vírgula, ponto e vírgula, tabulação ou barra vertical."
+msgstr "Prepare um CSV com a primeira linha como cabeçalho, por exemplo, Cidade, Estado, Serviço. Delimitadores suportados: vírgula, ponto e vírgula, tabulação ou barra vertical."
+
+msgid "Pretty permalinks are active."
+msgstr ""
+
+msgid "Preview and validate"
+msgstr ""
 
 msgid "Private"
 msgstr "Privado"
 
 msgid "Processed %1$s / %2$s..."
-msgstr "Processado%1$s/%2$s..."
+msgstr "Processado %1$s/%2$s..."
 
 msgid "Processed:"
 msgstr "Processado:"
@@ -808,10 +1380,20 @@ msgid "Professional"
 msgstr "Profissional"
 
 msgid "Programmatic SEO for WordPress"
-msgstr "SEOprogramático paraWordPress"
+msgstr "SEO programático para WordPress"
 
-msgid "Provide a topic and (optionally) target keywords."
-msgstr "Forneça um tópico e (opcionalmente) palavras-chave alvo."
+#. translators: %s: OAuth issuer URL.
+msgid "Protected Resource Metadata and authorization server metadata are valid. Issuer: %s"
+msgstr ""
+
+msgid "Protected resource metadata"
+msgstr ""
+
+msgid "Protocol"
+msgstr ""
+
+msgid "Provide a topic and optional target keywords. Output is always saved as a WordPress post."
+msgstr ""
 
 msgid "Public / Published"
 msgstr "Público / Publicado"
@@ -822,38 +1404,147 @@ msgstr "Publicar"
 msgid "Queued rows:"
 msgstr "Linhas na fila:"
 
-msgid "Recent chats"
-msgstr "Bate-papos recentes"
+msgid "REST endpoint reachable"
+msgstr ""
+
+msgid "Rate limit exceeded for this tool class."
+msgstr ""
+
+msgid "Read GA4 and Search Console performance data for generated pages."
+msgstr ""
+
+msgid "Read PageForge data"
+msgstr ""
+
+msgid "Read analytics"
+msgstr ""
+
+#. translators: %s: connector name, e.g. ChatGPT.
+msgid "Ready for %s · awaiting connection"
+msgstr ""
+
+msgid "Ready with warnings · see Connection diagnostics below"
+msgstr ""
+
+msgid "Ready · OAuth discovery is being served correctly"
+msgstr ""
 
 msgid "Recent Generations"
 msgstr "Gerações Recentes"
 
+msgid "Recent chats"
+msgstr "Bate-papos recentes"
+
+msgid "Recent rejected requests"
+msgstr ""
+
 msgid "Recommended length: up to ~155 characters."
 msgstr "Comprimento recomendado: até ~155 caracteres."
+
+msgid "Redirect URI"
+msgstr ""
+
+msgid "Redirect address not allowed"
+msgstr ""
+
+msgid "Refresh cannot request scopes beyond the original grant."
+msgstr ""
+
+msgid "Refresh token has already been used. Re-authorization is required."
+msgstr ""
+
+msgid "Refresh token has expired."
+msgstr ""
+
+msgid "Refresh token is not valid."
+msgstr ""
+
+msgid "Refresh token was not issued to this client."
+msgstr ""
+
+msgid "Remote MCP connectors such as ChatGPT and Claude require HTTPS, and OAuth redirect URIs must be HTTPS. Install a TLS certificate and update the WordPress Address and Site Address."
+msgstr ""
+
+msgid "Remote connectors (OAuth)"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Request body is too large."
+msgstr ""
+
+msgid "Request body must be a JSON object."
+msgstr ""
+
+msgid "Request expired"
+msgstr ""
 
 msgid "Request failed (nonce / permissions / network)."
 msgstr "Falha no pedido (nonce/permissões/rede)."
 
+msgid "Requested access"
+msgstr ""
+
+msgid "Resource"
+msgstr ""
+
+msgid "Restart the client so it reloads its configuration."
+msgstr ""
+
+msgid "Result"
+msgstr ""
+
+msgid "Return here and use Test configuration to confirm PageForge saw the connection."
+msgstr ""
+
+msgid "Review recommended"
+msgstr ""
+
 msgid "Review your PageForge plan, usage limits, and license options."
-msgstr "Reveja o seu planoPageForge, os limites de utilização e as opções de licença."
+msgstr "Reveja o seu plano PageForge, os limites de utilização e as opções de licença."
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Row %1$d: %2$s"
+msgstr ""
 
 msgid "Rows per Run"
 msgstr "Linhas por corrida"
 
+msgid "Run previews, dry runs, and validation without changing anything."
+msgstr ""
+
 msgid "Runtime replacement also applies when builders render content, ensuring tokens inside widgets are replaced on the front end."
 msgstr "A substituição de tempo de execução também se aplica quando os construtores renderizam conteúdo, garantindo que os tokens dentro dos widgets são substituídos no front-end."
 
+msgid "SEO"
+msgstr "SEO"
+
+msgid "SEO Action Plan"
+msgstr ""
+
+msgid "SEO Report generation requires an Administrator role (manage_options)."
+msgstr "SEOA geração de relatórios requer uma função de Administrador (manage_options)."
+
+msgid "SEO Title"
+msgstr "Título SEO"
+
+msgid "SEO integration"
+msgstr ""
+
 msgid "Sample CSV"
-msgstr "AmostraCSV"
+msgstr "Amostra CSV"
 
 msgid "Save Settings"
 msgstr "Guardar configurações"
 
-msgid "saved"
-msgstr "salvo"
-
 msgid "Saved"
 msgstr "Salvo"
+
+msgid "Scopes"
+msgstr ""
 
 msgid "Search any page/post and generate its meta."
 msgstr "Pesquise qualquer página/post e gere o seu objetivo."
@@ -861,20 +1552,26 @@ msgstr "Pesquise qualquer página/post e gere o seu objetivo."
 msgid "Search post"
 msgstr "Postagem de pesquisa"
 
-msgid "Select a post first"
-msgstr "Selecione uma publicação primeiro"
-
-msgid "Select a Template that contains placeholders (e.g., {City}, {State}, {Service})."
-msgstr "Selecione um modelo que contenha espaços reservados (por exemplo,{City},{State},{Service})."
+msgid "Security plugins"
+msgstr ""
 
 msgid "Select CSV"
-msgstr "SelecioneCSV"
+msgstr "Selecione CSV"
 
 msgid "Select Template"
 msgstr "Selecione o modelo"
 
+msgid "Select a Template that contains placeholders (e.g., {City}, {State}, {Service})."
+msgstr "Selecione um modelo que contenha espaços reservados (por exemplo, {City}, {State}, {Service})."
+
+msgid "Select a post first"
+msgstr "Selecione uma publicação primeiro"
+
+msgid "Select a valid generation target in the template or global settings."
+msgstr ""
+
 msgid "Select template and CSV"
-msgstr "Selecione o modelo eCSV"
+msgstr "Selecione o modelo e CSV"
 
 msgid "Selected Post ID"
 msgstr "ID da publicação selecionada"
@@ -882,32 +1579,32 @@ msgstr "ID da publicação selecionada"
 msgid "Send"
 msgstr "Enviar"
 
-msgid "SEO"
-msgstr "SEO"
-
-msgid "SEO Report generation requires an Administrator role (manage_options)."
-msgstr "SEOA geração de relatórios requer uma função de Administrador (manage_options)."
-
-msgid "SEO Title"
-msgstr "TítuloSEO"
-
-msgid "Service"
-msgstr "Serviço"
-
 msgid "Services architecture"
 msgstr "Arquitetura de serviços"
 
 msgid "Set Post Status and run the generation. This free build processes up to 100 CSV rows per run."
-msgstr "Defina o Post Status e execute a geração. Esta compilação gratuita processa até 100 linhasCSVpor execução."
+msgstr "Defina o Post Status e execute a geração. Esta compilação gratuita processa até 100 linhas CSV por execução."
 
 msgid "Set Title and Slug patterns in the metabox below. Examples: “Best {Service} in {City}, {State}” and “{service}-in-{city}-{state}”."
-msgstr "Defina os padrões Title e Slug na metabox abaixo. Exemplos: “Melhor{Service}em{City},{State}” e “{service}-in-{city}-{state}”."
+msgstr "Defina os padrões Title e Slug na metabox abaixo. Exemplos: “Melhor {Service} em {City}, {State}” e “{service}-in-{city}-{state}”."
+
+msgid "Set up ChatGPT"
+msgstr ""
+
+msgid "Set up Claude"
+msgstr ""
+
+msgid "Set up connector"
+msgstr ""
 
 msgid "Settings"
 msgstr "Configurações"
 
 msgid "Settings saved"
 msgstr "Configurações guardadas"
+
+msgid "Setup guide"
+msgstr ""
 
 msgid "Short (~400 words)"
 msgstr "Curto (~400 palavras)"
@@ -917,9 +1614,6 @@ msgstr "Os códigos de acesso renderizam o valor da linha gerada para o post atu
 
 msgid "Shortcuts"
 msgstr "Atalhos"
-
-msgid "Show group counts"
-msgstr "Mostrar contagens de grupos"
 
 msgid "Single"
 msgstr "Solteiro"
@@ -939,9 +1633,6 @@ msgstr "Mapa do site"
 msgid "Sitemap + sections + SEO + launch checklist"
 msgstr "Sitemap + secções +SEO+ checklist de lançamento"
 
-msgid "Sitemap Settings"
-msgstr "Configurações do mapa do site"
-
 msgid "Sitemap Shortcode"
 msgstr "Código abreviado do mapa do site"
 
@@ -949,13 +1640,16 @@ msgid "Slug Pattern"
 msgstr "Padrão de lesma"
 
 msgid "Split larger CSV files into batches of 100 rows for the smoothest runs."
-msgstr "Divida os ficheirosCSVmaiores em lotes de 100 linhas para obter execuções mais suaves."
+msgstr "Divida os ficheiros CSV maiores em lotes de 100 linhas para obter execuções mais suaves."
 
 msgid "Start"
 msgstr "Iniciar"
 
 msgid "Start a plan with one click"
 msgstr "Comece um plano com um clique"
+
+msgid "Start, pause, resume, retry, and cancel generation campaigns."
+msgstr ""
 
 msgid "Starter"
 msgstr "Iniciante"
@@ -966,17 +1660,14 @@ msgstr "Começando a geração..."
 msgid "Starting..."
 msgstr "Começando..."
 
-msgid "State"
-msgstr "Estado"
-
 msgid "Status"
 msgstr "Estatuto"
 
-msgid "Stopped (error)."
-msgstr "Parado (erro)."
-
 msgid "Stopped (JS error)."
 msgstr "Parado (erro JS)."
+
+msgid "Stopped (error)."
+msgstr "Parado (erro)."
 
 msgid "Stopped (request failed)."
 msgstr "Parado (pedido falhou)."
@@ -984,20 +1675,17 @@ msgstr "Parado (pedido falhou)."
 msgid "Stopped."
 msgstr "Parou."
 
-msgid "Style"
-msgstr "Estilo"
-
 msgid "Subpages, slugs, title tags, FAQs"
 msgstr "Subpáginas, slugs, etiquetas de título, perguntas frequentes"
 
 msgid "Target Country (Schema)"
 msgstr "País de destino (esquema)"
 
-msgid "Target keywords (optional)"
-msgstr "Palavras-chave alvo (opcional)"
-
 msgid "Target Post Type"
 msgstr "Tipo de publicação de destino"
+
+msgid "Target keywords (optional)"
+msgstr "Palavras-chave alvo (opcional)"
 
 msgid "Template"
 msgstr "Modelo"
@@ -1006,22 +1694,129 @@ msgid "Templates"
 msgstr "Modelos"
 
 msgid "Templates can clone an existing Gutenberg, Elementor, or Divi page by setting its post ID in Base Layout from Existing Page."
-msgstr "Os modelos podem clonar uma páginaGutenberg,ElementorouDiviexistente, definindo o seu ID de publicação no Layout base da página existente."
+msgstr "Os modelos podem clonar uma página Gutenberg, Elementor ou Divi existente, definindo o ID da publicação em Layout base da página existente."
+
+msgid "Test configuration"
+msgstr ""
+
+msgid "That data source does not exist."
+msgstr ""
+
+msgid "That template does not exist."
+msgstr ""
+
+msgid "The AI provider returned an empty SEO report."
+msgstr ""
+
+msgid "The AI provider returned an invalid SEO report."
+msgstr ""
+
+msgid "The Claude connector credentials are separate from your Claude API key in Settings and from your PageForge licence. Do not reuse one for the other."
+msgstr ""
+
+msgid "The Protected Resource Metadata document is served correctly."
+msgstr ""
+
+msgid "The REST endpoints still work, but the consent URL is cleaner and more reliable with pretty permalinks. Settings → Permalinks → any option other than Plain."
+msgstr ""
+
+msgid "The SEO report request failed."
+msgstr ""
+
+msgid "The account behind this token can no longer authorize AI clients."
+msgstr ""
+
+msgid "The active SEO plugin does not expose a supported direct write path, so PageForge saved its built-in fallback metadata. Review the post in your SEO plugin before publishing."
+msgstr ""
+
+msgid "The address this client asked PageForge to return to is not one it has registered. PageForge will not redirect you there."
+msgstr ""
+
+msgid "The approved scopes can no longer be granted on this site."
+msgstr ""
+
+msgid "The approving user can no longer authorize AI clients."
+msgstr ""
+
+msgid "The bearer token is not valid."
+msgstr ""
+
+msgid "The client secret is shown once. PageForge stores only a hash of it."
+msgstr ""
+
+msgid "The configured parent must be an existing native Page you can edit, with a valid hierarchy and slug."
+msgstr ""
+
+msgid "The configured parent must be an existing native Page you can edit."
+msgstr ""
+
+msgid "The data source file could not be read."
+msgstr ""
+
+#. translators: %d: HTTP status code.
+msgid "The discovery document returned HTTP %d."
+msgstr ""
+
+msgid "The discovery document was reachable but did not contain the expected OAuth metadata."
+msgstr ""
+
+msgid "The generated slug is empty. Check the slug pattern and row data."
+msgstr ""
+
+msgid "The other PageForge edition was deactivated so only one PageForge runtime is active. Your templates, generated pages and settings were preserved."
+msgstr ""
 
 msgid "The quota is shared across AI Meta, AI Blog, SEO report, and Site Planner tools. Upgrading removes this limit."
-msgstr "A quota é partilhada entre oAIMeta, oAIBlog, o relatórioSEOe as ferramentas Site Planner. A atualização remove esse limite."
+msgstr "A quota é partilhada entre as ferramentas AI Meta, AI Blog, relatório SEO e Site Planner. A atualização remove este limite."
+
+msgid "The request did not identify which AI client is asking for access."
+msgstr ""
+
+msgid "The request did not say where to send you afterwards, and this client has more than one registered address."
+msgstr ""
 
 msgid "The shortcode lists published generated pages only, using PageForge metadata stored during generation."
-msgstr "O shortcode lista apenas as páginas geradas publicadas, utilizando metadadosPageForgearmazenados durante a geração."
+msgstr "O shortcode lista apenas as páginas geradas publicadas, utilizando metadados PageForge armazenados durante a geração."
+
+msgid "The site address is not HTTPS."
+msgstr ""
+
+msgid "The site address uses HTTPS."
+msgstr ""
+
+msgid "These clients sign in to your site with OAuth. You approve the connection in WordPress; no token is copied by hand."
+msgstr ""
 
 msgid "Thinking…"
 msgstr "Pensamento…"
 
+msgid "This MCP endpoint accepts POST only."
+msgstr ""
+
+msgid "This MCP endpoint accepts POST only. It is stateless: there is no GET event stream and no session to delete."
+msgstr ""
+
+msgid "This authorization request expired. Start the connection again from your AI client."
+msgstr ""
+
 msgid "This brand context is appended to AI prompts to keep generated pages on-message."
-msgstr "Este contexto de marca é anexado aos avisosAIpara manter as páginas geradason-message."
+msgstr "Este contexto de marca é anexado aos prompts de AI para manter as páginas geradas alinhadas com a mensagem."
 
 msgid "This build does not enforce a specific free row limit. Production builds typically include a one-time free allowance."
 msgstr "Esta compilação não impõe um limite específico de linhas livres. As compilações de produção incluem normalmente uma franquia gratuitaone-time."
+
+msgid "This indicates a PageForge configuration fault. Check that the WordPress Address and Site Address are correct."
+msgstr ""
+
+msgid "This is often a local DNS or loopback restriction on the host rather than a real fault. Fetch the URL below from outside the server to confirm whether clients can reach it."
+msgstr ""
+
+#. translators: %s: OAuth scope name.
+msgid "This operation requires the %s scope."
+msgstr ""
+
+msgid "This site runs PHP through CGI/FastCGI, where some configurations strip the Authorization header before PHP receives it. Every bearer token then appears invalid."
+msgstr ""
 
 msgid "Tips"
 msgstr "Dicas"
@@ -1033,7 +1828,34 @@ msgid "Title Pattern"
 msgstr "Padrão de título"
 
 msgid "To use an existing Elementor/Gutenberg/Divi page as the base layout, set “Base Layout from Existing Page” to that post ID. Its layout will be cloned and text placeholders replaced."
-msgstr "Para utilizar uma páginaElementor/Gutenberg/Diviexistente como layout base, defina “Layout base da página existente” para este ID de publicação. O seu layout será clonado e os espaços reservados para texto serão substituídos."
+msgstr "Para utilizar uma página Elementor/Gutenberg/Divi existente como layout base, defina “Layout base da página existente” para o ID dessa publicação. O seu layout será clonado e os espaços reservados de texto serão substituídos."
+
+msgid "Token endpoint"
+msgstr ""
+
+msgid "Too many attempts"
+msgstr ""
+
+msgid "Too many authorization attempts from your network. Please wait a few minutes and try again."
+msgstr ""
+
+msgid "Too many failed authentication attempts."
+msgstr ""
+
+msgid "Too many registration attempts."
+msgstr ""
+
+msgid "Too many requests."
+msgstr ""
+
+msgid "Too many token requests."
+msgstr ""
+
+msgid "Tool execution failed."
+msgstr ""
+
+msgid "Tool handler is not available."
+msgstr ""
 
 msgid "Topic"
 msgstr "Tópico"
@@ -1045,10 +1867,16 @@ msgid "Total Pages"
 msgstr "Total de páginas"
 
 msgid "Track CSV page generation, manage templates, and launch high-volume local SEO workflows from one place."
-msgstr "Acompanhe a geração de páginasCSV, gerencie modelos e inicie fluxos de trabalhoSEOlocaishigh-volumenum único local."
+msgstr "Acompanhe a geração de páginas CSV, faça a gestão de modelos e inicie fluxos de trabalho de SEO local de grande volume num único local."
+
+msgid "Two PageForge editions are active at the same time. Only one is running. Deactivate the edition you do not want to use."
+msgstr ""
 
 msgid "Type a title…"
 msgstr "Introduza um título…"
+
+msgid "URL"
+msgstr "URL"
 
 msgid "Unable to load CSVs"
 msgstr "Não foi possível carregar CSVs"
@@ -1056,17 +1884,43 @@ msgstr "Não foi possível carregar CSVs"
 msgid "Unauthorized"
 msgstr "Não autorizado"
 
+msgid "Unknown client"
+msgstr ""
+
+msgid "Unknown client."
+msgstr ""
+
+#. translators: %s: MCP tool name.
+msgid "Unknown tool: %s"
+msgstr ""
+
 msgid "Unlimited"
 msgstr "Ilimitado"
 
 msgid "Unlimited rows & automation"
 msgstr "Linhas e automação ilimitadas"
 
+msgid "Unnamed MCP client"
+msgstr ""
+
+msgid "Unnamed client"
+msgstr ""
+
+#. translators: 1: requested protocol version, 2: comma-separated supported versions.
+msgid "Unsupported MCP protocol version %1$s. This server supports: %2$s."
+msgstr ""
+
+msgid "Unsupported grant_type."
+msgstr ""
+
 msgid "Untitled"
 msgstr "Sem título"
 
+msgid "Update meta titles, descriptions, schema, and internal links."
+msgstr ""
+
 msgid "Updated %s"
-msgstr "%satualizado"
+msgstr "Atualizado %s"
 
 msgid "Upgrade plan"
 msgstr "Plano de atualização"
@@ -1075,10 +1929,10 @@ msgid "Upgrade to Pro"
 msgstr "Atualizar para Pro"
 
 msgid "Upload CSV"
-msgstr "CarregarCSV"
+msgstr "Carregar CSV"
 
 msgid "Upload CSV files and manage external data sources for your templates."
-msgstr "Carregue ficheirosCSVe faça a gestão de fontes de dados externas para os seus modelos."
+msgstr "Carregue ficheiros CSV e faça a gestão de fontes de dados externas para os seus modelos."
 
 msgid "Upload data in Data Sources; refresh here to see new files."
 msgstr "Fazer o upload de dados em fontes de dados; atualize aqui para ver novos ficheiros."
@@ -1089,11 +1943,14 @@ msgstr "Falha no upload:"
 msgid "Uploaded:"
 msgstr "Carregado:"
 
-msgid "URL"
-msgstr "URL"
-
 msgid "Usage & limits"
 msgstr "Uso e limites"
+
+msgid "Use Generate screen setting"
+msgstr "Utilize a configuração Gerar ecrã"
+
+msgid "Use PageForge content with native WordPress blocks, shortcodes, and builder tokens."
+msgstr "Utilize conteúdo PageForge com blocos WordPress nativos, códigos de acesso e tokens de construtor."
 
 msgid "Use a quick prompt to pre-fill the planner with a common scenario."
 msgstr "Utilize um aviso rápido parapre-fillo planeador com um cenário comum."
@@ -1101,38 +1958,71 @@ msgstr "Utilize um aviso rápido parapre-fillo planeador com um cenário comum."
 msgid "Use a shortcode when a builder field does not allow raw token text, or place tokens directly in supported text and heading controls."
 msgstr "Utilize um shortcode quando um campo do construtor não permite texto de token em bruto ou coloque os tokens diretamente nos controlos de texto e cabeçalho suportados."
 
-msgid "Use Generate screen setting"
-msgstr "Utilize a configuração Gerar ecrã"
+msgid "Use either Authorization Bearer or X-PageForge-MCP-API-Key, not both."
+msgstr ""
 
-msgid "Use PageForge content with native WordPress blocks, shortcodes, and builder tokens."
-msgstr "Utilize conteúdoPageForgecom blocosWordPressnativos, códigos de acesso e tokens de construtor."
+msgid "Use global default (%s)"
+msgstr ""
 
 msgid "Use placeholders anywhere in the content editor and above patterns: {City}, {State}, {Service}, and any CSV column header you provide."
-msgstr "Utilize espaços reservados em qualquer lugar do editor de conteúdos e nos padrões acima:{City},{State},{Service}e qualquer cabeçalho de colunaCSVque forneça."
+msgstr "Utilize espaços reservados em qualquer lugar do editor de conteúdos e nos padrões acima: {City}, {State}, {Service} e qualquer cabeçalho de coluna CSV que forneça."
 
 msgid "Use placeholders like {City}, {State}, {Service} directly in the editor content."
-msgstr "Utilize espaços reservados como{City},{State},{Service}diretamente no conteúdo do editor."
+msgstr "Utilize espaços reservados como {City}, {State}, {Service} diretamente no conteúdo do editor."
 
 msgid "Use templates and CSV data sources to generate SEO-optimized pages in bulk, up to 100 pages per run in this free build."
-msgstr "Utilize os modelos e as fontes de dadosCSVpara gerar páginas otimizadas paraSEOem massa, até 100 páginas por execução nesta versão gratuita."
+msgstr "Utilize os modelos e as fontes de dados CSV para gerar páginas otimizadas para SEO em massa, até 100 páginas por execução nesta versão gratuita."
+
+msgid "Use the Freemius account portal for license activation, billing, and subscription changes."
+msgstr ""
 
 msgid "Use this when you are editing with a builder, classic editor, widget, or reusable pattern."
 msgstr "Utilize isto quando estiver a editar com um construtor, editor clássico, widget ou padrão reutilizável."
 
 msgid "Used as the Schema.org @type for the business/provider object (and influences schema output)."
-msgstr "Utilizado como o @typeSchema.orgpara o objeto de negócio/fornecedor (e influencia a saída do esquema)."
+msgstr "Utilizado como o @type Schema.org para o objeto de negócio/fornecedor (e influencia a saída do esquema)."
 
 msgid "Using Brand Context from Settings"
 msgstr "Utilizar o contexto da marca nas configurações"
 
+msgid "VS Code, Codex, GitHub Copilot, Roo Code, Cursor, Claude Code and generic MCP clients read their configuration from a file, so they use a personal access token rather than OAuth."
+msgstr ""
+
+msgid "View templates, generated pages, SEO status, and site diagnostics."
+msgstr ""
+
+msgid "WP-Cron is available for background MCP jobs."
+msgstr ""
+
+msgid "WP-Cron is disabled by DISABLE_WP_CRON."
+msgstr ""
+
+msgid "Well-known discovery paths"
+msgstr ""
+
+msgid "What PageForge can verify from inside WordPress about whether an AI client can reach and authenticate to this site."
+msgstr ""
+
 msgid "When set, PageForge uses this status automatically for every post generated from this template."
-msgstr "Quando definido, oPageForgeutiliza este estado automaticamente para cada publicação gerada a partir deste modelo."
+msgstr "Quando definido, o PageForge utiliza este estado automaticamente para cada publicação gerada a partir deste modelo."
+
+msgid "Which connectors you can add, and whether they may perform write actions, is controlled by your ChatGPT plan and OpenAI’s current connector policy. PageForge cannot grant capabilities your ChatGPT account does not allow."
+msgstr ""
 
 msgid "Will be used as the browser title when no SEO plugin is installed."
-msgstr "Será utilizado como título do browser quando nenhum pluginSEOestiver instalado."
+msgstr "Será utilizado como título do browser quando nenhum plugin SEO estiver instalado."
+
+msgid "WordPress cron"
+msgstr ""
+
+msgid "WordPress is installed in a subdirectory, so requests to the site root for /.well-known/oauth-protected-resource do not reach PageForge."
+msgstr ""
+
+msgid "WordPress serves the site root, so the standard discovery paths are available."
+msgstr ""
 
 msgid "Working... (offset %s)"
-msgstr "A trabalhar... (deslocamento%s)"
+msgstr "A trabalhar... (deslocamento %s)"
 
 msgid "Works as a native block or shortcode on any page."
 msgstr "Funciona como um bloco nativo ou shortcode em qualquer página."
@@ -1140,5 +2030,86 @@ msgstr "Funciona como um bloco nativo ou shortcode em qualquer página."
 msgid "You"
 msgstr "Tu"
 
+#. translators: %s: WordPress display name of the approving user.
+msgid "You are signed in as %s. This client will act with your permissions."
+msgstr ""
+
 msgid "You can deactivate a license on this site and move it to another by using the Freemius account portal. Disconnecting a site from Freemius will also remove it from your user dashboard."
-msgstr "Pode desativar uma licença neste site e movê-la para outro utilizando o portal da contaFreemius. Desligar um site doFreemiustambém o removerá do painel do utilizador."
+msgstr "Pode desativar uma licença neste site e movê-la para outro utilizando o portal da conta Freemius. Desligar um site do Freemius também o removerá do painel do utilizador."
+
+msgid "You cannot edit that content."
+msgstr ""
+
+msgid "You cannot generate content with this template and target type."
+msgstr ""
+
+msgid "You cannot read this template."
+msgstr ""
+
+msgid "Your WordPress account does not have permission to connect an AI client to this site. Ask an administrator to perform the connection."
+msgstr ""
+
+msgid "Your account cannot create blog posts."
+msgstr ""
+
+msgid "Your account cannot create content of that type."
+msgstr ""
+
+#. translators: 1: requested post status, 2: status actually used.
+msgid "Your account cannot publish, so pages were created as %2$s instead of %1$s."
+msgstr ""
+
+#. translators: 1: requested post status, 2: status actually used.
+msgid "Your account cannot publish, so the blog post was created as %2$s instead of %1$s."
+msgstr ""
+
+msgid "an MCP client"
+msgstr ""
+
+msgid "authorization_servers missing"
+msgstr ""
+
+msgid "client_id is required."
+msgstr ""
+
+msgid "code and code_verifier are required."
+msgstr ""
+
+msgid "e.g. AU, US, GB (ISO 2-letter)"
+msgstr "por exemplo AU, US, GB (ISO de 2 letras)"
+
+msgid "e.g. Local SEO checklist for plumbers"
+msgstr "por exemplo Lista de verificação SEO local para canalizadores"
+
+msgid "e.g. Small business owners"
+msgstr "por exemplo Os proprietários de pequenas empresas"
+
+msgid "for Post"
+msgstr "para postagem"
+
+msgid "issuer does not match its own discovery URL"
+msgstr ""
+
+msgid "just now"
+msgstr "agora mesmo"
+
+msgid "redirect_uri does not match the authorization request."
+msgstr ""
+
+msgid "refresh_token is required."
+msgstr ""
+
+msgid "resource does not match the authorization request."
+msgstr ""
+
+msgid "resource identifier missing"
+msgstr ""
+
+msgid "saved"
+msgstr "salvo"
+
+msgid "— None —"
+msgstr "- Nenhum -"
+
+msgid "← All clients"
+msgstr ""

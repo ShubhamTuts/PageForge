@@ -1,5 +1,9 @@
 # PageForge Pro Alignment
 
+## Targeted hierarchy parity — 2026-10-15
+
+Both editions support explicit/global template targets, clear output destinations, and static native parent Pages. These are core Free capabilities. Premium adds opt-in Parent ID/Parent Path mapping with active Starter-or-higher entitlement checked on execution; Google Sheets retains Professional/Enterprise gating. Native hierarchy and legacy namespace URLs must survive edition changes. Neither edition converts existing content or creates redirects automatically. See [FIX_REPORT.md](FIX_REPORT.md).
+
 Date: 2026-08-03
 
 Scope: Free repository audit with read-only comparison against `C:\Users\wpshu\OneDrive\Documents\pageforge-premium`.

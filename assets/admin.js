@@ -24,6 +24,22 @@
   $(document).on('change', '#pf-ai-provider', toggleAiProviderFields);
   $(toggleAiProviderFields);
 
+  // Secret fields never carry the real stored value; they hold an
+  // "unchanged" sentinel so a plain save leaves the credential alone.
+  // Clear that sentinel the moment the admin interacts with the field so
+  // typing replaces it instead of appending to invisible placeholder text.
+  var PF_SECRET_UNCHANGED = '__pageforge_unchanged__';
+  $(document).on('focus input', '.pf-secret-input', function(){
+    if (this.value === PF_SECRET_UNCHANGED) { this.value = ''; }
+  });
+  $(document).on('click', '.pf-secret-remove', function(){
+    var name = $(this).data('pf-secret-clear');
+    var $field = $('.pf-secret-input[name="' + name + '"]');
+    $field.val('').trigger('focus');
+    $(this).closest('td').find('.pf-secret-status').text(t('notConfigured') || 'Not configured').removeClass('ok').addClass('warn');
+    $(this).remove();
+  });
+
   $(document).on('submit', '#pf-settings-form', function(e){
     e.preventDefault();
     $.post(PAGEFORGE.ajax, {
@@ -34,6 +50,455 @@
       if(res.success){ alert(t('settingsSaved')); location.reload(); } else { alert(t('errorPrefix') + ' ' + res.data); }
     });
   });
+
+  // ---------------- MCP / AI Clients (Connections) ----------------
+  //
+  // Two authentication models, deliberately never mixed in this UI:
+  //
+  //  * Remote connectors (ChatGPT, Claude) authenticate with OAuth. PageForge
+  //    shows them the server URL and readiness; it mints nothing, because these
+  //    clients discover OAuth from the endpoint and never accept a pasted
+  //    token. The old "Connect" button minted a token here, which is why the
+  //    connection could never complete.
+  //
+  //  * Every other client supplies an Authorization header itself, so it gets a
+  //    Personal Access Token.
+
+  var PF_MCP = (window.PAGEFORGE && PAGEFORGE.mcp) || {};
+
+  // Config presets. Each uses the shape that client documents for an HTTP MCP
+  // server; the label names the file it belongs in so the operator is not left
+  // guessing where to paste it. Only clients that accept a custom Authorization
+  // header appear here at all.
+  function pfMcpConfigSnippets(token, endpoint){
+    var auth = { 'X-PageForge-MCP-API-Key': token };
+    return [
+      {
+        id: 'vscode',
+        label: 'VS Code / GitHub Copilot',
+        hint: '.vscode/mcp.json',
+        body: JSON.stringify({
+          servers: { pageforge: { type: 'http', url: endpoint, headers: auth } }
+        }, null, 2)
+      },
+      {
+        id: 'cursor',
+        label: 'Cursor',
+        hint: '.cursor/mcp.json',
+        body: JSON.stringify({
+          mcpServers: { pageforge: { url: endpoint, headers: auth } }
+        }, null, 2)
+      },
+      {
+        id: 'claude_code',
+        label: 'Claude Code',
+        hint: '.mcp.json',
+        body: JSON.stringify({
+          mcpServers: { pageforge: { type: 'http', url: endpoint, headers: auth } }
+        }, null, 2)
+      },
+      {
+        id: 'generic',
+        label: t('mcpGenericClient') || 'Generic MCP client',
+        hint: 'streamable HTTP',
+        body: JSON.stringify({
+          mcpServers: { pageforge: { transport: 'streamable-http', url: endpoint, headers: auth } }
+        }, null, 2)
+      }
+    ];
+  }
+
+  function pfMcpAnnounce(message){
+    $('#pf-mcp-live').text('');
+    // Re-setting after a tick makes screen readers announce a repeated message.
+    window.setTimeout(function(){ $('#pf-mcp-live').text(message); }, 50);
+  }
+
+  function pfMcpCopy(text, announcement){
+    function done(ok){
+      pfMcpAnnounce(ok
+        ? (announcement || (t('copied') || 'Copied to clipboard'))
+        : (t('copyFailed') || 'Copy failed. Select the text and copy it manually.'));
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(false); });
+      return;
+    }
+    done(false);
+  }
+
+  // ---- dialog focus management -------------------------------------------
+  var pfMcpLastFocus = null;
+
+  function pfMcpOpenDialog(id){
+    pfMcpLastFocus = document.activeElement;
+    var $dialog = $('#' + id).prop('hidden', false);
+    var $box = $dialog.find('.pf-mcp-dialog-box').first();
+    $box.attr('tabindex', '-1').trigger('focus');
+    return $dialog;
+  }
+
+  function pfMcpCloseDialog($dialog){
+    $dialog.prop('hidden', true);
+    if(pfMcpLastFocus && pfMcpLastFocus.focus){ pfMcpLastFocus.focus(); }
+    pfMcpLastFocus = null;
+  }
+
+  // Trap Tab inside an open dialog, and close on Escape.
+  $(document).on('keydown', '.pf-mcp-dialog', function(e){
+    if(e.key === 'Escape'){
+      e.preventDefault();
+      $(this).find('.pf-mcp-dialog-close').first().trigger('click');
+      return;
+    }
+    if(e.key !== 'Tab'){ return; }
+    var focusable = $(this).find('a[href], button:not([disabled]), input:not([disabled]), [tabindex="0"]').filter(':visible');
+    if(!focusable.length){ return; }
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+
+  // ---- personal access tokens --------------------------------------------
+  function pfMcpStatusClass(state){
+    if(state === 'in_use'){ return 'ok'; }
+    if(state === 'revoked' || state === 'expired'){ return 'bad'; }
+    return 'warn';
+  }
+
+  function pfRenderMcpCredentials(list){
+    var $out = $('#pf-mcp-credential-list');
+    if(!list || !list.length){
+      $out.html('<p class="pf-mcp-empty">' + escHtml(t('mcpNoTokens') || 'No personal access tokens yet.') + '</p>');
+      return;
+    }
+    var rows = list.map(function(c){
+      var status = (c.status && c.status.state) || 'never_used';
+      // The label comes from the server so "never used" is never rendered as
+      // "connected": a credential only becomes a connection once a client has
+      // authenticated with it.
+      var statusText = (c.status && c.status.label) || '';
+      var lastUsed = c.last_used ? new Date(c.last_used * 1000).toLocaleString() : (t('never') || 'Never');
+      var isDead = status === 'revoked' || status === 'expired';
+      return '<div class="pf-mcp-credential-row" data-id="' + escHtml(c.id) + '">' +
+        '<div class="pf-mcp-credential-main">' +
+          '<strong>' + escHtml(c.label) + '</strong>' +
+          '<span class="pf-badge ' + pfMcpStatusClass(status) + '">' + escHtml(statusText) + '</span>' +
+        '</div>' +
+        '<div class="pf-mcp-credential-meta">' +
+          '<span>' + escHtml(c.client) + '</span>' +
+          '<span><code>' + escHtml(c.fingerprint || '') + '</code></span>' +
+          '<span>' + escHtml((c.scopes || []).join(', ')) + '</span>' +
+          '<span>' + escHtml(t('lastActivity') || 'Last activity') + ': ' + escHtml(lastUsed) + '</span>' +
+        '</div>' +
+        (isDead ? '' :
+          '<div class="pf-mcp-credential-actions">' +
+            '<button type="button" class="button-link pf-mcp-rotate" data-id="' + escHtml(c.id) + '">' + escHtml(t('rotate') || 'Rotate') + '</button>' +
+            '<button type="button" class="button-link pf-mcp-revoke" data-id="' + escHtml(c.id) + '">' + escHtml(t('revoke') || 'Revoke') + '</button>' +
+          '</div>') +
+      '</div>';
+    });
+    $out.html(rows.join(''));
+  }
+
+  function pfRenderMcpGrants(list){
+    var $out = $('#pf-mcp-grant-list');
+    if(!$out.length){ return; }
+    if(!list || !list.length){
+      $out.html('<p class="pf-mcp-empty">' + escHtml(t('mcpNoGrants') || 'No AI client has completed an OAuth connection yet.') + '</p>');
+      return;
+    }
+    var rows = list.map(function(g){
+      var issued = g.issued ? new Date(g.issued * 1000).toLocaleString() : '';
+      var expires = g.expires ? new Date(g.expires * 1000).toLocaleString() : '';
+      return '<div class="pf-mcp-credential-row" data-family="' + escHtml(g.family) + '">' +
+        '<div class="pf-mcp-credential-main">' +
+          '<strong>' + escHtml(g.client_name || g.client_id) + '</strong>' +
+          '<span class="pf-badge ok">' + escHtml(t('mcpGrantActive') || 'Connected') + '</span>' +
+        '</div>' +
+        '<div class="pf-mcp-credential-meta">' +
+          '<span><code>' + escHtml(g.fingerprint) + '</code></span>' +
+          '<span>' + escHtml((g.scopes || []).join(', ')) + '</span>' +
+          '<span>' + escHtml(t('mcpGrantIssued') || 'Approved') + ': ' + escHtml(issued) + '</span>' +
+          '<span>' + escHtml(t('mcpGrantExpires') || 'Expires') + ': ' + escHtml(expires) + '</span>' +
+        '</div>' +
+        '<div class="pf-mcp-credential-actions">' +
+          '<button type="button" class="button-link pf-mcp-grant-revoke" data-family="' + escHtml(g.family) + '">' + escHtml(t('mcpDisconnect') || 'Disconnect') + '</button>' +
+        '</div>' +
+      '</div>';
+    });
+    $out.html(rows.join(''));
+  }
+
+  function pfRenderMcpOauthClients(list){
+    var $out = $('#pf-mcp-oauth-client-list');
+    if(!$out.length){ return; }
+    if(!list || !list.length){
+      $out.html('<p class="pf-mcp-empty">' + escHtml(t('mcpNoOauthClients') || 'No OAuth clients yet. Most connectors do not need one.') + '</p>');
+      return;
+    }
+    $out.html(list.map(function(c){
+      return '<div class="pf-mcp-credential-row" data-client-id="' + escHtml(c.client_id) + '">' +
+        '<div class="pf-mcp-credential-main">' +
+          '<strong>' + escHtml(c.client_name) + '</strong>' +
+          '<span class="pf-badge ' + (c.revoked ? 'bad' : 'ok') + '">' + escHtml(c.revoked ? (t('revoked') || 'Revoked') : (t('active') || 'Active')) + '</span>' +
+        '</div>' +
+        '<div class="pf-mcp-credential-meta">' +
+          '<span><code>' + escHtml(c.client_id) + '</code></span>' +
+          '<span>' + escHtml(c.type) + '</span>' +
+          '<span>' + escHtml((c.redirect_uris || []).join(' ')) + '</span>' +
+        '</div>' +
+        (c.revoked ? '' :
+          '<div class="pf-mcp-credential-actions">' +
+            '<button type="button" class="button-link pf-mcp-client-revoke" data-client-id="' + escHtml(c.client_id) + '">' + escHtml(t('revoke') || 'Revoke') + '</button>' +
+          '</div>') +
+      '</div>';
+    }).join(''));
+  }
+
+  function pfShowMcpOauthClient(data){
+    $('#pf-mcp-client-id').val(data.client_id || '');
+    $('#pf-mcp-client-secret').val(data.client_secret || '');
+    $('#pf-mcp-client-redirect').text((data.redirect_uris || []).join(' '));
+    pfMcpOpenDialog('pf-mcp-client-dialog');
+    pfMcpAnnounce(t('mcpOauthClientCreated') || 'OAuth client created. Copy the secret now; it cannot be shown again.');
+  }
+
+  function pfLoadMcpCredentials(){
+    $.post(PAGEFORGE.ajax, { action: 'pageforge_mcp_list_credentials', nonce: PAGEFORGE.nonce }, function(res){
+      if(res && res.success){
+        pfRenderMcpCredentials(res.data.credentials);
+        pfRenderMcpGrants(res.data.grants);
+        pfRenderMcpOauthClients(res.data.oauth_clients);
+        pfMcpRenderClientStates(res.data.client_states || {});
+      }
+    });
+  }
+
+  // Connector state is evidence-based: "Connected" only appears when PageForge
+  // has actually observed an authenticated request from that client.
+  function pfMcpRenderClientStates(states){
+    $('[data-pf-mcp-state-for]').each(function(){
+      var $el = $(this);
+      var state = states[$el.data('pf-mcp-state-for')];
+      if(!state){ return; }
+      $el.text(state.label).attr('class', 'pf-mcp-client-state pf-badge ' + (state.badge || 'warn'));
+    });
+  }
+
+  function pfShowMcpToken(token, label, scopes){
+    var endpoint = PF_MCP.endpoint || $('#pf-mcp-endpoint').text();
+    $('#pf-mcp-token-value').val(token);
+    $('#pf-mcp-token-label').text(label || '');
+    $('#pf-mcp-token-scopes').text((scopes || []).join(', '));
+
+    var snippets = pfMcpConfigSnippets(token, endpoint);
+    var $tabs = $('#pf-mcp-config-tabs').empty();
+    var $snippet = $('#pf-mcp-config-snippet');
+
+    snippets.forEach(function(preset, index){
+      var $tab = $('<button type="button" class="button pf-mcp-config-tab" role="tab"></button>')
+        .text(preset.label)
+        .attr('title', preset.hint)
+        .attr('aria-selected', index === 0 ? 'true' : 'false');
+      if(index === 0){ $tab.addClass('is-active'); $snippet.text(preset.body); }
+      $tab.on('click', function(){
+        $tabs.find('.pf-mcp-config-tab').removeClass('is-active').attr('aria-selected', 'false');
+        $tab.addClass('is-active').attr('aria-selected', 'true');
+        $snippet.text(preset.body);
+        pfMcpAnnounce(preset.label + ' ' + (t('mcpConfigShown') || 'configuration shown'));
+      });
+      $tabs.append($tab);
+    });
+
+    pfMcpOpenDialog('pf-mcp-token-dialog');
+    pfMcpAnnounce(t('mcpTokenCreated') || 'Personal access token created. Copy it now; it cannot be shown again.');
+  }
+
+  // ---- contextual help sidebar -------------------------------------------
+  //
+  // The right column used to be empty. It now shows the setup steps for
+  // whichever client the operator picked, so the instructions are readable
+  // alongside the endpoint rather than only inside a modal.
+  function pfMcpShowHelp(client, label){
+    var preset = (PF_MCP.connectors && PF_MCP.connectors[client]) || {};
+    var $detail = $('#pf-mcp-help-detail');
+    if(!$detail.length){ return; }
+
+    $('#pf-mcp-help-icon').attr('src', preset.icon || '').attr('alt', '');
+    $('#pf-mcp-help-title').text((t('mcpSetUp') || 'Set up') + ' ' + label);
+    $('#pf-mcp-help-intro').text(preset.intro || '');
+    $('#pf-mcp-help-caveat').text(preset.caveat || '');
+
+    var $steps = $('#pf-mcp-help-steps').empty();
+    (preset.steps || []).forEach(function(step){
+      $steps.append($('<li></li>').text(step));
+    });
+
+    $('#pf-mcp-help-default').prop('hidden', true);
+    $detail.prop('hidden', false);
+  }
+
+  function pfMcpResetHelp(){
+    $('#pf-mcp-help-detail').prop('hidden', true);
+    $('#pf-mcp-help-default').prop('hidden', false);
+  }
+
+  $(document).on('click', '#pf-mcp-help-back', function(){ pfMcpResetHelp(); });
+
+  // ---- remote connector setup -------------------------------------------
+  function pfMcpOpenOauthSetup(client, label){
+    var preset = (PF_MCP.connectors && PF_MCP.connectors[client]) || {};
+    $('#pf-mcp-oauth-title').text((t('mcpSetUp') || 'Set up') + ' ' + label);
+    $('#pf-mcp-oauth-icon').attr('src', preset.icon || '').attr('alt', label);
+    $('#pf-mcp-oauth-intro').text(preset.intro || '');
+    $('#pf-mcp-oauth-caveat').text(preset.caveat || '');
+    $('#pf-mcp-oauth-endpoint').text(PF_MCP.endpoint || '');
+    $('#pf-mcp-oauth-docs').attr('href', preset.docs || '#');
+
+    var $steps = $('#pf-mcp-oauth-steps').empty();
+    (preset.steps || []).forEach(function(step){
+      $steps.append($('<li></li>').text(step));
+    });
+
+    var $readiness = $('#pf-mcp-oauth-readiness').text(t('checking') || 'Checking…');
+    pfMcpOpenDialog('pf-mcp-oauth-dialog');
+    pfMcpOauthTest($readiness);
+  }
+
+  // Tests PageForge's own OAuth discovery chain. It deliberately does NOT
+  // claim the client is connected: that can only be known once the client
+  // authenticates, and is reported separately from the grant list.
+  function pfMcpOauthTest($target){
+    var $readiness = $target || $('#pf-mcp-oauth-readiness');
+    $readiness.text(t('checking') || 'Checking…').attr('class', '');
+    $.post(PAGEFORGE.ajax, { action: 'pageforge_mcp_oauth_status', nonce: PAGEFORGE.nonce }, function(res){
+      if(!res || !res.success){
+        $readiness.text(t('mcpReadinessUnknown') || 'PageForge could not verify its own OAuth discovery.').attr('class', 'pf-badge warn');
+        return;
+      }
+      $readiness.text(res.data.label).attr('class', 'pf-badge ' + res.data.badge);
+      pfMcpAnnounce(res.data.label);
+    });
+  }
+
+  // ---- events ------------------------------------------------------------
+  $(document).on('click', '.pf-mcp-dialog-close', function(){
+    var $dialog = $(this).closest('.pf-mcp-dialog');
+    // Clear one-time secrets from the DOM on close.
+    $dialog.find('#pf-mcp-token-value, #pf-mcp-client-id, #pf-mcp-client-secret').val('');
+    $dialog.find('#pf-mcp-config-snippet').text('');
+    pfMcpCloseDialog($dialog);
+    pfLoadMcpCredentials();
+  });
+
+  $(document).on('click', '[data-pf-copy-input]', function(){
+    pfMcpCopy($('#' + $(this).data('pf-copy-input')).val(), t('copied') || 'Copied to clipboard');
+  });
+
+  $(document).on('click', '#pf-mcp-create-oauth-client', function(){
+    var name = window.prompt(t('mcpOauthClientNamePrompt') || 'Name for this OAuth client (for example: Claude connector)');
+    if(name === null){ return; }
+    var redirect = window.prompt(t('mcpOauthClientRedirectPrompt') || 'Redirect URI the connector gave you (https://..., or http://127.0.0.1:PORT/... for a local client)');
+    if(redirect === null || !redirect){ return; }
+    $.post(PAGEFORGE.ajax, {
+      action: 'pageforge_mcp_create_oauth_client',
+      nonce: PAGEFORGE.nonce,
+      name: name,
+      redirect_uris: [redirect]
+    }, function(res){
+      if(res && res.success){ pfShowMcpOauthClient(res.data); }
+      else { alert(t('errorPrefix') + ' ' + (res && res.data)); }
+    });
+  });
+
+  $(document).on('click', '.pf-mcp-client-revoke', function(){
+    var id = $(this).data('client-id');
+    if(!window.confirm(t('mcpOauthClientRevokeConfirm') || 'Revoke this OAuth client? Any connector using it loses access immediately.')) return;
+    $.post(PAGEFORGE.ajax, { action: 'pageforge_mcp_revoke_oauth_client', nonce: PAGEFORGE.nonce, client_id: id }, function(res){
+      if(res && res.success){ pfLoadMcpCredentials(); }
+    });
+  });
+
+  $(document).on('click', '#pf-mcp-copy-token', function(){
+    pfMcpCopy($('#pf-mcp-token-value').val(), t('mcpTokenCopied') || 'Token copied to clipboard');
+  });
+
+  $(document).on('click', '#pf-mcp-copy-config', function(){
+    pfMcpCopy($('#pf-mcp-config-snippet').text(), t('mcpConfigCopied') || 'Configuration copied to clipboard');
+  });
+
+  $(document).on('click', '[data-pf-copy-target]', function(){
+    pfMcpCopy($('#' + $(this).data('pf-copy-target')).text(), t('mcpUrlCopied') || 'Server URL copied to clipboard');
+  });
+
+  $(document).on('click', '#pf-mcp-oauth-test', function(){ pfMcpOauthTest(); });
+
+  $(document).on('change', '#pf-mcp-enable', function(){
+    var enabled = $(this).is(':checked');
+    $.post(PAGEFORGE.ajax, { action: 'pageforge_mcp_toggle', nonce: PAGEFORGE.nonce, enabled: enabled ? 1 : 0 }, function(res){
+      if(res && res.success){
+        $('#pf-mcp-state-badge').text(enabled ? (t('enabled') || 'Enabled') : (t('disabled') || 'Disabled'))
+          .toggleClass('ok', enabled).toggleClass('warn', !enabled);
+        pfLoadMcpCredentials();
+      }
+    });
+  });
+
+  $(document).on('click', '.pf-mcp-oauth-setup', function(){
+    var client = $(this).data('pf-mcp-client');
+    var label = $(this).data('pf-mcp-label');
+    // The sidebar keeps the steps visible after the dialog is dismissed.
+    pfMcpShowHelp(client, label);
+    pfMcpOpenOauthSetup(client, label);
+  });
+
+  // Selecting the "other clients" card explains the personal access token
+  // route in the sidebar, which is a different mechanism from OAuth.
+  $(document).on('click', '.pf-mcp-create-pat', function(){
+    pfMcpShowHelp('other', t('mcpOtherClients') || 'other MCP clients');
+  });
+
+  $(document).on('click', '.pf-mcp-create-pat', function(){
+    var client = $(this).data('pf-mcp-client');
+    var label = $(this).data('pf-mcp-label');
+    $.post(PAGEFORGE.ajax, {
+      action: 'pageforge_mcp_create_credential',
+      nonce: PAGEFORGE.nonce,
+      client: client,
+      label: label
+    }, function(res){
+      if(res && res.success){ pfShowMcpToken(res.data.token, res.data.label || label, res.data.scopes); }
+      else { alert(t('errorPrefix') + ' ' + (res && res.data)); }
+    });
+  });
+
+  $(document).on('click', '.pf-mcp-rotate', function(){
+    var id = $(this).data('id');
+    if(!window.confirm(t('mcpRotateConfirm') || 'Rotate this token? The old token stops working immediately.')) return;
+    $.post(PAGEFORGE.ajax, { action: 'pageforge_mcp_rotate_credential', nonce: PAGEFORGE.nonce, id: id }, function(res){
+      if(res && res.success){ pfShowMcpToken(res.data.token, res.data.label || '', res.data.scopes); }
+    });
+  });
+
+  $(document).on('click', '.pf-mcp-revoke', function(){
+    var id = $(this).data('id');
+    if(!window.confirm(t('mcpRevokeConfirm') || 'Revoke this token? The client will lose access immediately.')) return;
+    $.post(PAGEFORGE.ajax, { action: 'pageforge_mcp_revoke_credential', nonce: PAGEFORGE.nonce, id: id }, function(res){
+      if(res && res.success){ pfLoadMcpCredentials(); }
+    });
+  });
+
+  $(document).on('click', '.pf-mcp-grant-revoke', function(){
+    var family = $(this).data('family');
+    if(!window.confirm(t('mcpGrantRevokeConfirm') || 'Disconnect this client? It will need to be authorized again.')) return;
+    $.post(PAGEFORGE.ajax, { action: 'pageforge_mcp_revoke_grant', nonce: PAGEFORGE.nonce, family: family }, function(res){
+      if(res && res.success){ pfLoadMcpCredentials(); }
+    });
+  });
+
+  if($('#pf-mcp-credential-list').length){ pfLoadMcpCredentials(); }
 
   // Data Sources page
   $(document).on('submit', '#pf-upload-form', function(e){
@@ -98,6 +563,24 @@
       }
     });
   });
+
+  $(document).on('change', '#pageforge-template-post-type', function(){
+    var type = $(this).val() || $(this).attr('data-global-type');
+    $('#pageforge-parent-page-row').prop('hidden', type !== 'page');
+    $('#pageforge_parent_page_id').prop('disabled', type !== 'page');
+  });
+  $(document).on('change', '#pf-template', function(){
+    var id = $(this).val();
+    var output = $('#pf-generation-destination');
+    output.text('');
+    if (!id) return;
+    $.post(PAGEFORGE.ajax, {action:'pageforge_template_meta', nonce:PAGEFORGE.nonce, template_id:id}, function(res){
+      if (String($('#pf-template').val()) !== String(id)) return;
+      output.text(res.success ? res.data.destination : res.data);
+    });
+  });
+
+  if ($('#pf-template').val()) $('#pf-template').trigger('change');
 
   // Generate Pages
   $(document).on('click', '#pf-start', function(){
@@ -196,11 +679,16 @@
           '<div class="pf-kv"><div><span>' + escHtml(t('title')) + '</span><code>'+ escHtml(d.meta_title) +'</code></div>'+
           '<div><span>' + escHtml(t('description')) + '</span><code>'+ escHtml(d.meta_description) +'</code></div>'+
           (d.focus_keyword ? '<div><span>' + escHtml(t('keyword')) + '</span><code>'+ escHtml(d.focus_keyword) +'</code></div>' : '') +
+          (d.og_title ? '<div><span>' + escHtml(t('openGraphTitle')) + '</span><code>'+ escHtml(d.og_title) +'</code></div>' : '') +
+          (d.integration_label ? '<div><span>' + escHtml(t('integration')) + '</span><code>'+ escHtml(d.integration_label) +'</code></div>' : '') +
+          (d.metadata_warning ? '<div class="pf-error">' + escHtml(t('metadataWarning')) + ' ' + escHtml(d.metadata_warning) + '</div>' : '') +
           '</div></div>'
         );
       } else {
         setOutput($out, '<div class="pf-error">'+ escHtml(res && res.data ? res.data : t('errorPrefix')) +'</div>');
       }
+    }).fail(function(){
+      setOutput($out, '<div class="pf-error">'+ escHtml(t('requestFailed')) +'</div>');
     });
   });
 
@@ -343,12 +831,18 @@
         setOutput($out,
           '<div class="pf-result"><div><strong>' + escHtml(t('draftCreated')) + '</strong> (#'+ d.post_id +')</div>'+
           '<div><a class="button button-small" href="'+ escHtml(d.edit_url) +'">' + escHtml(t('editPost')) + '</a></div>'+
+          (d.status ? '<div class="pf-note">' + escHtml(t('status')) + ': ' + escHtml(d.status) + '</div>' : '') +
+          (d.integration_label ? '<div class="pf-note">' + escHtml(t('integration')) + ': ' + escHtml(d.integration_label) + '</div>' : '') +
+          (d.notice ? '<div class="pf-note">' + escHtml(d.notice) + '</div>' : '') +
+          (d.metadata_warning ? '<div class="pf-error">' + escHtml(t('metadataWarning')) + ' ' + escHtml(d.metadata_warning) + '</div>' : '') +
           (d.thumbnail_id ? '<div class="pf-note">' + escHtml(fmt('featuredImageAttached', d.thumbnail_id)) + '</div>' : '') +
           '</div>'
         );
       } else {
         setOutput($out, '<div class="pf-error">'+ escHtml(res && res.data ? res.data : t('errorPrefix')) +'</div>');
       }
+    }).fail(function(){
+      setOutput($out, '<div class="pf-error">'+ escHtml(t('requestFailed')) +'</div>');
     });
   });
 
@@ -371,7 +865,7 @@
       include_urls: $('#pf-seo-include-urls').is(':checked') ? 1 : 0,
       post_types: ['page','post','pageforge_page']
     }, function(res){
-      if(res && res.success){
+      if(res && res.success && res.data && res.data.data && typeof res.data.data.markdown === 'string' && res.data.data.markdown.trim()){
         lastSeo = res.data;
         var md = (lastSeo.data && lastSeo.data.markdown) ? lastSeo.data.markdown : '';
         setOutput($out,
@@ -382,8 +876,19 @@
         );
         $('#pf-ai-seo-download-json, #pf-ai-seo-download-md').prop('disabled', false);
       } else {
-        setOutput($out, '<div class="pf-error">'+ escHtml(res && res.data ? res.data : t('errorPrefix')) +'</div>');
+        var responseError = res && res.data ? res.data : t('invalidSeoReportResponse');
+        setOutput($out, '<div class="pf-error">'+ escHtml(typeof responseError === 'string' ? responseError : JSON.stringify(responseError)) +'</div>');
       }
+    }).fail(function(xhr){
+      var message = t('seoReportRequestFailed');
+      if(xhr && xhr.responseJSON && xhr.responseJSON.data){
+        message = typeof xhr.responseJSON.data === 'string'
+          ? xhr.responseJSON.data
+          : JSON.stringify(xhr.responseJSON.data);
+      } else if(xhr && xhr.status){
+        message += ' HTTP ' + xhr.status + '.';
+      }
+      setOutput($out, '<div class="pf-error">'+ escHtml(message) +'</div>');
     });
   });
 

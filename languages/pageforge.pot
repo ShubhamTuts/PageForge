@@ -1,1520 +1,2944 @@
+# Copyright (C) 2026 PageForge
+# This file is distributed under the same license as the PageForge – AI Programmatic SEO, Bulk Page Generator, SEO MCP & Local SEO plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: PageForge 1.1.8\n"
-"Report-Msgid-Bugs-To: https://pageforge.pro\n"
-"POT-Creation-Date: 2026-07-06 00:00+0530\n"
-"PO-Revision-Date: 2026-07-06 00:00+0530\n"
-"Last-Translator: Codefreex <support@codefreex.com>\n"
-"Language-Team: PageForge\n"
-"Language: \n"
+"Project-Id-Version: PageForge – AI Programmatic SEO, Bulk Page Generator, SEO MCP & Local SEO 1.2.6\n"
+"Report-Msgid-Bugs-To: https://pageforge.pro/support\n"
+"POT-Creation-Date: 2026-10-15 10:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Codex\n"
+"PO-Revision-Date: 2026-10-15 10:28+0000\n"
+"Language-Team: PageForge\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: pageforge tools-pot.php\n"
+"X-Domain: pageforge\n"
 
-#: includes/class-pageforge-frontend.php
+#. translators: 1: time ago, 2: HTTP status, 3: HTTP method, 4: reason.
+#: includes/class-pageforge-mcp-diagnostics.php:72
+msgid "%1$s ago — HTTP %2$d on %3$s: %4$s"
+msgstr ""
+
+#. translators: 1: AI provider label, 2: HTTP status code.
+#: includes/helpers.php:533
+msgid "%1$s request failed with HTTP %2$d."
+msgstr ""
+
+#: includes/class-pageforge-frontend.php:124
 msgid "%d page"
 msgid_plural "%d pages"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-pageforge-admin.php
-msgid "— None —"
-msgstr ""
-
-#: includes/helpers.php
+#. translators: %s: AI provider label
+#: includes/helpers.php:483
 msgid "%s API key missing"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:109
 msgid "%s API key missing."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:664
 msgid "%s day ago"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:665
 msgid "%s days ago"
 msgstr ""
 
-#: includes/helpers.php
+#. translators: %s: AI provider label
+#: includes/helpers.php:555
 msgid "%s error"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:663
 msgid "%s hr ago"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:662
 msgid "%s min ago"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#. translators: %s: selected generation mode
+#: includes/class-pageforge-plugin.php:903
 msgid "%s mode is not available in this free build. Running instantly instead."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#. translators: %s: AI provider label.
+#: includes/helpers.php:568
+msgid "%s reached its output limit before returning final content. Try again or choose a shorter output."
+msgstr ""
+
+#. translators: %s: AI provider label.
+#: includes/helpers.php:573
+msgid "%s returned an empty response."
+msgstr ""
+
+#. translators: %s: AI provider label.
+#: includes/helpers.php:545
+msgid "%s returned an invalid response."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:638
+msgid "-"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:99
+msgid "400 means an authenticated request had an invalid JSON body or conflicting protocol metadata. \"Malformed JSON\" identifies a body problem; unsupported versions and header conflicts are named separately above."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:105
+msgid "401 in this list means a supplied credential was rejected. Credential-free OAuth discovery challenges are expected and are not logged. Reconnect the client or regenerate its API key."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:93
+msgid "403 means MCP is disabled, the Origin was rejected, or the grant lacked the scope for that operation. Check the MCP toggle above and the scopes on the connected client."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:96
+msgid "405 is expected when a client probes for the legacy GET event stream; this server is stateless and accepts POST only. It is not an error unless the client then gives up."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:102
+msgid "429 means a rate limit was hit. This is protective; if a legitimate client is affected, reduce its polling frequency."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:602
+msgid "A personal access token is not an OAuth client secret and not an AI provider API key. Revoke it here if a machine holding it is lost."
+msgstr ""
+
+#: includes/class-pageforge-mcp-credentials.php:104
+msgid "A personal access token must belong to a WordPress user."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:219
+msgid "A security plugin, WAF, or server rule is likely blocking the WordPress REST API. Allow requests to /wp-json/pageforge/v1/."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:377
 msgid "A template-level Generated Post Status overrides this setting."
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Accent color"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Account"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Account portal URL is currently unavailable. Ensure the Freemius SDK is loaded and this site is connected."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Account portal URL is not available in this environment. Use your Freemius dashboard to manage licenses."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Actions"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Active Templates"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Add API key in Settings"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Add Data Source"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Add keywords separated by commas or new lines"
-msgstr ""
-
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
-msgid "Add New Template"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Add your selected AI provider API key to enable the Site Planner and other AI tools."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Adds an internal-linking sitemap of generated PageForge pages. It groups by City by default and links every matching generated URL."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:56
 msgid "AI Blog"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1211
 msgid "AI Blog Generator"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:805
 msgid "AI Blog generator & images"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "AI chat and tools"
-msgstr ""
-
-#: includes/class-pageforge-ai.php
-msgid "AI did not return meta_title/meta_description"
-msgstr ""
-
-#: includes/class-pageforge-ai.php
-msgid "AI did not return title/content_html"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:791
 msgid "AI Meta Generator"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "AI navigation and conversations"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:549
 msgid "AI Provider"
 msgstr ""
 
-#: includes/class-pageforge-ai.php
-msgid "AI returned invalid JSON"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:69
 msgid "AI SEO Page Generator"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1049
 msgid "AI SEO Report / Planner"
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:55
+#: includes/class-pageforge-admin.php:929
+#: includes/class-pageforge-admin.php:956
+#: includes/class-pageforge-plugin.php:506
 msgid "AI Site Planner"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:798
 msgid "AI Site Planner & SEO report"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:953
+msgid "AI chat and tools"
+msgstr ""
+
+#: includes/class-pageforge-ai.php:382
+msgid "AI did not return meta_title/meta_description"
+msgstr ""
+
+#: includes/class-pageforge-ai.php:470
+msgid "AI did not return title/content_html"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:934
+msgid "AI navigation and conversations"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1514
+msgid "AI providers live in Settings. This screen covers external AI clients and services PageForge talks to."
+msgstr ""
+
+#: includes/class-pageforge-ai.php:265
+msgid "AI returned invalid JSON"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:754
 msgid "AI tools are unlimited for paid plans."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:879
 msgid "AI usage limits"
 msgstr ""
 
-#: includes/helpers.php
+#: includes/class-pageforge-mcp-server.php:682
+msgid "Access token was not issued for this MCP server."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:852
+#: includes/class-pageforge-admin.php:857
+msgid "Account"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:400
+msgid "Account cannot authorize AI clients"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:905
+msgid "Account portal URL is currently unavailable. Ensure the Freemius SDK is loaded and this site is connected."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:823
+msgid "Account portal URL is not available in this environment. Use your Freemius dashboard to manage licenses."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1650
+msgid "Action required"
+msgstr ""
+
+#. translators: %d: number of diagnostic items needing attention.
+#: includes/class-pageforge-admin.php:1676
+msgid "Action required: %d item needs attention before AI clients can connect reliably."
+msgid_plural "Action required: %d items need attention before AI clients can connect reliably."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-pageforge-admin.php:296
+msgid "Actions"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:145
+msgid "Active Templates"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:111
+msgid "Add API key in Settings"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:204
+msgid "Add Data Source"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:288
+#: includes/class-pageforge-plugin.php:326
+msgid "Add New Template"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:1004
+msgid "Add an AI provider API key in PageForge settings first."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1226
+msgid "Add keywords separated by commas or new lines"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:967
+msgid "Add your selected AI provider API key to enable the Site Planner and other AI tools."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:467
+msgid "Adds an internal-linking sitemap of generated PageForge pages. It groups by City by default and links every matching generated URL."
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:110
+msgid "Administer PageForge"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1703
+msgid "Advanced diagnostics"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1706
+msgid "All PageForge MCP diagnostic checks"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1649
+msgid "All checks passed"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:357
+msgid "Allow-list /wp-json/pageforge/v1/mcp and the OAuth endpoints in that plugin. Do not disable it wholesale."
+msgstr ""
+
+#: includes/class-pageforge-edition.php:204
+msgid "Another PageForge edition was deactivated so only one PageForge runtime is active. No templates, generated pages or settings were changed."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:230
+msgid "Another plugin may be filtering REST responses. Test with other plugins disabled."
+msgstr ""
+
+#: includes/helpers.php:639
 msgid "Anthropic error"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Appearance"
+#: includes/helpers.php:633
+msgid "Anthropic request failed with HTTP %d."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Applies to pageforge_page URLs. Save to flush permalinks."
+#: includes/helpers.php:655
+msgid "Anthropic returned an empty response."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/helpers.php:636
+msgid "Anthropic returned an invalid response."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:583
+msgid "Approve the connection when Claude sends you to this site."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:600
+msgid "Ask it: “Show my PageForge site status.”"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:668
 msgid "Assistant"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-oauth-clients.php:228
+msgid "At least one valid redirect URI is required."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1221
 msgid "Audience (optional)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1829
+msgid "Authentication"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:612
+msgid "Authorization code is invalid, expired, or already used."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:617
+msgid "Authorization code was not issued to this client."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1737
+#: includes/class-pageforge-admin.php:1906
+msgid "Authorization endpoint"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:249
+#: includes/class-pageforge-mcp-diagnostics.php:254
+msgid "Authorization header"
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:660
+msgid "Authorization must use the Bearer scheme."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:657
+msgid "Authorization required."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1736
+msgid "Authorization server metadata"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:241
 msgid "Available CSVs"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Background color"
+#: includes/class-pageforge-admin.php:1364
+msgid "Base Layout to Clone"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Base layout cloning"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Base Layout from Existing Page or Template"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1378
 msgid "Base Page/Template ID:"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:516
+msgid "Base layout cloning"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1305
 msgid "Best {Service} in {City}, {State}"
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:54
+#: includes/class-pageforge-plugin.php:505
 msgid "Blocks"
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:431
+#: includes/class-pageforge-admin.php:436
+#: includes/class-pageforge-plugin.php:505
 msgid "Blocks & Shortcodes"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1214
 msgid "Blog"
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:1193
+#: includes/class-pageforge-admin.php:1197
+#: includes/class-pageforge-plugin.php:508
 msgid "Blog Generator"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:624
 msgid "Brand Context / Voice"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:511
 msgid "Builder-ready tokens"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:640
 msgid "Bulk request failed to start (JS error)."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:631
 msgid "Business Type (Schema)"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Cards"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Chat-style assistant to plan your sitemap, pages, SEO, and launch."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Choose a CSV uploaded in Data Sources. Headers define available placeholders."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Choose grouping, columns, colors, and heading level from the block sidebar."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Choose which AI provider powers AI content, meta generation, the site planner, and blog drafts in the free plugin."
-msgstr ""
-
-#: includes/class-pageforge-frontend.php
-msgid "City"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Claude API Key"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Claude Model"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Click Add Block and search for PageForge Sitemap."
-msgstr ""
-
-#: includes/class-pageforge-frontend.php
-msgid "Columns"
-msgstr ""
-
-#: includes/class-pageforge-frontend.php
-msgid "Comma-separated. Example: pageforge_page,page,post"
-msgstr ""
-
-#: includes/class-pageforge-frontend.php
-msgid "Compact"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Configure AI providers, generation defaults, analytics, and schema options."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Contact sales"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Content length"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Control columns, page limit, counts, heading level, and colors."
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Conversation"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Conversion-focused structure + heading set"
-msgstr ""
-
-#: includes/class-pageforge-ai.php
-msgid "Create a complete website plan for my business. Ask me for my business name, location, services, and goals, then propose sitemap, page sections, SEO keywords, and a launch checklist."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Create reusable templates with dynamic placeholders like {City}, {State}, {Service} anywhere in your content, title, or slug pattern."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Create robust templates"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Create Template"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Create up to 100 unique pages per run from CSV with dynamic tokens, schema, and builder-friendly templates."
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "CSV has no rows"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:447
 msgid "CSV Sources"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:232
 msgid "CSV Upload"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:894
+msgid "CSV has no rows"
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:111
+msgid "Change PageForge settings and connector configuration."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:661
+msgid "Changes only /{base}/slug/ for PageForge custom content. A nonempty base is required. Choose native Page output with no parent for /the-magnolias/, or assign a Parent Page for /maths-tuition-gurgaon/dlf-phase-iv/. Changing an established base changes custom-content URLs: plan redirects separately; PageForge does not create them."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:957
+msgid "Chat-style assistant to plan your sitemap, pages, SEO, and launch."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1571
+#: includes/class-pageforge-admin.php:1768
+msgid "ChatGPT"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:561
+msgid "ChatGPT connects to PageForge as a custom MCP connector. It discovers OAuth from the server URL below, then asks you to sign in to WordPress and approve the connection."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:566
+msgid "ChatGPT will send you to this site to sign in and approve the requested access."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1709
+msgid "Check"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:107
+msgid "Check the reason above. If it mentions a credential, reconnect the client; if it mentions the protocol, the client and this server disagree on a version."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1573
+#: includes/class-pageforge-admin.php:1581
+#: includes/class-pageforge-admin.php:1843
+msgid "Checking…"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:402
+msgid "Choose a CSV uploaded in Data Sources. Headers define available placeholders."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1762
+msgid "Choose a client on the left to see its setup steps here."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:740
+msgid "Choose a supported generation post type."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:506
+msgid "Choose grouping, columns, colors, and heading level from the block sidebar."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:556
+msgid "Choose which AI provider powers AI content, meta generation, the site planner, and blog drafts in the free plugin."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1579
+#: includes/class-pageforge-admin.php:1772
+msgid "Claude"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:574
+msgid "Claude API Key"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:578
+msgid "Claude Model"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:578
+msgid "Claude connects to PageForge as a remote custom connector over OAuth. If Claude asks for a Client ID and Client Secret, create an OAuth client below rather than using an API key or your PageForge licence key."
+msgstr ""
+
+#: includes/helpers.php:644
+msgid "Claude declined this request. Rephrase the prompt or choose a different Claude model."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:505
+msgid "Click Add Block and search for PageForge Sitemap."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1894
+msgid "Client ID"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:390
+#: includes/class-pageforge-mcp-diagnostics.php:399
+msgid "Client activity"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:773
+msgid "Client authentication failed."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1876
+msgid "Client configuration"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1899
+msgid "Client secret"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:167
+msgid "Clients that read the WWW-Authenticate challenge (all current MCP clients must) will still discover OAuth correctly. To also serve the root paths, proxy /.well-known/oauth-protected-resource and /.well-known/oauth-authorization-server to the PageForge REST equivalents shown below."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:393
+msgid "Complete the setup in your AI client. PageForge will report the connection here once it sees an authenticated request."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:538
+msgid "Configure AI providers, generation defaults, analytics, and schema options."
+msgstr ""
+
+#. translators: %s: last characters of the stored secret, e.g. ****ab12
+#: includes/class-pageforge-admin.php:33
+msgid "Configured (%s)"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1759
+msgid "Connect ChatGPT, Claude or another MCP-compatible AI client to securely inspect PageForge."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1757
+msgid "Connect an AI Client"
+msgstr ""
+
+#. translators: %s: human-readable time difference.
+#: includes/class-pageforge-plugin.php:186
+msgid "Connected · approved %s ago"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1642
+msgid "Connection diagnostics"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1509
+#: includes/class-pageforge-admin.php:1513
+#: includes/class-pageforge-admin.php:57
+#: includes/class-pageforge-plugin.php:509
+msgid "Connections"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:832
+msgid "Contact sales"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1229
+msgid "Content length"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:470
+msgid "Control columns, page limit, counts, heading level, and colors."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:811
+msgid "Controlled by Settings > Default Post Type."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:810
+msgid "Controlled by template Target Post Type."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:667
+msgid "Conversation"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1019
+msgid "Conversion-focused structure + heading set"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1825
+msgid "Copy"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1896
+msgid "Copy ID"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1881
+msgid "Copy configuration"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1901
+msgid "Copy secret"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:563
+#: includes/class-pageforge-plugin.php:580
+msgid "Copy the MCP server URL below."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1862
+msgid "Copy this token now. PageForge stores only a hash of it and cannot show it again."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1867
+msgid "Copy token"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1614
+msgid "Create OAuth client"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:203
+#: includes/class-pageforge-admin.php:440
+msgid "Create Template"
+msgstr ""
+
+#: includes/class-pageforge-ai.php:164
+msgid "Create a complete website plan for my business. Ask me for my business name, location, services, and goals, then propose sitemap, page sections, SEO keywords, and a launch checklist."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:596
+msgid "Create a personal access token and copy it. It is shown only once."
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:80
+msgid "Create and update content"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1594
+msgid "Create personal access token"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:285
+msgid "Create reusable templates with dynamic placeholders like {City}, {State}, {Service} anywhere in your content, title, or slug pattern."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:317
+msgid "Create robust templates"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:201
+msgid "Create up to 100 unique pages per run from CSV with dynamic tokens, schema, and builder-friendly templates."
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:81
+msgid "Create, update, and publish PageForge-generated pages."
+msgstr ""
+
+#: includes/class-pageforge-mcp-credentials.php:88
+msgid "Credential active · Never used"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:267
+#: includes/class-pageforge-plugin.php:275
+msgid "Credential not found"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:705
+#: includes/class-pageforge-admin.php:871
 msgid "Current plan:"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:469
 msgid "Customize grouping by City, State, Service, or one list."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:130
+#: includes/class-pageforge-admin.php:135
+#: includes/class-pageforge-admin.php:50
 msgid "Dashboard"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:363
 msgid "Data Source (CSV)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:218
+#: includes/class-pageforge-admin.php:223
+#: includes/class-pageforge-admin.php:52
+#: includes/class-pageforge-plugin.php:503
 msgid "Data Sources"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:602
 msgid "DeepSeek API Key"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:606
 msgid "DeepSeek Model"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:613
 msgid "DeepSeek uses its current OpenAI-compatible API models. Legacy deepseek-chat and deepseek-reasoner are intentionally excluded."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:626
 msgid "Describe your brand, tone, USPs. Added to AI prompts."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:982
 msgid "Describe your business, location, services, and goals…"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:632
 msgid "Description"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Direct license key entry from this screen can be added later once the Freemius API integration is finalized."
+#. translators: %s: comma-separated plugin names.
+#: includes/class-pageforge-mcp-diagnostics.php:354
+msgid "Detected: %s. These can block REST requests or strip Authorization headers."
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Displays generated PageForge pages grouped by city, state, service, or as one list."
+#: includes/class-pageforge-admin.php:1529
+msgid "Disabled"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-diagnostics.php:131
+msgid "Disabled. Every MCP request is refused, including OAuth authorization."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:948
 msgid "Documentation"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:1854
+#: includes/class-pageforge-admin.php:1882
+#: includes/class-pageforge-admin.php:1911
+msgid "Done"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:645
 msgid "Done."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Download a sample CSV to get started quickly."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1065
 msgid "Download JSON"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1066
 msgid "Download Markdown"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:251
 msgid "Download Sample CSV"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:250
+msgid "Download a sample CSV to get started quickly."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1241
+#: includes/class-pageforge-admin.php:1355
+#: includes/class-pageforge-admin.php:372
 msgid "Draft"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
-msgid "Draft created"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:488
 msgid "Dynamic Variables"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "e.g. AU, US, GB (ISO 2-letter)"
+#: includes/class-pageforge-oauth-clients.php:223
+msgid "Dynamic client registration is disabled on this site."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "e.g. Local SEO checklist for plumbers"
+#: includes/class-pageforge-oauth.php:818
+msgid "Dynamic client registration is disabled. Use a Client ID Metadata Document, or ask the site administrator for a pre-registered client."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "e.g. Small business owners"
+#: includes/class-pageforge-generator.php:26
+msgid "Dynamic parent mapping requires licensed PageForge Premium. Select a static parent Page instead."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-oauth-clients.php:239
+msgid "Dynamically registered client"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:654
 msgid "Edit Post"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:327
 msgid "Edit Template"
 msgstr ""
 
-#: includes/class-pageforge-ai.php
+#: includes/class-pageforge-ai.php:241
+#: includes/class-pageforge-ai.php:261
 msgid "Empty AI response"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1536
+msgid "Enable PageForge MCP Lite (read, analyze, validate, preview only)"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:132
+msgid "Enable PageForge MCP above before connecting a client."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1529
+msgid "Enabled"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:131
+msgid "Enabled. The MCP endpoint accepts authenticated requests."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1545
+msgid "Endpoint"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:410
 msgid "Ensure CSV headers match placeholders exactly (case-insensitive)."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:27
+msgid "Enter a new value to replace it"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:737
+msgid "Enter a nonempty Generated CPT Slug Base, such as pageforge. For root URLs choose native Page output."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:651
 msgid "Enter a topic"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:116
+msgid "Enter an HTTPS redirect URI, or an http://127.0.0.1 address for a local client."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:772
 msgid "Enterprise"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:612
 msgid "Error:"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:670
 msgid "Error: Request failed. Check network / API key."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:625
 msgid "Errors:"
 msgstr ""
 
-#: includes/class-pageforge-generator.php
+#. translators: %d: existing post ID
+#: includes/class-pageforge-generator.php:134
 msgid "Exists (ID: %d)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-credentials.php:85
+msgid "Expired"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1873
+msgid "Expires"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:306
+#: includes/class-pageforge-admin.php:994
 msgid "Export"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:768
 msgid "Feature"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:655
 msgid "Featured image attached (attachment #%s)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1251
+msgid "Featured image searches use Pexels. Photos provided by %s."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1462
 msgid "Focus Keyword (optional)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1593
+msgid "For clients where you supply an authentication header yourself: VS Code, Codex, GitHub Copilot, Roo Code, Cursor, Claude Code, or any generic MCP client."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:830
 msgid "For higher volumes, custom workflows, or security reviews, talk to us about an Enterprise plan."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
-msgid "for Post"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:459
+#: includes/class-pageforge-admin.php:769
 msgid "Free"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#. translators: 1: used AI messages, 2: monthly AI quota
+#: includes/class-pageforge-admin.php:749
 msgid "Free AI tools: %1$d of %2$d messages used this month on this site."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#. translators: 1: row limit, 2: skipped rows
+#: includes/class-pageforge-plugin.php:914
 msgid "Free build processes up to %1$d pages per run. %2$d rows were skipped."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#. translators: %d: free row limit
+#: includes/class-pageforge-admin.php:735
 msgid "Free builds can generate up to %d rows once per site. After that, upgrading unlocks unlimited rows."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:760
 msgid "Free limit status:"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#. translators: 1: used AI messages, 2: limit per month
+#: includes/class-pageforge-admin.php:884
 msgid "Free plan: %1$d of %2$d AI messages used this month on this site."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-generator.php:82
+msgid "Free processes at most %d rows per run. Split the remaining rows into another run."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:898
 msgid "Freemius account portal"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1011
 msgid "Full website plan"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:668
 msgid "GA4 API Secret"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:664
 msgid "GA4 Measurement ID"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:588
 msgid "Gemini API Key"
 msgstr ""
 
-#: includes/helpers.php
-msgid "Gemini error"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:592
 msgid "Gemini Model"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/helpers.php:710
+msgid "Gemini error"
+msgstr ""
+
+#: includes/helpers.php:704
+msgid "Gemini request failed with HTTP %d."
+msgstr ""
+
+#: includes/helpers.php:723
+msgid "Gemini returned an empty response."
+msgstr ""
+
+#: includes/helpers.php:707
+msgid "Gemini returned an invalid response."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:51
 msgid "Generate"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1172
 msgid "Generate & Save Meta"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Generate a full HTML blog draft and optionally attach a featured image from Pexels."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Generate a prioritized SEO plan for your site. Saves the latest report in the database."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Generate Draft"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:205
+#: includes/class-pageforge-admin.php:336
+#: includes/class-pageforge-admin.php:341
 msgid "Generate Pages"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1254
+msgid "Generate Post"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1064
 msgid "Generate Report"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Generate SEO meta and save to PageForge + Yoast + RankMath meta fields."
+#: includes/class-pageforge-admin.php:1050
+msgid "Generate a prioritized SEO plan for your site. Saves the latest report in the database."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
-msgid "Generated at:"
+#: includes/class-pageforge-admin.php:1198
+msgid "Generate a standard WordPress blog post with SEO metadata and an optional Pexels featured image."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1144
+msgid "Generate search and social metadata, then save it through a supported SEO integration or PageForge built-in metadata."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:660
 msgid "Generated CPT Slug Base"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1349
 msgid "Generated Post Status"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:650
 msgid "Generated Post Type"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Generated posts keep variables for runtime replacement, so builders like Elementor/Divi/Gutenberg show tokens correctly."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:445
 msgid "Generated URLs"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:657
+msgid "Generated at:"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:404
+msgid "Generated posts keep variables for runtime replacement, so builders like Elementor/Divi/Gutenberg show tokens correctly."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:386
 msgid "Generates pages immediately in your browser session, with up to 100 pages per run in free."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
-msgid "Generating draft..."
+#: includes/class-pageforge-plugin.php:652
+msgid "Generating post..."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:656
 msgid "Generating report..."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:627
 msgid "Generating..."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:266
 msgid "Google Sheets"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:267
 msgid "Google Sheets integration is not included in this build."
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Group by"
+#: includes/class-pageforge-mcp-diagnostics.php:140
+msgid "HTTPS"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Heading level"
+#: includes/class-pageforge-plugin.php:158
+msgid "HTTPS required"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1021
 msgid "Home"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1018
 msgid "Home page wireframe"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:399
 msgid "How it works"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:502
 msgid "How to add the Sitemap block"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1776
+msgid "IDEs & other clients"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:259
+msgid "If clients report invalid credentials while the token is correct, add this to .htaccess: RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}] — or the nginx equivalent. Do not work around it by putting tokens in a URL."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:907
 msgid "If you have enabled white-label mode for this license, some owner and billing information may be hidden from your client sites."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:564
+msgid "In ChatGPT, open Settings and add a new connector, choosing the MCP / custom connector option."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:581
+msgid "In Claude, add a custom connector and paste the server URL."
+msgstr ""
+
+#: includes/class-pageforge-mcp-credentials.php:90
+msgid "In use"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1249
 msgid "Include featured image (Pexels)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:987
 msgid "Include recent site URLs for context"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1057
 msgid "Include up to 20 recent URLs in the report context"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:778
+#: includes/class-pageforge-admin.php:779
+#: includes/class-pageforge-admin.php:780
+#: includes/class-pageforge-admin.php:781
+#: includes/class-pageforge-admin.php:786
+#: includes/class-pageforge-admin.php:787
+#: includes/class-pageforge-admin.php:788
+#: includes/class-pageforge-admin.php:793
+#: includes/class-pageforge-admin.php:794
+#: includes/class-pageforge-admin.php:795
+#: includes/class-pageforge-admin.php:800
+#: includes/class-pageforge-admin.php:801
+#: includes/class-pageforge-admin.php:802
+#: includes/class-pageforge-admin.php:808
+#: includes/class-pageforge-admin.php:809
 msgid "Included"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:512
 msgid "Insert tokens like {City}, {State}, {Service}, or any CSV header directly into Gutenberg, Elementor, and Divi text areas. PageForge replaces them on generated pages, including theme titles and excerpts."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:384
 msgid "Instant (Run Now)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:257
 msgid "Instructions"
 msgstr ""
 
-#: includes/class-pageforge-ai.php
+#. translators: %s: OAuth scope name.
+#: includes/class-pageforge-mcp-server.php:790
+msgid "Insufficient scope. This operation requires: %s"
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:181
+msgid "Invalid JSON-RPC request."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:350
+msgid "Invalid Origin header."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1341
+msgid "Invalid configured parent — choose an existing Page or None"
+msgstr ""
+
+#: includes/class-pageforge-ai.php:352
 msgid "Invalid post"
 msgstr ""
 
-#: includes/class-pageforge-generator.php
+#: includes/class-pageforge-generator.php:10
+#: includes/class-pageforge-generator.php:242
+#: includes/class-pageforge-generator.php:343
+#: includes/class-pageforge-generator.php:89
 msgid "Invalid template"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
-msgid "just now"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:633
 msgid "Keyword"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1871
+msgid "Label"
+msgstr ""
+
+#. translators: 1: client name, 2: human-readable time difference.
+#: includes/class-pageforge-mcp-diagnostics.php:403
+msgid "Last authenticated request: %1$s, %2$s ago."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:582
+msgid "Leave authentication set to OAuth so Claude discovers it automatically."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:646
 msgid "Leave blank to auto-detect. If an AI API key is connected, PageForge will prefer global prevalence (auto country) instead of forcing AU."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1525
+msgid "Let ChatGPT, Claude, or any MCP-compatible client read your PageForge site: templates, generated pages, SEO status, and preview/validate tools. Protocol 2026-07-28."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:818
 msgid "License management"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:819
 msgid "Licenses and billing for PageForge are managed via Freemius. Use the account portal to update payment details, move licenses between sites, or cancel a subscription."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:899
 msgid "Licenses, billing details, invoices, and subscription management are handled by Freemius. Use the account portal to manage your license across sites."
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Link color"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:615
 msgid "Loading..."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1611
+#: includes/class-pageforge-admin.php:1619
+#: includes/class-pageforge-admin.php:1624
+#: includes/class-pageforge-admin.php:244
+#: includes/class-pageforge-admin.php:365
 msgid "Loading…"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1035
 msgid "Local"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1032
 msgid "Local SEO plan"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1033
 msgid "Location pages + GBP + schema"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1233
 msgid "Long (~1000 words max in free)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-diagnostics.php:318
+msgid "Long-running MCP jobs and scheduled generation depend on cron. Configure a real system cron to call wp-cron.php."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1523
+msgid "MCP / AI Clients"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1539
+msgid "MCP Lite · Read & Preview"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:154
+msgid "MCP disabled"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:305
+msgid "MCP is disabled"
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:102
+#: includes/class-pageforge-oauth.php:568
+msgid "MCP is disabled on this site."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1668
+msgid "MCP is ready. PageForge can serve OAuth discovery and accept authenticated AI clients."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1822
+msgid "MCP server URL"
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:285
+msgid "MCP-Protocol-Version header does not match the protocol version in _meta."
+msgstr ""
+
+#. translators: %s: PHP JSON parser error.
+#: includes/class-pageforge-mcp-server.php:175
+msgid "Malformed JSON: %s"
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:172
+msgid "Malformed JSON: the POST body is empty."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:671
+msgid "Malformed authentication token."
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:92
+msgid "Manage SEO"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:723
 msgid "Manage billing & license"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-scopes.php:98
+msgid "Manage data sources"
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:99
+msgid "Manage datasets, CSV imports, and Google Sheets connections."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:858
 msgid "Manage your PageForge connection, license, and access the Freemius account portal."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-server.php:382
+msgid "Mcp-Method header does not match the JSON-RPC method in the body."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:406
+msgid "Mcp-Name header does not match the tool name in the body."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:403
+msgid "Mcp-Name header is not a valid Base64 sentinel value."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1232
 msgid "Medium (~700 words)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1455
 msgid "Meta Description"
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:1308
+msgid "Meta Description Pattern"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1139
+#: includes/class-pageforge-admin.php:1143
+#: includes/class-pageforge-plugin.php:507
 msgid "Meta Title & Description"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Minimal"
+#: includes/class-pageforge-plugin.php:637
+msgid "Metadata warning:"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#. translators: %s: JSON-RPC method name.
+#: includes/class-pageforge-mcp-server.php:255
+msgid "Method not found: %s"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:818
 msgid "Missing"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-oauth.php:318
+msgid "Missing client"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:230
+msgid "Missing grant reference"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:333
+msgid "Missing redirect URI"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:854
 msgid "Missing template or data source"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:381
 msgid "Mode"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:448
 msgid "Native Blocks"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:457
 msgid "Native Gutenberg blocks connected to generated PageForge content."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:803
+msgid "Native Page → Pages > All Pages"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1346
+msgid "Native Pages only. Choose an existing Page for /parent/child/ URLs; choose None for /child/. Parent permissions are checked before generation."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:805
+msgid "Native Post → Posts > All Posts → WordPress post permalinks"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:829
 msgid "Need Enterprise?"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:911
 msgid "Need to move or deactivate a license?"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1310
+msgid "Need {Service} in {City}, {State}? Contact us for fast local help."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1873
+msgid "Never (revoke it manually when finished)"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:936
+#: includes/class-pageforge-admin.php:993
 msgid "New chat"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:660
 msgid "New site plan"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-mcp-diagnostics.php:392
+msgid "No AI client has successfully authenticated yet."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:258
+msgid "No Authorization header was present on this admin request, which is normal. PageForge cannot confirm from here whether your host forwards it on API requests."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:618
 msgid "No CSVs yet"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:617
 msgid "No CSVs yet."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
-msgid "No file"
+#: includes/class-pageforge-mcp-diagnostics.php:64
+msgid "No MCP request has been rejected recently."
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "No grouping"
-msgstr ""
-
-#: includes/helpers.php
-msgid "No messages provided"
-msgstr ""
-
-#: includes/class-pageforge-frontend.php
+#: includes/class-pageforge-frontend.php:78
 msgid "No PageForge pages found."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-access.php:120
+msgid "No data source was selected."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:755
+msgid "No file"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:1028
+msgid "No matching post types are available."
+msgstr ""
+
+#: includes/helpers.php:601 includes/helpers.php:676
+#: includes/helpers.php:756
+msgid "No messages provided"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:346
+msgid "No plugin known to block REST bearer authentication was detected."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:182
 msgid "No recent generations."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-oauth-tokens.php:207
+msgid "No scopes in this grant can still be honoured on this site."
+msgstr ""
+
+#: includes/class-pageforge-seo.php:380
+msgid "No supported SEO fields were supplied."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:299
 msgid "No templates yet."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:1336
+#: includes/class-pageforge-admin.php:1338
+msgid "None (root Page)"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:27
+#: includes/class-pageforge-admin.php:36
+msgid "Not configured"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:214
+msgid "Not ready · see Connection diagnostics below"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1830
+msgid "OAuth 2.1 (discovered automatically)"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1889
+msgid "OAuth client created"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:131
+msgid "OAuth client not found"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1608
+msgid "OAuth clients"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1622
+msgid "OAuth grants"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:292
+#: includes/class-pageforge-mcp-diagnostics.php:301
+msgid "OAuth metadata"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:642
 msgid "OK"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:777
 msgid "One-time bulk generation (limited rows)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-access.php:151
+msgid "Only CSV data sources can be used for generation."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1609
+msgid "Only needed when a connector asks you to supply a Client ID and Client Secret. These are separate from your AI provider API keys."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:902
 msgid "Open Account Portal"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Open any page in the WordPress block editor."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:821
 msgid "Open Freemius account portal"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:634
+msgid "Open Graph title"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:518
 msgid "Open Templates"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:504
+msgid "Open any page in the WordPress block editor."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:560
 msgid "OpenAI API Key"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:564
 msgid "OpenAI Model"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
+#: includes/class-pageforge-mcp-scopes.php:86
+msgid "Operate campaigns"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1311
+msgid "Optional. CSV placeholders are replaced for each generated post and written to PageForge and the active supported SEO plugin. Leave blank to use generated metadata."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:367
+msgid "Origin is not allowed to access this MCP endpoint."
+msgstr ""
+
+#: includes/class-pageforge-frontend.php:406
 msgid "Other Cities"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
+#: includes/class-pageforge-admin.php:1591
+msgid "Other MCP Clients"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1586
+msgid "Other MCP clients (personal access token)"
+msgstr ""
+
+#: includes/class-pageforge-frontend.php:410
 msgid "Other Pages"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
+#: includes/class-pageforge-frontend.php:408
 msgid "Other Services"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
+#: includes/class-pageforge-frontend.php:407
 msgid "Other States"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-ai.php:277
+msgid "Overview"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:249
+msgid "PHP can see Authorization headers on this request."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:281
+msgid "PKCE S256 not advertised"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:628
+msgid "PKCE verification failed."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1327
+#: includes/class-pageforge-admin.php:654
 msgid "Page"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:167
 msgid "Page Generation Activity"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Page limit"
-msgstr ""
-
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:66
+#: includes/class-pageforge-plugin.php:494
+#: includes/class-pageforge-plugin.php:495
 msgid "PageForge"
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-frontend.php
+#: includes/class-pageforge-admin.php:456
+#: includes/class-pageforge-frontend.php:147
 msgid "PageForge Blocks"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "PageForge can output basic SEO title and meta description when no dedicated SEO plugin is active."
+#: includes/class-pageforge-admin.php:1781
+msgid "PageForge Free lets an AI client read, analyse and preview. It never lets one change your site."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "PageForge navigation"
+#: includes/class-pageforge-admin.php:1538
+msgid "PageForge Free never registers a write MCP tool."
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-mcp-registry.php:516
+msgid "PageForge Free previews metadata only. Applying SEO changes through MCP requires PageForge Pro."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:129
+msgid "PageForge MCP"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:305
+msgid "PageForge MCP is turned off on this site, so it cannot authorize AI clients. An administrator can enable it under PageForge → Connections."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:347
 msgid "PageForge Page"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1323
+#: includes/class-pageforge-admin.php:653
 msgid "PageForge Page (pageforge_page)"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:346
 msgid "PageForge Pages"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1110
 msgid "PageForge Pages (pageforge_page)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-edition.php:198
+msgid "PageForge Premium is active, so the free PageForge plugin was deactivated. Premium includes the complete PageForge feature set and all of your templates, pages and settings are unchanged."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1434
 msgid "PageForge SEO"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "PageForge Sitemap"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:325
 msgid "PageForge Template"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1268
 msgid "PageForge Template Settings"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:324
 msgid "PageForge Templates"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-registry.php:460
+msgid "PageForge can detect this SEO plugin but cannot read or write its metadata, because it does not store that data in post meta."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1445
+msgid "PageForge can output basic SEO title and meta description when no dedicated SEO plugin is active."
+msgstr ""
+
+#: includes/class-pageforge-generator.php:63
+msgid "PageForge content list"
+msgstr ""
+
+#. translators: %s: HTTP error message.
+#: includes/class-pageforge-mcp-diagnostics.php:201
+msgid "PageForge could not reach its own discovery document: %s"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:325
+msgid "PageForge could not verify the AI client making this request. If the client uses a Client ID Metadata Document, the document must be reachable over HTTPS and its client_id must exactly match its own URL."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:807
+msgid "PageForge custom content → PageForge list"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:75
+msgid "PageForge navigation"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1842
+msgid "PageForge readiness"
+msgstr ""
+
+#. translators: 1: required PHP version, 2: PHP version running on the server.
+#: pageforge.php:38
+msgid "PageForge requires PHP %1$s or newer. This site is running PHP %2$s, so PageForge has not started. Ask your host to update PHP."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:718
 msgid "PageForge uses Freemius to manage billing, licensing, and plan entitlements for this site."
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:1108
+#: includes/class-pageforge-plugin.php:502
 msgid "Pages"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-generator.php:63
+msgid "Pages > All Pages"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:891
 msgid "Paid plans do not enforce a PageForge-level AI message cap. Usage is limited only by your selected AI provider account and fair-use."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1333
+msgid "Parent Page"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:261
 msgid "Parser auto-detects delimiter and strips BOM; blank lines are ignored."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:213
+msgid "Partly unverifiable · see Connection diagnostics below"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:598
+msgid "Paste the configuration into that client’s MCP config file."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:565
+msgid "Paste the server URL and choose OAuth as the authentication method."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1891
+msgid "Paste these into the connector that asked for them. They are not an API key."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1242
 msgid "Pending"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1356
+#: includes/class-pageforge-admin.php:375
 msgid "Pending Review"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-diagnostics.php:176
+#: includes/class-pageforge-mcp-diagnostics.php:182
+msgid "Permalinks"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1865
+msgid "Personal access token"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1861
+msgid "Personal access token created"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1617
+msgid "Personal access tokens"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:617
 msgid "Pexels API Key"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Pick a page, post, Elementor template, Divi layout, or reusable block to clone its layout, or enter an ID manually."
+#: includes/class-pageforge-admin.php:620
+msgid "Photos provided by %s. Credit photographers when possible."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1375
+msgid "Pick a page, post, Elementor template, Divi layout, or reusable block to clone its layout, or enter an ID manually. This does not set the Parent Page or URL hierarchy."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:597
+msgid "Pick your client on the configuration tab in the dialog."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:260
 msgid "Placeholders derived from headers (e.g., {City}, {State}, {Service}) can be used anywhere in your Template content, Title, and Slug patterns."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-diagnostics.php:178
+msgid "Plain permalinks are active."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1014
 msgid "Plan"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:689
+#: includes/class-pageforge-admin.php:693
 msgid "Plan & License"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:703
 msgid "Plan overview"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1052
 msgid "Planner"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1039
 msgid "Planner uses your Brand Context / Voice from Settings, your site details, and recent URLs (when enabled). Export produces Markdown you can save or share."
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:1328
+#: includes/class-pageforge-admin.php:655
+#: includes/class-pageforge-plugin.php:630
 msgid "Post"
 msgstr ""
 
-#: includes/class-pageforge-ai.php
-msgid "Post not found"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:369
 msgid "Post Status"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Post Type"
+#: includes/class-pageforge-plugin.php:653
+msgid "Post created"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Post types"
+#: includes/class-pageforge-ai.php:356
+msgid "Post not found"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1109
 msgid "Posts"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-generator.php:63
+msgid "Posts > All Posts"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:259
 msgid "Prepare a CSV with the first row as headers, e.g., City, State, Service. Delimiters supported: comma, semicolon, tab, or pipe."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-diagnostics.php:182
+msgid "Pretty permalinks are active."
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:74
+msgid "Preview and validate"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1354
+#: includes/class-pageforge-admin.php:374
 msgid "Private"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:644
 msgid "Processed %1$s / %2$s..."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:623
 msgid "Processed:"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1111
 msgid "Products (product)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:771
 msgid "Professional"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:200
 msgid "Programmatic SEO for WordPress"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Provide a topic and (optionally) target keywords."
+#. translators: %s: OAuth issuer URL.
+#: includes/class-pageforge-mcp-diagnostics.php:305
+msgid "Protected Resource Metadata and authorization server metadata are valid. Issuer: %s"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1735
+msgid "Protected resource metadata"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1544
+#: includes/class-pageforge-admin.php:1733
+msgid "Protocol"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1212
+msgid "Provide a topic and optional target keywords. Output is always saved as a WordPress post."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1353
 msgid "Public / Published"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:373
 msgid "Publish"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:624
 msgid "Queued rows:"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Recent chats"
+#: includes/class-pageforge-mcp-diagnostics.php:197
+#: includes/class-pageforge-mcp-diagnostics.php:212
+#: includes/class-pageforge-mcp-diagnostics.php:227
+#: includes/class-pageforge-mcp-diagnostics.php:234
+msgid "REST endpoint reachable"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-server.php:525
+msgid "Rate limit exceeded for this tool class."
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:105
+msgid "Read GA4 and Search Console performance data for generated pages."
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:68
+msgid "Read PageForge data"
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:104
+msgid "Read analytics"
+msgstr ""
+
+#. translators: %s: connector name, e.g. ChatGPT.
+#: includes/class-pageforge-plugin.php:175
+msgid "Ready for %s · awaiting connection"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:212
+msgid "Ready with warnings · see Connection diagnostics below"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:211
+msgid "Ready · OAuth discovery is being served correctly"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:179
 msgid "Recent Generations"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:940
+msgid "Recent chats"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:62
+#: includes/class-pageforge-mcp-diagnostics.php:84
+msgid "Recent rejected requests"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1458
 msgid "Recommended length: up to ~155 characters."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:1905
+msgid "Redirect URI"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:340
+msgid "Redirect address not allowed"
+msgstr ""
+
+#: includes/class-pageforge-oauth-tokens.php:192
+#: includes/class-pageforge-oauth-tokens.php:198
+msgid "Refresh cannot request scopes beyond the original grant."
+msgstr ""
+
+#: includes/class-pageforge-oauth-tokens.php:174
+msgid "Refresh token has already been used. Re-authorization is required."
+msgstr ""
+
+#: includes/class-pageforge-oauth-tokens.php:179
+msgid "Refresh token has expired."
+msgstr ""
+
+#: includes/class-pageforge-oauth-tokens.php:167
+msgid "Refresh token is not valid."
+msgstr ""
+
+#: includes/class-pageforge-oauth-tokens.php:184
+msgid "Refresh token was not issued to this client."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:143
+msgid "Remote MCP connectors such as ChatGPT and Claude require HTTPS, and OAuth redirect URIs must be HTTPS. Install a TLS certificate and update the WordPress Address and Site Address."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1565
+msgid "Remote connectors (OAuth)"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:39
+msgid "Remove"
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:157
+msgid "Request body is too large."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:828
+msgid "Request body must be a JSON object."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:411
+msgid "Request expired"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:647
 msgid "Request failed (nonce / permissions / network)."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1833
+msgid "Requested access"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1734
+msgid "Resource"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:599
+msgid "Restart the client so it reloads its configuration."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1710
+msgid "Result"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:567
+#: includes/class-pageforge-plugin.php:584
+msgid "Return here and use Test configuration to confirm PageForge saw the connection."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1650
+msgid "Review recommended"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:694
 msgid "Review your PageForge plan, usage limits, and license options."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-credentials.php:81
+msgid "Revoked"
+msgstr ""
+
+#: includes/class-pageforge-generator.php:75
+msgid "Row %1$d: %2$s"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:146
 msgid "Rows per Run"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-scopes.php:75
+msgid "Run previews, dry runs, and validation without changing anything."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:322
 msgid "Runtime replacement also applies when builders render content, ensuring tokens inside widgets are replaced on the front end."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Sample CSV"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Save Settings"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "saved"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Saved"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Search any page/post and generate its meta."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Search post"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Select a post first"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Select a Template that contains placeholders (e.g., {City}, {State}, {Service})."
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Select CSV"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Select Template"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Select template and CSV"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Selected Post ID"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Send"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1028
 msgid "SEO"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-ai.php:312
+msgid "SEO Action Plan"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1061
 msgid "SEO Report generation requires an Administrator role (manage_options)."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1448
 msgid "SEO Title"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Service"
+#: includes/class-pageforge-plugin.php:635
+msgid "SEO integration"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:249
+msgid "Sample CSV"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:672
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:628
+msgid "Saved"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1872
+msgid "Scopes"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1158
+msgid "Search any page/post and generate its meta."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1163
+msgid "Search post"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:346
+#: includes/class-pageforge-mcp-diagnostics.php:350
+msgid "Security plugins"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:619
+msgid "Select CSV"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:355
+msgid "Select Template"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:401
+msgid "Select a Template that contains placeholders (e.g., {City}, {State}, {Service})."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:626
+msgid "Select a post first"
+msgstr ""
+
+#: includes/class-pageforge-generator.php:19
+msgid "Select a valid generation target in the template or global settings."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:621
+msgid "Select template and CSV"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1168
+msgid "Selected Post ID"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:992
+msgid "Send"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1025
 msgid "Services architecture"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:403
 msgid "Set Post Status and run the generation. This free build processes up to 100 CSV rows per run."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:320
 msgid "Set Title and Slug patterns in the metabox below. Examples: “Best {Service} in {City}, {State}” and “{service}-in-{city}-{state}”."
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:1574
+msgid "Set up ChatGPT"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1582
+msgid "Set up Claude"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1816
+msgid "Set up connector"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:532
+#: includes/class-pageforge-admin.php:537
+#: includes/class-pageforge-admin.php:58
+#: includes/class-pageforge-admin.php:947
+#: includes/class-pageforge-plugin.php:511
 msgid "Settings"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:611
 msgid "Settings saved"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1853
+msgid "Setup guide"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1231
 msgid "Short (~400 words)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:496
 msgid "Shortcodes render the value from the generated row for the current post. Direct tokens such as <code>{City}</code> are replaced at render time on generated pages."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:945
 msgid "Shortcuts"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Show group counts"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1160
 msgid "Single"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1157
 msgid "Single page optimization"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:865
 msgid "Site & plan status"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:714
+#: includes/class-pageforge-admin.php:867
 msgid "Site URL:"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:466
 msgid "Sitemap"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1012
 msgid "Sitemap + sections + SEO + launch checklist"
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Sitemap Settings"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:479
 msgid "Sitemap Shortcode"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1315
+#: includes/class-pageforge-admin.php:296
 msgid "Slug Pattern"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:412
 msgid "Split larger CSV files into batches of 100 rows for the smoothest runs."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:391
 msgid "Start"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1003
 msgid "Start a plan with one click"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-scopes.php:87
+msgid "Start, pause, resume, retry, and cancel generation campaigns."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:770
 msgid "Starter"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:622
 msgid "Starting generation..."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:649
 msgid "Starting..."
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "State"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1239
+#: includes/class-pageforge-plugin.php:636
 msgid "Status"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
-msgid "Stopped (error)."
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:641
 msgid "Stopped (JS error)."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:646
+msgid "Stopped (error)."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:648
 msgid "Stopped (request failed)."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:650
 msgid "Stopped."
 msgstr ""
 
-#: includes/class-pageforge-frontend.php
-msgid "Style"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1026
 msgid "Subpages, slugs, title tags, FAQs"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:643
 msgid "Target Country (Schema)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Target keywords (optional)"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1319
 msgid "Target Post Type"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1225
+msgid "Target keywords (optional)"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:352
 msgid "Template"
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:1006
+#: includes/class-pageforge-admin.php:279
+#: includes/class-pageforge-admin.php:284
+#: includes/class-pageforge-admin.php:446
+#: includes/class-pageforge-admin.php:53
+#: includes/class-pageforge-plugin.php:504
 msgid "Templates"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:517
 msgid "Templates can clone an existing Gutenberg, Elementor, or Divi page by setting its post ID in Base Layout from Existing Page."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1852
+msgid "Test configuration"
+msgstr ""
+
+#: includes/class-pageforge-access.php:125
+#: includes/class-pageforge-access.php:130
+msgid "That data source does not exist."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:824
+#: includes/class-pageforge-plugin.php:858
+msgid "That template does not exist."
+msgstr ""
+
+#: includes/class-pageforge-ai.php:612
+msgid "The AI provider returned an empty SEO report."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:658
+msgid "The AI provider returned an invalid SEO report."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:586
+msgid "The Claude connector credentials are separate from your Claude API key in Settings and from your PageForge licence. Do not reuse one for the other."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:234
+msgid "The Protected Resource Metadata document is served correctly."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:179
+msgid "The REST endpoints still work, but the consent URL is cleaner and more reliable with pretty permalinks. Settings → Permalinks → any option other than Plain."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:659
+msgid "The SEO report request failed."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:690
+#: includes/class-pageforge-mcp-server.php:709
+msgid "The account behind this token can no longer authorize AI clients."
+msgstr ""
+
+#: includes/class-pageforge-seo.php:460
+msgid "The active SEO plugin does not expose a supported direct write path, so PageForge saved its built-in fallback metadata. Review the post in your SEO plugin before publishing."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:341
+msgid "The address this client asked PageForge to return to is not one it has registered. PageForge will not redirect you there."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:644
+msgid "The approved scopes can no longer be granted on this site."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:649
+#: includes/class-pageforge-oauth.php:673
+msgid "The approving user can no longer authorize AI clients."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:724
+msgid "The bearer token is not valid."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1890
+msgid "The client secret is shown once. PageForge stores only a hash of it."
+msgstr ""
+
+#: includes/class-pageforge-generator.php:42
+msgid "The configured parent must be an existing native Page you can edit, with a valid hierarchy and slug."
+msgstr ""
+
+#: includes/class-pageforge-generator.php:30
+msgid "The configured parent must be an existing native Page you can edit."
+msgstr ""
+
+#: includes/class-pageforge-access.php:135
+#: includes/class-pageforge-access.php:146
+msgid "The data source file could not be read."
+msgstr ""
+
+#. translators: %d: HTTP status code.
+#: includes/class-pageforge-mcp-diagnostics.php:216
+msgid "The discovery document returned HTTP %d."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:229
+msgid "The discovery document was reachable but did not contain the expected OAuth metadata."
+msgstr ""
+
+#: includes/class-pageforge-generator.php:127
+#: includes/class-pageforge-generator.php:277
+#: includes/class-pageforge-generator.php:389
+msgid "The generated slug is empty. Check the slug pattern and row data."
+msgstr ""
+
+#: includes/class-pageforge-edition.php:230
+msgid "The other PageForge edition was deactivated so only one PageForge runtime is active. Your templates, generated pages and settings were preserved."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:889
 msgid "The quota is shared across AI Meta, AI Blog, SEO report, and Site Planner tools. Upgrading removes this limit."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-oauth.php:318
+msgid "The request did not identify which AI client is asking for access."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:333
+msgid "The request did not say where to send you afterwards, and this client has more than one registered address."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:484
 msgid "The shortcode lists published generated pages only, using PageForge metadata stored during generation."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-diagnostics.php:142
+msgid "The site address is not HTTPS."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:142
+msgid "The site address uses HTTPS."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1566
+msgid "These clients sign in to your site with OAuth. You approve the connection in WordPress; no token is copied by hand."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:977
 msgid "Thinking…"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-server.php:147
+msgid "This MCP endpoint accepts POST only."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:139
+msgid "This MCP endpoint accepts POST only. It is stateless: there is no GET event stream and no session to delete."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:411
+msgid "This authorization request expired. Start the connection again from your AI client."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:627
 msgid "This brand context is appended to AI prompts to keep generated pages on-message."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:739
 msgid "This build does not enforce a specific free row limit. Production builds typically include a one-time free allowance."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-mcp-diagnostics.php:295
+msgid "This indicates a PageForge configuration fault. Check that the WordPress Address and Site Address are correct."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:204
+msgid "This is often a local DNS or loopback restriction on the host rather than a real fault. Fetch the URL below from outside the server to confirm whether clients can reach it."
+msgstr ""
+
+#. translators: %s: OAuth scope name.
+#: includes/class-pageforge-mcp-server.php:781
+msgid "This operation requires the %s scope."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:257
+msgid "This site runs PHP through CGI/FastCGI, where some configurations strip the Authorization header before PHP receives it. Every bearer token then appears invalid."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:408
 msgid "Tips"
 msgstr ""
 
-#: includes/class-pageforge-admin.php includes/class-pageforge-plugin.php
+#: includes/class-pageforge-admin.php:243
+#: includes/class-pageforge-admin.php:296
+#: includes/class-pageforge-plugin.php:631
 msgid "Title"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1304
+#: includes/class-pageforge-admin.php:296
 msgid "Title Pattern"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:321
 msgid "To use an existing Elementor/Gutenberg/Divi page as the base layout, set “Base Layout from Existing Page” to that post ID. Its layout will be cloned and text placeholders replaced."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1738
+#: includes/class-pageforge-admin.php:1907
+msgid "Token endpoint"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:310
+msgid "Too many attempts"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:310
+msgid "Too many authorization attempts from your network. Please wait a few minutes and try again."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:666
+msgid "Too many failed authentication attempts."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:823
+msgid "Too many registration attempts."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:785
+msgid "Too many requests."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:573
+msgid "Too many token requests."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:556
+msgid "Tool execution failed."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:531
+msgid "Tool handler is not available."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1217
 msgid "Topic"
 msgstr ""
 
-#: includes/class-pageforge-ai.php
+#: includes/class-pageforge-ai.php:444
 msgid "Topic is required"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:144
 msgid "Total Pages"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:136
 msgid "Track CSV page generation, manage templates, and launch high-volume local SEO workflows from one place."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: pageforge.php:62
+msgid "Two PageForge editions are active at the same time. Only one is running. Deactivate the edition you do not want to use."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1164
 msgid "Type a title…"
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
-msgid "Unable to load CSVs"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Unauthorized"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Unlimited"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Unlimited rows & automation"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Untitled"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Updated %s"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Upgrade plan"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Upgrade to Pro"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Upload CSV"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Upload CSV files and manage external data sources for your templates."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Upload data in Data Sources; refresh here to see new files."
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Upload failed:"
-msgstr ""
-
-#: includes/class-pageforge-plugin.php
-msgid "Uploaded:"
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:243
 msgid "URL"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:616
+msgid "Unable to load CSVs"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:1000
+#: includes/class-pageforge-plugin.php:105
+#: includes/class-pageforge-plugin.php:1112
+#: includes/class-pageforge-plugin.php:1152
+#: includes/class-pageforge-plugin.php:1178
+#: includes/class-pageforge-plugin.php:129
+#: includes/class-pageforge-plugin.php:205
+#: includes/class-pageforge-plugin.php:228
+#: includes/class-pageforge-plugin.php:239
+#: includes/class-pageforge-plugin.php:264
+#: includes/class-pageforge-plugin.php:273
+#: includes/class-pageforge-plugin.php:677
+#: includes/class-pageforge-plugin.php:69
+#: includes/class-pageforge-plugin.php:754
+#: includes/class-pageforge-plugin.php:771
+#: includes/class-pageforge-plugin.php:79
+#: includes/class-pageforge-plugin.php:794
+#: includes/class-pageforge-plugin.php:816
+#: includes/class-pageforge-plugin.php:845
+#: includes/class-pageforge-plugin.php:941
+#: includes/class-pageforge-plugin.php:972
+msgid "Unauthorized"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:324
+msgid "Unknown client"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:768
+msgid "Unknown client."
+msgstr ""
+
+#. translators: %s: MCP tool name.
+#: includes/class-pageforge-mcp-server.php:504
+msgid "Unknown tool: %s"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:127
+msgid "Unlimited"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:784
+msgid "Unlimited rows & automation"
+msgstr ""
+
+#: includes/class-pageforge-oauth-clients.php:199
+msgid "Unnamed MCP client"
+msgstr ""
+
+#: includes/class-pageforge-mcp-credentials.php:122
+msgid "Unnamed client"
+msgstr ""
+
+#. translators: 1: requested protocol version, 2: comma-separated supported versions.
+#: includes/class-pageforge-mcp-server.php:302
+msgid "Unsupported MCP protocol version %1$s. This server supports: %2$s."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:593
+msgid "Unsupported grant_type."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:620
+msgid "Untitled"
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:93
+msgid "Update meta titles, descriptions, schema, and internal links."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:666
+msgid "Updated %s"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:721
+msgid "Upgrade plan"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:74
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:235
+msgid "Upload CSV"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:224
+msgid "Upload CSV files and manage external data sources for your templates."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:411
+msgid "Upload data in Data Sources; refresh here to see new files."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:614
+msgid "Upload failed:"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:613
+msgid "Uploaded:"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:729
 msgid "Usage & limits"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
-msgid "Use a quick prompt to pre-fill the planner with a common scenario."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
-msgid "Use a shortcode when a builder field does not allow raw token text, or place tokens directly in supported text and heading controls."
-msgstr ""
-
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1352
 msgid "Use Generate screen setting"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:437
 msgid "Use PageForge content with native WordPress blocks, shortcodes, and builder tokens."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:1004
+msgid "Use a quick prompt to pre-fill the planner with a common scenario."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:489
+msgid "Use a shortcode when a builder field does not allow raw token text, or place tokens directly in supported text and heading controls."
+msgstr ""
+
+#: includes/class-pageforge-mcp-server.php:652
+msgid "Use either Authorization Bearer or X-PageForge-MCP-API-Key, not both."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1322
+msgid "Use global default (%s)"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1384
 msgid "Use placeholders anywhere in the content editor and above patterns: {City}, {State}, {Service}, and any CSV column header you provide."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:319
 msgid "Use placeholders like {City}, {State}, {Service} directly in the editor content."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:342
 msgid "Use templates and CSV data sources to generate SEO-optimized pages in bulk, up to 100 pages per run in this free build."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:825
+msgid "Use the Freemius account portal for license activation, billing, and subscription changes."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:480
 msgid "Use this when you are editing with a builder, classic editor, widget, or reusable pattern."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:639
 msgid "Used as the Schema.org @type for the business/provider object (and influences schema output)."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:984
 msgid "Using Brand Context from Settings"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:594
+msgid "VS Code, Codex, GitHub Copilot, Roo Code, Cursor, Claude Code and generic MCP clients read their configuration from a file, so they use a personal access token rather than OAuth."
+msgstr ""
+
+#: includes/class-pageforge-mcp-scopes.php:69
+msgid "View templates, generated pages, SEO status, and site diagnostics."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:321
+msgid "WP-Cron is available for background MCP jobs."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:317
+msgid "WP-Cron is disabled by DISABLE_WP_CRON."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:157
+#: includes/class-pageforge-mcp-diagnostics.php:164
+msgid "Well-known discovery paths"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1643
+msgid "What PageForge can verify from inside WordPress about whether an AI client can reach and authenticate to this site."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1359
 msgid "When set, PageForge uses this status automatically for every post generated from this template."
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-plugin.php:573
+msgid "Which connectors you can add, and whether they may perform write actions, is controlled by your ChatGPT plan and OpenAI’s current connector policy. PageForge cannot grant capabilities your ChatGPT account does not allow."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1451
 msgid "Will be used as the browser title when no SEO plugin is installed."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-mcp-diagnostics.php:315
+#: includes/class-pageforge-mcp-diagnostics.php:321
+msgid "WordPress cron"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:166
+msgid "WordPress is installed in a subdirectory, so requests to the site root for /.well-known/oauth-protected-resource do not reach PageForge."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:159
+msgid "WordPress serves the site root, so the standard discovery paths are available."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:639
 msgid "Working... (offset %s)"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#: includes/class-pageforge-admin.php:471
 msgid "Works as a native block or shortcode on any page."
 msgstr ""
 
-#: includes/class-pageforge-plugin.php
+#: includes/class-pageforge-plugin.php:669
 msgid "You"
 msgstr ""
 
-#: includes/class-pageforge-admin.php
+#. translators: %s: WordPress display name of the approving user.
+#: includes/class-pageforge-oauth.php:961
+msgid "You are signed in as %s. This client will act with your permissions."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:912
 msgid "You can deactivate a license on this site and move it to another by using the Freemius account portal. Disconnecting a site from Freemius will also remove it from your user dashboard."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:982
+#: includes/class-pageforge-seo.php:342
+msgid "You cannot edit that content."
+msgstr ""
+
+#: includes/class-pageforge-generator.php:250
+#: includes/class-pageforge-generator.php:383
+#: includes/class-pageforge-generator.php:96
+msgid "You cannot generate content with this template and target type."
+msgstr ""
+
+#: includes/class-pageforge-generator.php:13
+msgid "You cannot read this template."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:401
+msgid "Your WordPress account does not have permission to connect an AI client to this site. Ask an administrator to perform the connection."
+msgstr ""
+
+#: includes/class-pageforge-ai.php:417
+#: includes/class-pageforge-plugin.php:1126
+msgid "Your account cannot create blog posts."
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:865
+msgid "Your account cannot create content of that type."
+msgstr ""
+
+#. translators: 1: requested post status, 2: status actually used.
+#: includes/class-pageforge-plugin.php:878
+msgid "Your account cannot publish, so pages were created as %2$s instead of %1$s."
+msgstr ""
+
+#. translators: 1: requested post status, 2: status actually used.
+#: includes/class-pageforge-plugin.php:1137
+msgid "Your account cannot publish, so the blog post was created as %2$s instead of %1$s."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:404
+msgid "an MCP client"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:273
+msgid "authorization_servers missing"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:763
+msgid "client_id is required."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:607
+msgid "code and code_verifier are required."
+msgstr ""
+
+#: includes/class-pageforge-admin.php:645
+msgid "e.g. AU, US, GB (ISO 2-letter)"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1218
+msgid "e.g. Local SEO checklist for plumbers"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1222
+msgid "e.g. Small business owners"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:629
+msgid "for Post"
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:286
+msgid "issuer does not match its own discovery URL"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:661
+msgid "just now"
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:623
+msgid "redirect_uri does not match the authorization request."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:658
+msgid "refresh_token is required."
+msgstr ""
+
+#: includes/class-pageforge-oauth.php:637
+msgid "resource does not match the authorization request."
+msgstr ""
+
+#: includes/class-pageforge-mcp-diagnostics.php:270
+msgid "resource identifier missing"
+msgstr ""
+
+#: includes/class-pageforge-plugin.php:643
+msgid "saved"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1367
+msgid "— None —"
+msgstr ""
+
+#: includes/class-pageforge-admin.php:1795
+msgid "← All clients"
 msgstr ""

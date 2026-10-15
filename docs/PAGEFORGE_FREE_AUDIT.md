@@ -1,5 +1,9 @@
 # PageForge Free Audit
 
+## Targeted support correction — 2026-10-15
+
+Native Page/Post output is Free. Template-specific targets override global defaults; new templates now offer explicit inheritance. Static native Parent Page selection is Free, separate from layout cloning. The existing Generated CPT Slug Base setting changes a nonempty CPT prefix and refreshes rewrites only when changed. It cannot convert CPT content or imply a root-level CPT. Preview, validation, and insertion resolve the same native hierarchy. See [FIX_REPORT.md](FIX_REPORT.md) for executed verification.
+
 Date: 2026-08-03
 
 Scope: `C:\Users\wpshu\OneDrive\Documents\pageforge`

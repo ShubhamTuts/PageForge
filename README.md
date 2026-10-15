@@ -2,10 +2,20 @@
 PageForge GitHub README.md
 SEO-focused, AI-search-ready, multilingual GitHub README for PageForge.
 Recommended repository description:
-AI Programmatic SEO WordPress plugin to generate bulk SEO pages from CSV and Google Sheets with dynamic tokens, schema, internal links, Yoast/Rank Math sync, and unique AI content per page in Pro.
+AI Programmatic SEO WordPress plugin to generate bulk SEO pages from CSV and Google Sheets with dynamic tokens, schema, internal links, Yoast/Rank Math/SEOPress sync, and unique AI content per page in Pro.
 Recommended GitHub topics:
 programmatic-seo, wordpress-plugin, bulk-page-generator, local-seo, ai-seo, seo-automation, wordpress-seo, csv-to-wordpress, google-sheets-to-wordpress, dynamic-pages, schema-markup, yoast-seo, rank-math, elementor, divi, gutenberg, content-automation, ai-content, openai, claude, gemini, deepseek
 -->
+
+### Native Pages, parent hierarchy, and the existing slug-base setting
+
+Free supports native **Pages**, **Posts**, and PageForge custom content. In the template, choose an explicit **Target Post Type** or **Use global default**. Existing template choices keep overriding the global default until changed. The Generate screen identifies the effective destination before a run.
+
+For `/the-magnolias/`, target **Page** and choose **None** for Parent Page. For `/maths-tuition-gurgaon/dlf-phase-iv/`, target **Page** and select the existing `maths-tuition-gurgaon` Page as parent. One static parent per template is included in Free. Base Layout to Clone supplies presentation and content independently of hierarchy.
+
+**Settings → Generated CPT Slug Base** already exists. It changes a nonempty custom-content prefix, such as `/pageforge/` to `/locations/`; it does not change the output type or remove the prefix entirely. Native Pages use WordPress Page URLs. Saving a different valid base refreshes rewrite rules. Published content is never converted or reparented automatically; if you change an established CPT base, arrange redirects separately.
+
+Premium Starter and above adds opt-in parent mapping by **Parent ID** or **Parent Path** column. Free retains static parent support. Google Sheets keeps its existing Professional/Enterprise restriction. Referenced parent Pages must exist before generation. See [the targeted fix report](docs/FIX_REPORT.md) for executed tests and runtime limits.
 
 <p align="center">
   <a href="https://pageforge.pro" target="_blank" rel="noopener noreferrer">
@@ -16,14 +26,14 @@ programmatic-seo, wordpress-plugin, bulk-page-generator, local-seo, ai-seo, seo-
 <h1 align="center">PageForge — AI Programmatic SEO, Bulk Page Generator & Local SEO Plugin for WordPress</h1>
 
 <p align="center">
-  <strong>Generate search-ready WordPress pages at scale from CSV or Google Sheets using dynamic tokens, reusable templates, AI metadata, schema markup, internal-link hubs, Yoast SEO sync, Rank Math sync, and unique AI content per page in PageForge Pro.</strong>
+  <strong>Generate search-ready WordPress pages at scale from CSV or Google Sheets using dynamic tokens, reusable templates, AI metadata, schema markup, internal-link hubs, Yoast SEO, Rank Math, and SEOPress sync, plus unique AI content per page in PageForge Pro.</strong>
 </p>
 
 <p align="center">
   <a href="https://wordpress.org/plugins/pageforge/"><img alt="WordPress Plugin" src="https://img.shields.io/badge/WordPress-Plugin-21759B?logo=wordpress&logoColor=white"></a>
-  <img alt="Stable Version" src="https://img.shields.io/badge/stable-1.1.8-111827">
-  <img alt="Tested with WordPress 7.0" src="https://img.shields.io/badge/tested%20up%20to-WordPress%207.0-3858E9?logo=wordpress&logoColor=white">
-  <img alt="Requires PHP 7.4+" src="https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white">
+  <img alt="Stable Version" src="https://img.shields.io/badge/stable-1.2.6-111827">
+  <img alt="Tested with WordPress 7.1" src="https://img.shields.io/badge/tested%20up%20to-WordPress%207.1-3858E9?logo=wordpress&logoColor=white">
+  <img alt="Requires PHP 8.0+" src="https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white">
   <img alt="License GPLv2 or later" src="https://img.shields.io/badge/license-GPLv2%2B-22C55E">
   <img alt="AI Providers" src="https://img.shields.io/badge/AI-OpenAI%20%7C%20Claude%20%7C%20Gemini%20%7C%20DeepSeek-F97316">
 </p>
@@ -81,7 +91,7 @@ Instead of building every local SEO page, service-area page, city page, product 
 
 The result is not a fake landing page preview, static HTML export, or disconnected external page builder. PageForge creates normal WordPress content that site owners can review, edit, publish, schedule, index, link, and optimize inside the WordPress dashboard. This matters because sustainable programmatic SEO is not only about page creation. It is about repeatable production, structured data, internal architecture, metadata consistency, editorial control, content uniqueness, crawlability, and ongoing improvement.
 
-PageForge Free is built for launching and validating a controlled programmatic SEO workflow. It is ideal when you want to test a campaign, work from CSV files, generate up to 100 pages per run, use reusable templates, sync metadata with Yoast SEO or Rank Math, and build a generated-page sitemap for internal discovery.
+PageForge Free is built for launching and validating a controlled programmatic SEO workflow. It is ideal when you want to test a campaign, work from CSV files, generate up to 100 pages per run, use reusable templates, sync metadata with Yoast SEO, Rank Math, or SEOPress, and build a generated-page sitemap for internal discovery.
 
 PageForge Pro is built for scale. Pro workflows are designed for agencies, growth teams, large content operations, high-volume local SEO campaigns, and teams that want to automate deeper parts of the workflow. Pro can include unlimited page generation, Google Sheets sync, queue processing, scheduled generation, drip publishing, bulk AI metadata workflows, advanced reporting, larger AI blog workflows, and AI-generated content for individual generated pages. PageForge Pro supports AI content per page for uniqueness, which means a campaign can move beyond simple token replacement and create page-specific AI-assisted content variations that are more useful, more differentiated, and more aligned with search intent.
 
@@ -109,6 +119,7 @@ Use PageForge when you want to:
 - Launch affiliate comparison pages and long-tail pages.
 - Use dynamic tokens in titles, slugs, headings, content, excerpts, metadata, and supported builder layouts.
 - Sync SEO titles and descriptions with Yoast SEO or Rank Math.
+- Sync canonical, Open Graph, X/Twitter, and robots fields through supported SEO integrations.
 - Add structured data with schema markup.
 - Build generated-page sitemap hubs for internal discovery.
 - Use AI to plan site structures, generate metadata, and draft supporting content.
@@ -141,6 +152,7 @@ The key difference is that PageForge treats programmatic SEO as a system, not as
 | Tokenized SEO metadata | Yes | Yes |
 | Yoast SEO sync | Yes | Yes |
 | Rank Math sync | Yes | Yes |
+| SEOPress sync | Yes | Yes |
 | Schema output | Yes | Advanced workflows |
 | Duplicate slug protection | Yes | Yes |
 | Gutenberg support | Yes | Yes |
@@ -249,7 +261,7 @@ A reusable template gives the campaign structure. Tokens give each page data-dri
 
 #### 3. Configure SEO Fields
 
-Programmatic SEO needs consistent metadata. PageForge lets you create dynamic SEO title and description patterns, then sync supported fields with Yoast SEO or Rank Math.
+Programmatic SEO needs consistent metadata. PageForge lets you create dynamic SEO title and description patterns, then sync supported search, canonical, social, and robots fields with Yoast SEO, Rank Math, or SEOPress. All in One SEO is detected but uses table-backed storage, so PageForge reports that direct synchronization is unavailable and saves its built-in fallback metadata.
 
 Example SEO title pattern:
 
@@ -635,6 +647,10 @@ Yes. PageForge can sync generated SEO titles and meta descriptions to supported 
 
 Yes. PageForge can sync generated SEO titles and meta descriptions to supported Rank Math fields.
 
+#### Does PageForge work with SEOPress?
+
+Yes. PageForge can sync supported search, canonical, social, and robots metadata to SEOPress fields.
+
 #### Does PageForge add schema markup?
 
 Yes. PageForge can output schema for generated pages based on the configured template and schema settings. Always validate the final JSON-LD and make sure it accurately represents the visible page content.
@@ -714,6 +730,19 @@ PageForge AI Programmatic SEO WordPress Plugin — generate bulk local SEO pages
 ```
 
 ### Changelog Highlights
+
+#### 1.2.4
+
+- Fixed MCP protocol negotiation, OAuth callback encoding, and legacy Free read-scope compatibility.
+- Fixed MCP OAuth discovery POSTs returning malformed-JSON errors before authentication.
+- Kept Free MCP read-and-preview only while improving transport and credential diagnostics.
+- Made AI SEO Report generation Markdown-first with reliable JSON and Markdown downloads.
+
+#### 1.2.3
+
+- Added template-level Meta Description Pattern support with CSV token replacement and a generated-description fallback.
+- Added current All in One SEO metadata persistence.
+- Improved MCP OAuth discovery, automatic registration, scoped API-key authentication, host CORS compatibility, and Free read-only enforcement.
 
 #### 1.1.8
 

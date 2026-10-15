@@ -6,10 +6,14 @@ if (!defined('ABSPATH')) exit;
 class Frontend {
     public static function init() {
         \add_shortcode('pageforge_sitemap', [__CLASS__, 'sitemap']);
+        // Legacy tag kept so content authored under the pf namespace still renders.
+        \add_shortcode('pf_sitemap', [__CLASS__, 'sitemap']);
         \add_action('init', [__CLASS__, 'register_blocks']);
         \add_filter('block_categories_all', [__CLASS__, 'register_block_category'], 10, 2);
         \add_action('wp_head', [__CLASS__, 'inject_basic_seo_meta'], 7);
         \add_action('wp_head', [__CLASS__, 'inject_schema']);
+        \add_filter('get_canonical_url', [__CLASS__, 'filter_canonical_url'], 10, 2);
+        \add_filter('wp_robots', [__CLASS__, 'filter_robots']);
         // Runtime token replacement for builder/theme outputs
         \add_filter('the_content', [__CLASS__, 'runtime_replace_content'], 9);
         \add_filter('the_title', [__CLASS__, 'runtime_replace_title'], 9, 2);
@@ -27,8 +31,10 @@ class Frontend {
         \add_filter('rank_math/frontend/description', [__CLASS__, 'runtime_replace_content'], 9);
         \add_filter('wp_title', [__CLASS__, 'runtime_replace_content'], 9);
         \add_filter('document_title_parts', [__CLASS__, 'runtime_replace_title_parts'], 9);
-        // Variable shortcode for explicit placements in widgets/builders
+        // Variable shortcode for explicit placements in widgets/builders.
+        // [pf ...] is the legacy tag and resolves through the same service.
         \add_shortcode('pageforge', [__CLASS__, 'shortcode_var']);
+        \add_shortcode('pf', [__CLASS__, 'shortcode_var']);
     }
 
     public static function sitemap($atts = []) {
@@ -45,8 +51,20 @@ class Frontend {
             'link_color'       => '#0f766e',
         ], $atts, 'pageforge_sitemap');
 
-        $post_types = self::parse_sitemap_post_types((string) $atts['post_type']);
+        // Only a request that already asks for generated content is expanded to
+        // the other namespace's alias. Asking for "post" must not silently pull
+        // in generated CPTs the author did not list.
+        $requested = self::parse_sitemap_post_types((string) $atts['post_type']);
+        $generated_types = Compatibility::generated_post_types();
+        $post_types = array_values(array_unique(
+            array_intersect($requested, $generated_types)
+                ? array_merge($requested, $generated_types)
+                : $requested
+        ));
         $limit = max(1, min(5000, (int) $atts['limit']));
+        // Marker truth, not marker presence: a stored "trash" or "0" marker is
+        // not a published PageForge page.
+        $generated_meta_query = array_merge(['relation' => 'OR'], Compatibility::generated_marker_conditions());
 
         $q = new \WP_Query([
             'post_type'      => $post_types,
@@ -55,17 +73,7 @@ class Frontend {
             'orderby'        => 'title',
             'order'          => 'ASC',
             'fields'         => 'ids',
-            'meta_query'     => [
-                'relation' => 'OR',
-                [
-                    'key'     => '_pageforge_vars',
-                    'compare' => 'EXISTS',
-                ],
-                [
-                    'key'     => '_pageforge_city',
-                    'compare' => 'EXISTS',
-                ],
-            ],
+            'meta_query'     => $generated_meta_query,
         ]);
         if (!$q->have_posts()) return '<div class="pageforge-sitemap pageforge-sitemap--empty">' . esc_html__('No PageForge pages found.', 'pageforge') . '</div>';
 
@@ -389,8 +397,7 @@ JS;
             return '';
         }
 
-        $meta_key = '_pageforge_' . $group_by;
-        $label = trim((string) \get_post_meta($post_id, $meta_key, true));
+        $label = trim((string) self::read_location_meta($post_id, $group_by));
         if ($label !== '') {
             return $label;
         }
@@ -455,9 +462,9 @@ JS;
 		}
 
 		// Common service/location meta used by generated pages.
-		$service = (string) \get_post_meta($post->ID, '_pageforge_service', true);
-		$city    = (string) \get_post_meta($post->ID, '_pageforge_city', true);
-		$state   = (string) \get_post_meta($post->ID, '_pageforge_state', true);
+		$service = (string) self::read_location_meta((int) $post->ID, 'service');
+		$city    = (string) self::read_location_meta((int) $post->ID, 'city');
+		$state   = (string) self::read_location_meta((int) $post->ID, 'state');
 
 		$schemas = [];
 		$schemas[] = $provider;
@@ -521,14 +528,25 @@ JS;
 	}
 
 
+    /**
+     * Read a city/state/service value from whichever namespace stored it.
+     * Any other key falls back to the current namespace prefix.
+     */
+    private static function read_location_meta(int $post_id, string $logical) {
+        if (in_array($logical, ['city', 'state', 'service'], true)) {
+            return Compatibility::read_meta($post_id, $logical, '');
+        }
+        return \get_post_meta($post_id, '_pageforge_' . $logical, true);
+    }
+
     // ---------- Runtime Placeholder Replacement ----------
     private static function get_vars_for_post(int $post_id): array {
-        $raw_vars = \get_post_meta($post_id, '_pageforge_vars', true);
+        $raw_vars = Compatibility::read_meta($post_id, 'vars', []);
         $vars = is_array($raw_vars) ? $raw_vars : [];
-        // Back-compat: also expose _pageforge_city/_pageforge_state/_pageforge_service
-        $city = (string) \get_post_meta($post_id, '_pageforge_city', true);
-        $state = (string) \get_post_meta($post_id, '_pageforge_state', true);
-        $service = (string) \get_post_meta($post_id, '_pageforge_service', true);
+        // Back-compat: also expose city/state/service stored under either namespace.
+        $city = (string) self::read_location_meta($post_id, 'city');
+        $state = (string) self::read_location_meta($post_id, 'state');
+        $service = (string) self::read_location_meta($post_id, 'service');
         if ($city !== '' && !isset($vars['City'])) {
             $vars['City'] = $city;
         }
@@ -587,7 +605,7 @@ JS;
         // When no dedicated SEO plugin is active, allow PageForge meta title
         // to override the document title, while still supporting placeholders.
         if (!pageforge_seo_plugins_active()) {
-            $meta_title = (string) \get_post_meta($pid, '_pageforge_meta_title', true);
+            $meta_title = (string) Compatibility::read_meta($pid, 'meta_title', '');
             if ($meta_title !== '') {
                 $parts['title'] = $meta_title;
             }
@@ -603,12 +621,18 @@ JS;
         return $parts;
     }
 
-    // [pf var="City" fallback=""]
-    public static function shortcode_var($atts = []) {
+    /**
+     * [pageforge var="City" fallback=""] and the legacy [pf var="City"].
+     *
+     * Both tags share one resolver so a page mixing them can never disagree.
+     * An unknown variable yields the fallback, never a notice.
+     */
+    public static function shortcode_var($atts = [], $content = '', $tag = 'pageforge') {
+        $tag = in_array((string) $tag, ['pageforge', 'pf'], true) ? (string) $tag : 'pageforge';
         $a = shortcode_atts([
             'var' => '',
             'fallback' => '',
-        ], $atts, 'pageforge');
+        ], $atts, $tag);
         $pid = get_the_ID(); if (!$pid) return (string)$a['fallback'];
         $vars = self::get_vars_for_post($pid);
         if (empty($a['var'])) return (string)$a['fallback'];
@@ -629,18 +653,60 @@ JS;
         $post_id = get_the_ID();
         if (!$post_id) return;
 
-        $meta_title = (string) \get_post_meta($post_id, '_pageforge_meta_title', true);
-        $meta_desc  = (string) \get_post_meta($post_id, '_pageforge_meta_description', true);
-        $focus_kw   = (string) \get_post_meta($post_id, '_pageforge_focus_keyword', true);
+        $meta_desc  = (string) Compatibility::read_meta($post_id, 'meta_description', '');
+        $og_title = (string) Compatibility::read_meta($post_id, 'og_title', '');
+        $og_desc = (string) Compatibility::read_meta($post_id, 'og_description', '');
+        $twitter_title = (string) Compatibility::read_meta($post_id, 'twitter_title', '');
+        $twitter_desc = (string) Compatibility::read_meta($post_id, 'twitter_description', '');
         $meta_desc = (string) self::runtime_replace_content($meta_desc);
-        $focus_kw = (string) self::runtime_replace_content($focus_kw);
+        $og_title = (string) self::runtime_replace_content($og_title);
+        $og_desc = (string) self::runtime_replace_content($og_desc);
+        $twitter_title = (string) self::runtime_replace_content($twitter_title);
+        $twitter_desc = (string) self::runtime_replace_content($twitter_desc);
 
         if ($meta_desc !== '') {
             echo '<meta name="description" content="' . esc_attr($meta_desc) . '" />' . "\n";
         }
-        if ($focus_kw !== '') {
-            echo '<meta name="keywords" content="' . esc_attr($focus_kw) . '" />' . "\n";
+        if ($og_title !== '') {
+            echo '<meta property="og:title" content="' . esc_attr($og_title) . '" />' . "\n";
         }
+        if ($og_desc !== '') {
+            echo '<meta property="og:description" content="' . esc_attr($og_desc) . '" />' . "\n";
+        }
+        if ($twitter_title !== '' || $twitter_desc !== '') {
+            echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
+        }
+        if ($twitter_title !== '') {
+            echo '<meta name="twitter:title" content="' . esc_attr($twitter_title) . '" />' . "\n";
+        }
+        if ($twitter_desc !== '') {
+            echo '<meta name="twitter:description" content="' . esc_attr($twitter_desc) . '" />' . "\n";
+        }
+    }
+
+    public static function filter_canonical_url(string $canonical_url, $post = null): string {
+        if (pageforge_seo_plugins_active()) return $canonical_url;
+        $post_id = $post instanceof \WP_Post ? (int) $post->ID : (int) get_the_ID();
+        if (!$post_id) return $canonical_url;
+        $custom = (string) Compatibility::read_meta($post_id, 'canonical', '');
+        $automatic = (string) Compatibility::read_meta($post_id, 'generated_canonical_url', '');
+        if ($automatic !== '' && $custom === $automatic) return $canonical_url;
+        return $custom !== '' ? $custom : $canonical_url;
+    }
+
+    public static function filter_robots(array $robots): array {
+        if (pageforge_seo_plugins_active() || !\is_singular()) return $robots;
+        $post_id = (int) get_the_ID();
+        if (!$post_id) return $robots;
+        if ((bool) Compatibility::read_meta($post_id, 'noindex', false)) {
+            $robots['noindex'] = true;
+            unset($robots['index']);
+        }
+        if ((bool) Compatibility::read_meta($post_id, 'nofollow', false)) {
+            $robots['nofollow'] = true;
+            unset($robots['follow']);
+        }
+        return $robots;
     }
 }
 

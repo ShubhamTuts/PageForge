@@ -1202,3 +1202,397 @@ table.widefat.fixed td {
 .pf-plan-matrix tbody tr:nth-child(odd) {
   background: #f9fafb;
 }
+
+/* ---------- MCP / AI Clients ---------- */
+.pf-mcp-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px
+}
+
+.pf-mcp-title {
+  margin: 0 0 4px;
+  font-size: 15px
+}
+
+.pf-mcp-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--pf-border);
+  border-bottom: 1px solid var(--pf-border)
+}
+
+.pf-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px
+}
+
+.pf-mcp-meta {
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 12px
+}
+
+.pf-mcp-meta th {
+  text-align: left;
+  color: #6b7280;
+  padding: 3px 8px 3px 0;
+  width: 110px;
+  font-weight: 500
+}
+
+.pf-mcp-clients {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px
+}
+
+.pf-mcp-client-card {
+  border: 1px solid var(--pf-border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.pf-mcp-client-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px
+}
+
+.pf-mcp-client-head img {
+  border-radius: 6px
+}
+
+.pf-mcp-subhead {
+  font-size: 13px;
+  margin: 4px 0 8px
+}
+
+.pf-mcp-empty {
+  color: #6b7280;
+  font-size: 13px
+}
+
+.pf-mcp-credential-row {
+  border: 1px solid var(--pf-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px
+}
+
+.pf-mcp-credential-main {
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+
+.pf-mcp-credential-meta {
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 4px
+}
+
+.pf-mcp-credential-actions {
+  margin-top: 6px;
+  display: flex;
+  gap: 12px
+}
+
+/* Secret field controls */
+.pf-secret-input {
+  margin-right: 8px
+}
+
+.pf-secret-status {
+  margin-right: 8px
+}
+
+/* MCP dialogs */
+
+/*
+ * The overlay sets display:flex, which is an author rule and therefore beats
+ * the user-agent [hidden] { display: none } rule. Without this the markup's
+ * hidden attribute did nothing and every dialog rendered on page load. Kept
+ * adjacent to the rule it corrects so the two cannot drift apart.
+ */
+.pf-mcp-dialog[hidden] {
+  display: none;
+}
+
+.pf-mcp-dialog {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, .55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000
+}
+
+.pf-mcp-dialog-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 560px;
+  width: 92%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .25)
+}
+
+.pf-mcp-config-tabs {
+  display: flex;
+  gap: 6px;
+  margin: 10px 0 6px;
+  flex-wrap: wrap
+}
+
+.pf-mcp-config-tab.is-active {
+  background: #111827;
+  color: #fff;
+  border-color: #111827
+}
+
+.pf-mcp-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px
+}
+
+/* ---------------------------------------------------------------------------
+   Connections: remote connectors, personal access tokens, diagnostics.
+
+   Dense and WordPress-native on purpose. The previous layout wasted the right
+   half of the screen and nested cards inside cards; these rules let the panel
+   use the full content width and keep list rows compact enough to operate.
+   --------------------------------------------------------------------------- */
+
+.pf-mcp-subhead {
+    margin: 24px 0 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #50575e;
+}
+.pf-mcp-subhead-note { margin: 0 0 12px; }
+
+.pf-mcp-client-card-wide { grid-column: 1 / -1; }
+
+.pf-mcp-client-state {
+    display: inline-block;
+    margin: 6px 0 10px;
+    font-size: 12px;
+}
+
+/* Diagnostics table */
+.pf-mcp-diagnostics { margin: 12px 0 20px; width: 100%; }
+.pf-mcp-diagnostics th[scope="row"] { width: 220px; font-weight: 600; vertical-align: top; }
+.pf-mcp-diagnostics td { vertical-align: top; }
+.pf-diag-remedy { margin: 6px 0 0; }
+
+.pf-diag-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.pf-diag-ok { background: #00a32a; }
+.pf-diag-warn { background: #dba617; }
+.pf-diag-fail { background: #d63638; }
+.pf-diag-unknown { background: #8c8f94; }
+
+.pf-badge.bad { background: #fcf0f1; color: #8a2424; border-color: #f0c3c4; }
+
+/* One-time token presentation. A single-line readonly input with an adjacent
+   copy button, not an unexplained textarea. */
+.pf-mcp-token-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 12px 0 16px;
+}
+.pf-mcp-token-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+    padding: 6px 8px;
+}
+.pf-mcp-warn {
+    background: #fcf9e8;
+    border-left: 4px solid #dba617;
+    padding: 8px 12px;
+    margin: 0;
+    font-size: 13px;
+}
+
+.pf-mcp-dialog-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+.pf-mcp-dialog-head h3 { margin: 0; }
+
+.pf-mcp-steps {
+    margin: 12px 0 12px 20px;
+    padding: 0;
+    font-size: 13px;
+}
+.pf-mcp-steps li { margin-bottom: 6px; }
+
+.pf-mcp-config-snippet {
+    max-height: 260px;
+    overflow: auto;
+    background: black;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 12px;
+    margin: 8px 0 16px;
+}
+/* The snippet is focusable so keyboard users can scroll it. */
+.pf-mcp-config-snippet:focus-visible,
+.pf-mcp-dialog-box:focus-visible {
+    outline: 2px solid #2271b1;
+    outline-offset: 2px;
+}
+
+.pf-mcp-config-tab[aria-selected="true"] { font-weight: 600; }
+
+.pf-mcp-credential-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 16px;
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f1;
+    align-items: start;
+}
+.pf-mcp-credential-row:first-child { border-top: none; }
+.pf-mcp-credential-main { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pf-mcp-credential-meta {
+    grid-column: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    font-size: 12px;
+    color: #50575e;
+}
+.pf-mcp-credential-actions { grid-row: 1 / span 2; display: flex; gap: 12px; align-items: center; }
+
+@media screen and (max-width: 782px) {
+    .pf-mcp-credential-row { grid-template-columns: minmax(0, 1fr); }
+    .pf-mcp-credential-actions { grid-row: auto; }
+    .pf-mcp-diagnostics th[scope="row"] { width: auto; }
+    .pf-mcp-token-row { flex-wrap: wrap; }
+}
+
+/* ---------------------------------------------------------------------------
+   Connections: contextual help sidebar and plain-language diagnostics.
+
+   The right column on this screen was empty, wasting roughly half the width
+   while the setup steps sat inside a modal. It now carries the steps for the
+   selected client, using the existing card/section classes.
+   --------------------------------------------------------------------------- */
+
+.pf-mcp-help h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+}
+.pf-mcp-help .description { margin: 0 0 10px; }
+
+.pf-mcp-help-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.pf-mcp-help-head h3 { margin: 0; }
+
+.pf-mcp-help-clients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0;
+}
+.pf-mcp-help-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 9px;
+    border: 1px solid #dcdcde;
+    border-radius: 999px;
+    background: #fbfbfc;
+    font-size: 12px;
+    line-height: 1.6;
+}
+.pf-mcp-help-chip img { display: block; }
+
+.pf-mcp-help-note {
+    padding: 8px 10px;
+    background: #f6f7f7;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 12px 0 0;
+}
+
+/* Diagnostics: the summary answers "can I connect?" before any protocol
+   detail. Endpoint URLs stay available but out of the way. */
+.pf-mcp-diag-summary {
+    margin: 12px 0;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border-left: 4px solid transparent;
+    font-size: 13px;
+}
+.pf-mcp-diag-ok {
+    background: #f0f6ec;
+    border-left-color: #00a32a;
+}
+.pf-mcp-diag-attention {
+    background: #fcf9e8;
+    border-left-color: #dba617;
+}
+
+.pf-mcp-diag-list {
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+}
+.pf-mcp-diag-list li {
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f1;
+    font-size: 13px;
+}
+.pf-mcp-diag-list li:first-child { border-top: none; }
+.pf-mcp-diag-detail { display: block; margin-top: 2px; }
+.pf-mcp-diag-list .pf-diag-remedy { display: block; margin: 6px 0 0; }
+
+.pf-mcp-advanced {
+    margin: 8px 0 0;
+    border-top: 1px solid #f0f0f1;
+    padding-top: 10px;
+}
+.pf-mcp-advanced > summary {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2271b1;
+    padding: 4px 0;
+}
+.pf-mcp-advanced > summary:focus-visible {
+    outline: 2px solid #2271b1;
+    outline-offset: 2px;
+}

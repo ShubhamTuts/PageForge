@@ -1,5 +1,9 @@
 # PageForge Implementation Roadmap
 
+## Targeted support fixes — 2026-10-15
+
+Implemented template target inheritance, destination disclosure, static native parent support in Free and Pro, and licensed Premium column parent mapping. Rewrite flushing follows actual CPT-base changes. Hierarchy-aware preflight and duplicate checks share destination resolution with insertion. This targeted release does not certify every historical production-program integration; actual test results and remaining verification limits are recorded in [FIX_REPORT.md](FIX_REPORT.md).
+
 Date: 2026-08-03
 
 ## Phase 0: Product Docs And Agent Context

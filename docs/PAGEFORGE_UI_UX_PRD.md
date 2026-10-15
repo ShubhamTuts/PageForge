@@ -1,5 +1,9 @@
 # PageForge UI/UX PRD
 
+## Output and hierarchy correction — 2026-10-15
+
+Template Target Post Type offers Use global default while preserving explicit choices. Generate shows the effective destination before execution. Parent Page selects native hierarchy independently of Base Layout to Clone. Settings explains that the existing Generated CPT Slug Base changes only a nonempty CPT prefix. Root URLs require native Page output, and existing items are never silently converted. See [FIX_REPORT.md](FIX_REPORT.md).
+
 Date: 2026-08-03
 
 ## Goal

@@ -8,7 +8,21 @@ if (!defined('ABSPATH')) exit;
  * Detect whether a dedicated SEO plugin is active.
  * Used to avoid duplicating meta boxes and front-end tags.
  */
+/**
+ * Whether another plugin owns front-end SEO rendering.
+ *
+ * Delegates to the Seo adapter so detection lives in one place. Previously this
+ * did not know about SEOPress, which meant a SEOPress site received two title
+ * and two description tags on every page.
+ */
 function pageforge_seo_plugins_active(): bool {
+    if (class_exists(__NAMESPACE__ . '\\Seo')) {
+        return !Seo::pageforge_owns_output();
+    }
+    return pageforge_seo_plugins_active_legacy();
+}
+
+function pageforge_seo_plugins_active_legacy(): bool {
     // Yoast SEO
     if (defined('WPSEO_VERSION')) return true;
     // Rank Math
@@ -31,6 +45,63 @@ function array_get(array $arr, string $key, $default = '') {
     return isset($arr[$key]) ? $arr[$key] : $default;
 }
 
+function pf_utf8_strlen(string $text): int {
+    if (function_exists('mb_strlen')) {
+        return (int) \mb_strlen($text, 'UTF-8');
+    }
+    if (function_exists('iconv_strlen')) {
+        $length = \iconv_strlen($text, 'UTF-8');
+        if (false !== $length) {
+            return (int) $length;
+        }
+    }
+    if (false !== preg_match_all('/./us', $text, $matches)) {
+        return count($matches[0]);
+    }
+    return strlen($text);
+}
+
+function pf_utf8_substr(string $text, int $start, ?int $length = null): string {
+    if (function_exists('mb_substr')) {
+        return null === $length
+            ? (string) \mb_substr($text, $start, null, 'UTF-8')
+            : (string) \mb_substr($text, $start, $length, 'UTF-8');
+    }
+    if (function_exists('iconv_substr')) {
+        $slice = null === $length
+            ? \iconv_substr($text, $start, null, 'UTF-8')
+            : \iconv_substr($text, $start, $length, 'UTF-8');
+        if (false !== $slice) {
+            return (string) $slice;
+        }
+    }
+    if (false !== preg_match_all('/./us', $text, $matches)) {
+        $chars = array_slice($matches[0], $start, $length);
+        return implode('', $chars);
+    }
+    return null === $length ? substr($text, $start) : substr($text, $start, $length);
+}
+
+function pf_utf8_strimwidth(string $text, int $start, int $width, string $trim_marker = ''): string {
+    if (function_exists('mb_strimwidth')) {
+        return (string) \mb_strimwidth($text, $start, $width, $trim_marker, 'UTF-8');
+    }
+    $slice = pf_utf8_substr($text, $start, $width);
+    if (pf_utf8_strlen($text) <= $width) {
+        return $slice;
+    }
+    if ('' !== $trim_marker && pf_utf8_strlen($trim_marker) < $width) {
+        $slice = pf_utf8_substr($text, $start, $width - pf_utf8_strlen($trim_marker));
+    }
+    return $slice . $trim_marker;
+}
+
+function pf_is_valid_utf8(string $text): bool {
+    if (function_exists('mb_check_encoding')) {
+        return \mb_check_encoding($text, 'UTF-8');
+    }
+    return 1 === preg_match('//u', $text);
+}
 function schema_business_type_options(): array {
     return [
         'LocalBusiness'       => 'LocalBusiness',
@@ -71,11 +142,15 @@ function ai_provider_catalog(): array {
             'model_option'  => 'openai_model',
             'default_model' => 'gpt-4o-mini',
             'models'        => [
+                'gpt-5.6-luna'  => 'GPT-5.6 Luna',
+                'gpt-5.6-terra' => 'GPT-5.6 Terra',
+                'gpt-5.6-sol'   => 'GPT-5.6 Sol',
+                'gpt-5.6'       => 'GPT-5.6',
+                'gpt-5.5'       => 'GPT-5.5',
                 'gpt-5.4-mini' => 'GPT-5.4 mini',
                 'gpt-5.4'      => 'GPT-5.4',
                 'gpt-4.1-mini' => 'GPT-4.1 mini',
                 'gpt-4.1'      => 'GPT-4.1',
-                'gpt-4.1-nano' => 'GPT-4.1 nano',
                 'gpt-4o-mini'  => 'GPT-4o mini',
                 'gpt-4o'       => 'GPT-4o',
                 'o4-mini'      => 'o4-mini',
@@ -92,6 +167,9 @@ function ai_provider_catalog(): array {
             'default_model' => 'claude-sonnet-5',
             'models'        => [
                 'claude-sonnet-5'             => 'Claude Sonnet 5',
+                'claude-fable-5-1'            => 'Claude Fable 5.1',
+                'claude-opus-5'               => 'Claude Opus 5',
+                'claude-fable-5'              => 'Claude Fable 5',
                 'claude-opus-4-8'             => 'Claude Opus 4.8',
                 'claude-opus-4-7'             => 'Claude Opus 4.7',
                 'claude-opus-4-6'             => 'Claude Opus 4.6',
@@ -106,13 +184,17 @@ function ai_provider_catalog(): array {
             'endpoint'      => 'https://generativelanguage.googleapis.com/v1beta/models',
             'key_option'    => 'gemini_key',
             'model_option'  => 'gemini_model',
-            'default_model' => 'gemini-2.5-flash',
+            'default_model' => 'gemini-3.6-flash',
             'models'        => [
-                'gemini-3.1-pro'       => 'Gemini 3.1 Pro',
-                'gemini-3-flash'       => 'Gemini 3 Flash',
-                'gemini-2.5-pro'       => 'Gemini 2.5 Pro',
-                'gemini-2.5-flash'     => 'Gemini 2.5 Flash',
-                'gemini-2.5-flash-lite'=> 'Gemini 2.5 Flash-Lite',
+                'gemini-3.6-flash'          => 'Gemini 3.6 Flash',
+                'gemini-3.1-pro-preview'    => 'Gemini 3.1 Pro Preview',
+                'gemini-3-flash-preview'    => 'Gemini 3 Flash Preview',
+                'gemini-3.5-flash'          => 'Gemini 3.5 Flash',
+                'gemini-3.5-flash-lite'     => 'Gemini 3.5 Flash-Lite',
+                'gemini-3.1-flash-lite'     => 'Gemini 3.1 Flash-Lite',
+                'gemini-2.5-pro'            => 'Gemini 2.5 Pro',
+                'gemini-2.5-flash'          => 'Gemini 2.5 Flash',
+                'gemini-2.5-flash-lite'     => 'Gemini 2.5 Flash-Lite',
             ],
         ],
         'deepseek' => [
@@ -422,6 +504,11 @@ function ai_chat_completion(array $messages, string $model = '', string $api_key
         $body['max_tokens'] = $max_tokens;
         $body['temperature'] = 0.7;
     }
+    if ('deepseek' === (string) ($credentials['provider'] ?? '') && preg_match('/^deepseek-v4-/i', $model)) {
+        // V4 defaults to thinking enabled. PageForge needs final publishable
+        // content, not reasoning that can consume the entire output budget.
+        $body['thinking'] = ['type' => 'disabled'];
+    }
     $response = \wp_remote_post((string) $credentials['endpoint'], [
         'headers' => [
             'Authorization' => 'Bearer ' . $api_key,
@@ -434,7 +521,32 @@ function ai_chat_completion(array $messages, string $model = '', string $api_key
         return $response;
     }
 
+    $code = (int) \wp_remote_retrieve_response_code($response);
     $payload = json_decode(\wp_remote_retrieve_body($response), true);
+    if ($code < 200 || $code >= 300) {
+        $message = is_array($payload)
+            ? (string) ($payload['error']['message'] ?? $payload['message'] ?? '')
+            : '';
+        if ('' === $message) {
+            $message = sprintf(
+                /* translators: 1: AI provider label, 2: HTTP status code. */
+                __('%1$s request failed with HTTP %2$d.', 'pageforge'),
+                (string) $credentials['api_label'],
+                $code
+            );
+        }
+        return new \WP_Error('ai_provider_http_error', $message);
+    }
+    if (!is_array($payload)) {
+        return new \WP_Error(
+            'ai_provider_parse_error',
+            sprintf(
+                /* translators: %s: AI provider label. */
+                __('%s returned an invalid response.', 'pageforge'),
+                (string) $credentials['api_label']
+            )
+        );
+    }
     if (isset($payload['error'])) {
         return new \WP_Error(
             'ai_provider_error',
@@ -448,7 +560,26 @@ function ai_chat_completion(array $messages, string $model = '', string $api_key
 
     $content = $payload['choices'][0]['message']['content'] ?? '';
     $content = trim(str_replace(['```json', '```html', '```'], '', (string) $content));
+    if ('' === $content) {
+        $finish_reason = (string) ($payload['choices'][0]['finish_reason'] ?? '');
+        $message = 'length' === $finish_reason
+            ? sprintf(
+                /* translators: %s: AI provider label. */
+                __('%s reached its output limit before returning final content. Try again or choose a shorter output.', 'pageforge'),
+                (string) $credentials['api_label']
+            )
+            : sprintf(
+                /* translators: %s: AI provider label. */
+                __('%s returned an empty response.', 'pageforge'),
+                (string) $credentials['api_label']
+            );
+        return new \WP_Error('ai_provider_empty_response', $message);
+    }
     return $content;
+}
+
+function ai_anthropic_supports_sampling(string $model): bool {
+    return 1 !== preg_match('/^(claude-(?:sonnet|opus|fable)-5|claude-opus-4-[78])(?:$|-)/i', $model);
 }
 
 function ai_anthropic_chat(array $messages, string $model, string $api_key, int $max_tokens, string $endpoint) {
@@ -476,9 +607,11 @@ function ai_anthropic_chat(array $messages, string $model, string $api_key, int 
     $body = [
         'model' => $model,
         'max_tokens' => $max_tokens,
-        'temperature' => 0.7,
         'messages' => $anthropic_messages,
     ];
+    if (ai_anthropic_supports_sampling($model)) {
+        $body['temperature'] = 0.7;
+    }
     if (!empty($system_parts)) {
         $body['system'] = implode("\n\n", $system_parts);
     }
@@ -493,10 +626,22 @@ function ai_anthropic_chat(array $messages, string $model, string $api_key, int 
         'timeout' => 90,
     ]);
     if (\is_wp_error($response)) return $response;
+    $code = (int) \wp_remote_retrieve_response_code($response);
     $payload = json_decode(\wp_remote_retrieve_body($response), true);
+    if ($code < 200 || $code >= 300) {
+        $message = is_array($payload) ? (string) ($payload['error']['message'] ?? '') : '';
+        return new \WP_Error('anthropic_http_error', $message !== '' ? $message : sprintf(__('Anthropic request failed with HTTP %d.', 'pageforge'), $code));
+    }
+    if (!is_array($payload)) {
+        return new \WP_Error('anthropic_parse_error', __('Anthropic returned an invalid response.', 'pageforge'));
+    }
     if (isset($payload['error'])) {
         $message = is_array($payload['error']) ? (string) ($payload['error']['message'] ?? __('Anthropic error', 'pageforge')) : (string) $payload['error'];
         return new \WP_Error('anthropic_error', $message);
+    }
+    // Newer Claude models can decline a request with HTTP 200 and no usable text.
+    if ('refusal' === ($payload['stop_reason'] ?? '')) {
+        return new \WP_Error('anthropic_refusal', __('Claude declined this request. Rephrase the prompt or choose a different Claude model.', 'pageforge'));
     }
     $parts = [];
     foreach ((array) ($payload['content'] ?? []) as $part) {
@@ -504,7 +649,10 @@ function ai_anthropic_chat(array $messages, string $model, string $api_key, int 
             $parts[] = (string) $part['text'];
         }
     }
-    return trim(str_replace(['```json', '```html', '```'], '', implode("\n", $parts)));
+    $content = trim(str_replace(['```json', '```html', '```'], '', implode("\n", $parts)));
+    return $content !== ''
+        ? $content
+        : new \WP_Error('anthropic_empty_response', __('Anthropic returned an empty response.', 'pageforge'));
 }
 
 function ai_gemini_chat(array $messages, string $model, string $api_key, int $max_tokens, string $endpoint) {
@@ -539,14 +687,25 @@ function ai_gemini_chat(array $messages, string $model, string $api_key, int $ma
         $body['systemInstruction'] = ['parts' => [['text' => implode("\n\n", $system_parts)]]];
     }
 
-    $url = rtrim($endpoint, '/') . '/' . rawurlencode($model) . ':generateContent?key=' . rawurlencode($api_key);
+    $url = rtrim($endpoint, '/') . '/' . rawurlencode($model) . ':generateContent';
     $response = \wp_remote_post($url, [
-        'headers' => ['Content-Type' => 'application/json'],
+        'headers' => [
+            'Content-Type' => 'application/json',
+            'x-goog-api-key' => $api_key,
+        ],
         'body' => \wp_json_encode($body),
         'timeout' => 90,
     ]);
     if (\is_wp_error($response)) return $response;
+    $code = (int) \wp_remote_retrieve_response_code($response);
     $payload = json_decode(\wp_remote_retrieve_body($response), true);
+    if ($code < 200 || $code >= 300) {
+        $message = is_array($payload) ? (string) ($payload['error']['message'] ?? '') : '';
+        return new \WP_Error('gemini_http_error', $message !== '' ? $message : sprintf(__('Gemini request failed with HTTP %d.', 'pageforge'), $code));
+    }
+    if (!is_array($payload)) {
+        return new \WP_Error('gemini_parse_error', __('Gemini returned an invalid response.', 'pageforge'));
+    }
     if (isset($payload['error'])) {
         $message = is_array($payload['error']) ? (string) ($payload['error']['message'] ?? __('Gemini error', 'pageforge')) : (string) $payload['error'];
         return new \WP_Error('gemini_error', $message);
@@ -558,7 +717,10 @@ function ai_gemini_chat(array $messages, string $model, string $api_key, int $ma
             $text[] = (string) $part['text'];
         }
     }
-    return trim(str_replace(['```json', '```html', '```'], '', implode("\n", $text)));
+    $content = trim(str_replace(['```json', '```html', '```'], '', implode("\n", $text)));
+    return $content !== ''
+        ? $content
+        : new \WP_Error('gemini_empty_response', __('Gemini returned an empty response.', 'pageforge'));
 }
 
 function openai_generate(string $prompt, string $model, string $api_key, int $max_tokens = 3000, ?string $provider = null) {
@@ -586,7 +748,7 @@ function openai_chat(array $messages, string $model, string $api_key, int $max_t
         if ($content === '') continue;
         $clean[] = [
             'role' => $role,
-            'content' => mb_substr($content, 0, 12000),
+            'content' => pf_utf8_substr($content, 0, 12000),
         ];
         if (count($clean) >= 24) break;
     }
